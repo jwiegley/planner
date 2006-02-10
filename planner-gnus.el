@@ -222,7 +222,7 @@ Raise this if you have problems browsing gnus URLs.")
       (let ((articles (if (fboundp 'gnus-find-matching-articles)
                           (gnus-find-matching-articles "message-id" articles)
                         (gnus-summary-find-matching "message-id" articles
-                                                    nil t))))
+                                                    nil nil t))))
         (gnus-summary-limit articles)
         (gnus-summary-select-article))
       t)))
