@@ -516,7 +516,7 @@ unauthorized users."
   (save-excursion
     (save-restriction
       (narrow-to-region beg end)
-      (planner-publish-section-tag beg end attrs)
+      (planner-publish-nested-section-tag beg end)
       (goto-char beg)
       (while (and (zerop (forward-line))
                   (= (point) (planner-line-beginning-position)))
