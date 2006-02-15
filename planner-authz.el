@@ -221,6 +221,29 @@ The component's name is determined from
   :group 'planner-authz
   :type 'string)
 
+(defcustom planner-authz-multi-func 'planner-authz-multi-union
+  "*Function used to combine access lists for multiple planner pages.
+
+When `planner-multi' is in effect and a task or note is linked to
+multiple plan pages, `planner-authz' uses this function to decide how
+to build the access list for the task or note from the access lists of
+the linked pages.  
+
+It is passed a list of sublists, each sublist being the access list (a
+list of usernames) for one of the linked pages.  It should return a
+combined single list of usernames.
+
+Two such functions are provided: `planner-authz-multi-intersection'
+returns only those user names that are common to all the access lists
+for all the linked pages, and `planner-authz-multi-union' returns a
+list of all the unique user names in any of those access lists."
+  :group 'planner-authz
+  :type '(radio (function-item :tag "Intersection"
+                               planner-authz-multi-intersection)
+                (function-item :tag "Union" planner-authz-multi-union)
+                (function :tag "Other")))
+
+
 (defcustom planner-authz-project-default nil
   "Default list of users for restricting project pages if #authz is nil."
   :group 'planner-authz
@@ -296,6 +319,11 @@ internal to planner-authz; do not set it manually.")
 Used to markup planner day pages that wouldn't ordinarily get
 republished because they haven't explicitly changed.  This
 variable is internal to planner-authz; do not set it manually.")
+(defvar planner-authz-disable-republishing nil
+  "If non-nil, `planner-authz' will not republish pages linked to the page currently being published.
+Normally, linked pages are republished in case the access list for the
+current page has changed.  This variable is set to t while
+`planner-authz' is republishing pages to avoid indefinite recursion.")
 
 ;;; Functions
 
@@ -315,7 +343,8 @@ to republish and enforce default access controls for project pages."
   "Republish pages that reference restricted pages and call the
 generate Mason code."
   (when (string= planner-project (car project))
-    (let (file)
+    (let ((planner-authz-disable-republishing t)
+          file)
       (while (setq file (pop planner-authz-pages-to-republish))
         (muse-project-publish-file file planner-project t)))
     (run-hook-with-args 'planner-authz-after-publish-hook project)))
@@ -475,9 +504,12 @@ If EXCLUDE-CURRENT is non-nil, exclude the current file from the output."
               (save-excursion (funcall func))))
         (re-search-forward "<li" nil t)
         (goto-char (match-beginning 0)))
-      (let* ((match (planner-link-base
-                     (buffer-substring (point) (line-end-position))))
-             (users (if match (planner-authz-users match))))
+      (let* ((link (buffer-substring (point) (line-end-position)))
+             (pages (mapcar 'planner-link-base
+                            (if (featurep 'planner-multi)
+                                (planner-multi-split link)
+                              link)))
+             (users (if pages (planner-authz-multi-users pages))))
         (when users
           (planner-insert-markup (muse-markup-text
                                   'planner-authz-begin users))
@@ -487,13 +519,16 @@ If EXCLUDE-CURRENT is non-nil, exclude the current file from the output."
           (planner-insert-markup (muse-markup-text 'planner-authz-end)))))
     (buffer-substring (point-min) (point-max))))
 
-(defun planner-authz-republish-page-maybe (linked-page)
-  "Remember LINKED-PAGE to be republished later.
-The page will be republished if and only if the current page is
+(defun planner-authz-republish-pages-maybe (linked-pages)
+  "Remember LINKED-PAGES to be republished later.
+The pages will be republished if and only if the current page is
 restricted."
-  (if (planner-authz-users)
-      (add-to-list 'planner-authz-pages-to-republish
-                   (planner-page-file linked-page))))
+  (and (not planner-authz-disable-republishing)
+       (planner-authz-users)
+       (while linked-pages
+         (add-to-list 'planner-authz-pages-to-republish
+                      (planner-page-file (car linked-pages)))
+         (setq linked-pages (cdr linked-pages)))))
 
 (defun planner-authz-tag (beg end attrs)
   "Publish <authz> tags.  The region from BEG to END is protected.
@@ -525,10 +560,14 @@ unauthorized users."
                 (line-end (line-end-position)))
             (re-search-forward planner-authz-link-regexp line-end t)
             (let* ((link (match-string 1))
-                   (linked-page (if link (planner-link-base link)))
+                   (linked-pages (if link
+                                     (mapcar 'planner-link-base
+                                             (if (featurep 'planner-multi)
+                                                 (planner-multi-split link)
+                                               link))))
                    (linked-users
-                    (if linked-page
-                        (planner-authz-users linked-page)
+                    (if linked-pages
+                        (planner-authz-multi-users linked-pages)
                       (and planner-authz-day-task-default
                            (mapconcat 'identity planner-authz-day-task-default
                                       " ")))))
@@ -559,10 +598,14 @@ Call `planner-publish-note-tag' as a side effect."
       (narrow-to-region beg end)
       (planner-publish-note-tag beg end attrs)
       (let* ((link (cdr (assoc "link" attrs)))
-             (linked-page (if link (planner-link-base link)))
+             (linked-pages (if link
+                               (mapcar 'planner-link-base
+                                       (if (featurep 'planner-multi)
+                                           (planner-multi-split link)
+                                         link))))
              (linked-users
-              (if linked-page
-                  (planner-authz-users linked-page)
+              (if linked-pages
+                  (planner-authz-users linked-pages)
                 (and planner-authz-day-note-default
                      (planner-authz-day-p)
                      (mapconcat 'identity
@@ -572,8 +615,8 @@ Call `planner-publish-note-tag' as a side effect."
         ;; later to restrict the note as it appears there, providing that
         ;; page has an authz restriction
 
-        (if linked-page
-            (planner-authz-republish-page-maybe linked-page))
+        (if linked-pages
+            (planner-authz-republish-pages-maybe linked-pages))
 
         ;; If the linked page has an authz restriction, restrict this note
       
@@ -596,10 +639,14 @@ Call `planner-publish-task-tag' as a side effect."
       (narrow-to-region beg end)
       (planner-publish-task-tag beg end attrs)
       (let* ((link (cdr (assoc "link" attrs)))
-             (linked-page (if link (planner-link-base link)))
+             (linked-pages (if link
+                               (mapcar 'planner-link-base
+                                       (if (featurep 'planner-multi)
+                                           (planner-multi-split link)
+                                         link))))
              (linked-users
-              (if linked-page
-                  (planner-authz-users linked-page)
+              (if linked-pages
+                  (planner-authz-multi-users linked-pages)
                 (and planner-authz-day-task-default
                      (planner-authz-day-p)
                      (mapconcat 'identity
@@ -609,8 +656,8 @@ Call `planner-publish-task-tag' as a side effect."
         ;; later to restrict the task as it appears there, providing that
         ;; page has an authz restriction
 
-        (if linked-page
-            (planner-authz-republish-page-maybe linked-page))
+        (if linked-pages
+            (planner-authz-republish-pages-maybe linked-pages))
 
         ;; If the linked page has an authz restriction, restrict this task
 
@@ -645,6 +692,58 @@ current page."
                   (planner-authz-default page))))
       (push `(,page . ,match) planner-authz-pages))
     match))
+
+(defun planner-authz-multi-intersection (list)
+  "Merge a list of `planner-authz' access lists, returning a list of only those user names that are common to all the passed access lists."
+  (let ((count (length list))
+        alist intersection sublist)
+
+    ;; in alist, associate each name with its frequency of appearance
+    (while list
+      (setq sublist (car list))
+      (while sublist
+        (let ((entry (assoc (car sublist) alist)))
+          (if entry
+              (setcdr entry (1+ (cdr entry)))
+            (setq alist (cons `(,(car sublist) . 1) alist))))
+        (setq sublist (cdr sublist)))
+      (setq list (cdr list)))
+
+    ;; those names with `count' frequencies were in every sublist
+    (while alist
+      (if (= (cdar alist) count)
+          (setq intersection (cons (caar alist) intersection)))
+      (setq alist (cdr alist)))
+    intersection))
+
+(defun planner-authz-multi-union (list)
+  "Merge a list of `planner-authz' access lists, returning a list of all the unique user names in any of those access lists."
+  (let (union)
+    (while list
+      (setq sublist (car list))
+      (while sublist
+        (add-to-list 'union (car sublist))
+        (setq sublist (cdr sublist)))
+      (setq list (cdr list)))
+    union))
+
+(defun planner-authz-multi-users (pages)
+  "Return a merged access list for PAGES.
+The list of users is returned as space-separated string, based on a
+#authz directive appearing in the PAGES.  If one of PAGES contains no
+#authz directive and is a project page (it doesn't match
+`planner-date-regexp'), it will contribute
+`planner-authz-project-default' to the merge."
+  (let ((users
+         (funcall planner-authz-multi-func
+                  (mapcar (lambda (page)
+                            (if (not (planner-authz-day-p page))
+                                (let ((users (planner-authz-users page)))
+                                  (if users
+                                      (split-string users)))))
+                          pages))))
+    (if users
+          (mapconcat 'identity users " "))))
 
 (add-hook 'muse-after-project-publish-hook
           'planner-authz-after-project-publish)
