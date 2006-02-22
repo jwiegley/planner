@@ -314,16 +314,20 @@ searched."
   "Alist of planner pages and users authorized to view them.
 The list of users is separated by spaces.  This variable is
 internal to planner-authz; do not set it manually.")
-(defvar planner-authz-pages-to-republish nil
-  "Queue of planner pages to republish when finished with current round.
-Used to markup planner day pages that wouldn't ordinarily get
-republished because they haven't explicitly changed.  This
-variable is internal to planner-authz; do not set it manually.")
-(defvar planner-authz-disable-republishing nil
-  "If non-nil, `planner-authz' will not republish pages linked to the page currently being published.
+(defvar planner-authz-publishing-alist nil
+  "Alist used by `planner-authz' to track published pages and their dependencies.
+This alist stores pages that have been published during the current
+publishing process, as (PAGENAME . t), and pages whose tasks and notes
+depend on those pages for access control, as (PAGENAME . nil).  At the
+end of publishing, `planner-authz' uses this alist to determine which
+dependencies need to be republished, even if they themselves haven't
+changed.")
+(defvar planner-authz-disable-dependency-publishing nil
+  "If non-nil, `planner-authz' will not republish unchanged pages whose tasks or notes depend on the page currently being published.
 Normally, linked pages are republished in case the access list for the
 current page has changed.  This variable is set to t while
-`planner-authz' is republishing pages to avoid indefinite recursion.")
+`planner-authz' is republishing dependent pages to avoid indefinite
+recursion.")
 
 ;;; Functions
 
@@ -332,7 +336,16 @@ current page has changed.  This variable is set to t while
 to republish and enforce default access controls for project pages."
   (let ((page (planner-page-name)))
     (when page
-      (delete page planner-authz-pages-to-republish)
+
+      (let ((cell (assoc page planner-authz-publishing-alist)))
+        (if cell
+
+            ;; if already t, the list is stale; whack it
+            (if (cdr cell)
+                (setq planner-authz-publishing-alist '(page . t)))
+
+          (push '(page . t) planner-authz-publishing-alist)))
+
       (let ((users (planner-authz-users)))
         (when users
           (goto-char (point-min))
@@ -343,10 +356,13 @@ to republish and enforce default access controls for project pages."
   "Republish pages that reference restricted pages and call the
 generate Mason code."
   (when (string= planner-project (car project))
-    (let ((planner-authz-disable-republishing t)
-          file)
-      (while (setq file (pop planner-authz-pages-to-republish))
-        (muse-project-publish-file file planner-project t)))
+    (while planner-authz-publishing-alist
+      (if (not (cdar planner-authz-publishing-alist))
+          (let ((planner-authz-disable-dependency-publishing t))
+            (muse-project-publish-file (caar planner-authz-publishing-alist)
+                                       planner-project t)))
+      (setq planner-authz-publishing-alist
+            (cdr planner-authz-publishing-alist)))
     (run-hook-with-args 'planner-authz-after-publish-hook project)))
 
 (defun planner-authz-before-markup ()
@@ -519,15 +535,15 @@ If EXCLUDE-CURRENT is non-nil, exclude the current file from the output."
           (planner-insert-markup (muse-markup-text 'planner-authz-end)))))
     (buffer-substring (point-min) (point-max))))
 
-(defun planner-authz-republish-pages-maybe (linked-pages)
+(defun planner-authz-republish-dependencies-maybe (linked-pages)
   "Remember LINKED-PAGES to be republished later.
 The pages will be republished if and only if the current page is
 restricted."
-  (and (not planner-authz-disable-republishing)
+  (and (not planner-authz-disable-dependency-publishing)
        (planner-authz-users)
        (while linked-pages
-         (add-to-list 'planner-authz-pages-to-republish
-                      (planner-page-file (car linked-pages)))
+         (unless (assoc (car linked-pages) planner-authz-publishing-alist)
+           (push '(car linked-pages) planner-authz-publishing-alist))
          (setq linked-pages (cdr linked-pages)))))
 
 (defun planner-authz-tag (beg end attrs)
@@ -619,7 +635,7 @@ Call `planner-publish-note-tag' as a side effect."
         ;; page has an authz restriction
 
         (if linked-pages
-            (planner-authz-republish-pages-maybe linked-pages))
+            (planner-authz-republish-dependencies-maybe linked-pages))
 
         ;; If the linked page has an authz restriction, restrict this note
       
@@ -660,7 +676,7 @@ Call `planner-publish-task-tag' as a side effect."
         ;; page has an authz restriction
 
         (if linked-pages
-            (planner-authz-republish-pages-maybe linked-pages))
+            (planner-authz-republish-dependencies-maybe linked-pages))
 
         ;; If the linked page has an authz restriction, restrict this task
 
