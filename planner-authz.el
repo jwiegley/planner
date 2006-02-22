@@ -597,15 +597,18 @@ Call `planner-publish-note-tag' as a side effect."
     (save-restriction
       (narrow-to-region beg end)
       (planner-publish-note-tag beg end attrs)
-      (let* ((link (cdr (assoc "link" attrs)))
-             (linked-pages (if link
+      (let* ((categories (cdr (assoc "categories" attrs)))
+             (links (if (or (not categories) (zerop (length categories)))
+                        (cdr (assoc "link" attrs))
+                      categories))
+             (linked-pages (if (and links (not (zerop (length links))))
                                (mapcar 'planner-link-base
                                        (if (featurep 'planner-multi)
-                                           (planner-multi-split link)
-                                         link))))
+                                           (planner-multi-split links)
+                                         links))))
              (linked-users
               (if linked-pages
-                  (planner-authz-users linked-pages)
+                  (planner-authz-multi-users linked-pages)
                 (and planner-authz-day-note-default
                      (planner-authz-day-p)
                      (mapconcat 'identity
