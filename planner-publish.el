@@ -564,7 +564,6 @@ DIRECTORY and START."
           (link       (or (cdr (assoc "link" attrs)) ""))
           (categories (or (cdr (assoc "categories" attrs)) "")))
 
-      (setq categories "") ; categories broken for now
       (goto-char beg)
       (planner-insert-markup (muse-markup-text 'planner-begin-note
                                                anchor
