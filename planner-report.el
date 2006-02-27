@@ -154,10 +154,13 @@ BEGIN and END are in the format YYYY.MM.DD."
         (insert "#authz "
                 (mapconcat 'identity planner-report-authz " ") "\n"))
       (insert "#title Status report for " begin " to " end "\n")
-      (let ((pages (if planner-report-authz
-                       (planner-authz-file-alist planner-report-authz)
-                     (planner-file-alist)))
-            notes tasks)
+      (let* ((unsorted-pages
+              (if planner-report-authz
+                  (planner-authz-file-alist planner-report-authz)
+                (planner-file-alist)))
+             (pages
+              (sort unsorted-pages (lambda (a b) (string< (car a) (car b)))))
+             notes tasks)
         (while pages
           (when (caar pages)
             ;; Add only project pages, and skip other status reports
