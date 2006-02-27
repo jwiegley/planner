@@ -1566,8 +1566,13 @@ VERBOSE is ignored."
 		(save-excursion
 		  (goto-char (planner-line-beginning-position))
 		  (save-match-data
-		    (or (looking-at planner-live-task-regexp)
-			(looking-at planner-appt-schedule-appt-regexp)))))
+		    (or (and (looking-at planner-live-task-regexp)
+			     (string= (planner-task-date
+				       (planner-current-task-info))
+				      (planner-today)))
+			(and
+			 (planner-appt-todays-page-p)
+			 (looking-at planner-appt-schedule-appt-regexp))))))
 	(planner-highlight-region
 	 (match-beginning 1)
 	 (match-end 1)
@@ -1578,9 +1583,8 @@ VERBOSE is ignored."
 
 (defun planner-appt-font-setup ()
   "Hook into `planner-mode'."
-  (when (planner-appt-todays-page-p)
     (planner-appt-add-hook 'muse-colors-buffer-hook
-			   'planner-appt-task-highlight t)))
+			   'planner-appt-task-highlight t))
 
 ;;; Calendar Marking
 
