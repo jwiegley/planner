@@ -100,7 +100,7 @@ version of Emacs or XEmacs.
 A quick example that accomplishes both of these follows.
 
 ;; Add this to your .emacs or .xemacs/init.el file.
-(setq load-path (add-to-list 'load-path "/path/to/planner"))
+(add-to-list 'load-path "/path/to/planner")
 (require 'planner)
 
 Documentation
