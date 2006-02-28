@@ -571,7 +571,7 @@ Internal variable: to set up appointment methods use one of:
 	    (setq date-absolute (calendar-absolute-from-gregorian
 				 (planner-filename-to-calendar-date
 				  date)))
-	    (insert-file-contents-literally (cdr page))
+	    (insert-file-contents (cdr page))
 	    (goto-char (point-min))
 	    (while (re-search-forward planner-appt-forthcoming-regexp nil t)
 	      (setq line (match-string 0))
@@ -676,6 +676,7 @@ Internal variable: to set up appointment methods use one of:
 			 (cadr a)))
 		     (setq last-date (car a))))
 	       appt-data "\n")))
+
 
 (defvar planner-appt-forthcoming-display-buffer
   "*Forthcoming Appointments*"
