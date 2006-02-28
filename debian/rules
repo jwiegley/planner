@@ -25,7 +25,7 @@ build-stamp: configure-stamp
 	# Add here commands to compile the package.
 	# $(MAKE)
 	$(MAKE) autoloads
-	makeinfo planner-el.texi
+	LANG=en_US makeinfo planner-el.texi
 	texi2html planner-el.texi
 	touch build-stamp
 
@@ -45,8 +45,10 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/tmp.
-	install -d $(PKGDIR)$(LISPDIR) ${PKGDIR}${DOCDIR}
+	install -d $(PKGDIR)$(LISPDIR) $(PKGDIR)$(LISPDIR)/contrib
+	install -d ${PKGDIR}${DOCDIR}
 	install -m 644 *.el $(PKGDIR)$(LISPDIR)
+	install -m 644 contrib/*.el $(PKGDIR)$(LISPDIR)/contrib
 	install -m 0644 AUTHORS ${PKGDIR}${DOCDIR}/AUTHORS
 	install -m 0644 COMMENTARY ${PKGDIR}${DOCDIR}/COMMENTARY
 	install -m 0644 NEWS ${PKGDIR}${DOCDIR}/NEWS

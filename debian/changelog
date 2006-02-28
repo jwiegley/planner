@@ -1,3 +1,30 @@
+planner-el (3.40-3) unstable; urgency=low
+
+  * Acknowledge NMU: "planner-el: FTBFS: Missing Build-Depends on 'emacs21'",
+    thanks to Andreas Jochens and Matej Vela (Closes: #351876).
+  * Use debian/compat to determine debhelper compat level.
+  * Bug fix: "planner-el: pseudo-article error on
+    planner-gnus-browse-url", thanks to Boris Daix (Closes: #353729).
+  * Bug fix: "planner-el: makeinfo under LANG=C", thanks to LI Daobing
+    (Closes: #322404).
+  * Other bugfixes and features:
+    - planner.el: Don't insert too many spaces around task number.
+    - planner.el: Make link-visiting more robust.
+    - planner-appt.el: Several XEmacs fixes.
+    - planner-authz.el: Several publishing fixes.
+    - planner-calendar: Make a <calendar> tag.
+    - planner-publish: Enable multiple links with "categories" attribute.
+
+ -- Michael W. Olson (GNU address) <mwolson@gnu.org>  Sun, 26 Feb 2006 23:07:54 -0500
+
+planner-el (3.40-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Add a build dependency on `emacs21-nox | emacsen' for generating
+    planner-autoloads.el.  Closes: #351876.
+
+ -- Matej Vela <vela@debian.org>  Thu, 23 Feb 2006 10:11:09 +0100
+
 planner-el (3.40-2) unstable; urgency=low
 
   * debian/emacsen-install: Make sure that symlink for planner-autoloads

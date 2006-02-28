@@ -36,7 +36,7 @@ FILES=`ls -1 *.el | grep -v autoloads`
 cd ${ELCDIR}
 
 cat << EOF > path.el
-(setq load-path (cons "." load-path) byte-compile-warnings nil)
+(setq load-path (cons "." (cons "${ELDIR}/contrib" load-path))
 EOF
 ${FLAVOR} ${FLAGS} ${FILES} 2>&1 | gzip -9qf > CompilationLog.gz
 rm -f path.el

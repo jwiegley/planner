@@ -1,3 +1,265 @@
+2006-02-22 01:57:37 GMT	Andrew J. Korty <ajk@iu.edu>	patch-7
+
+    Summary:
+      only publish dependencies if they haven't already been published
+    Revision:
+      planner-el--devel--0--patch-7
+
+    * planner-authz.el (planner-authz-publishing-alist): alist to track
+      published pages and their dependencies
+      (planner-authz-after-markup): if planner-authz-publishing-alist
+      indicates this page has already been published, and here we are
+      publishing it again, the alist must be stale, so we replace it with
+      a single element for this page; otherwise, add an element for this page
+      to the list
+      (planner-authz-after-project-publish): use
+      planner-authz-publishing-alist to determine which dependencies need
+      publishing
+      (planner-authz-republish-dependencies-maybe): add linked pages to
+      planner-authz-publishing-alist as dependencies if they're not already
+      there
+
+    modified files:
+     planner-authz.el
+
+
+2006-02-22 01:55:02 GMT	Andrew J. Korty <ajk@iu.edu>	patch-6
+
+    Summary:
+      consider all of a note's links when building an access list
+    Revision:
+      planner-el--devel--0--patch-6
+
+    * planner-authz.el (planner-authz-note-tag): use "categories" attribute
+
+    modified files:
+     planner-authz.el
+
+
+2006-02-22 01:48:52 GMT	Andrew J. Korty <ajk@iu.edu>	patch-5
+
+    Summary:
+      enable multiple links with "categories" attribute
+    Revision:
+      planner-el--devel--0--patch-5
+
+    * planner-publish.el (planner-publish-note-tag): enable "categories"
+      attribute, which stores all of a note's links
+
+    modified files:
+     planner-publish.el
+
+
+2006-02-15 20:26:25 GMT	Andrew J. Korty <ajk@iu.edu>	patch-4
+
+    Summary:
+      add planner-multi support to planner-authz
+    Revision:
+      planner-el--devel--0--patch-4
+
+     - when multiple pages are linked to a task or note, merge the access
+       lists to the linked pages using a user-specified function
+    
+     - provide intersection and union functions for merging access lists
+    
+     - disable republishing *during* republishing to avoid indefinite
+       recursion
+
+    modified files:
+     planner-authz.el
+
+
+2006-02-15 20:12:41 GMT	Andrew J. Korty <ajk@iu.edu>	patch-3
+
+    Summary:
+      update to work with latest planner-publish.el
+    Revision:
+      planner-el--devel--0--patch-3
+
+     - catch up with function name change in planner-publish.el
+
+    modified files:
+     planner-authz.el
+
+
+2006-02-14 06:32:23 GMT	Michael Olson <mwolson@gnu.org>	patch-9
+
+    Summary:
+      Use debian/compat to determine debhelper compat level.
+    Revision:
+      planner--main--1.0--patch-9
+
+    * debian/compat: New file that sets the debhelper compatibility level to
+      4.
+    
+    * debian/rules: Remove DH_COMPAT line.
+
+    new files:
+     debian/.arch-ids/compat.id debian/compat
+
+    modified files:
+     debian/rules
+
+
+2006-02-10 22:53:52 GMT	Michael Olson <mwolson@gnu.org>	patch-8
+
+    Summary:
+      Fix Bug #5234: planner-gnus pseudo-article error.
+    Revision:
+      planner--main--1.0--patch-8
+
+    * planner-gnus.el (planner-gnus-browse-url): Apply patch from Sacha that
+      should fix Bug #5234: planner-gnus pseudo-article error.
+
+    modified files:
+     planner-gnus.el
+
+
+2006-01-30 11:55:00 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-45
+
+    Summary:
+      further fix for XEmacs initialization
+    Revision:
+      planner--jeho--1.1--patch-45
+
+    * planner-appt.el (planner-appt-insinuate): for XEmacs, create a diary
+      file if one doesn't already exist
+    
+
+    modified files:
+     planner-appt.el
+
+
+2006-01-28 10:42:04 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-44
+
+    Summary:
+      fix initialization for XEmacs
+    Revision:
+      planner--jeho--1.1--patch-44
+
+    * planner-appt.el (planner-appt-insinuate): try to fix initialization for
+      XEmacs: add (display-time).
+    
+
+    modified files:
+     planner-appt.el
+
+
+2006-01-26 00:38:24 GMT	Michael Olson <mwolson@gnu.org>	patch-6
+
+    Summary:
+      planner-gnus: Fix buggy browsing behavior.
+    Revision:
+      planner--main--1.0--patch-6
+
+    * planner-gnus.el (planner-gnus-browse-url): Prefer to use the
+      `gnus-find-matching-articles' function if it exists.  Thanks to John
+      Sullivan for the report.
+
+    modified files:
+     planner-gnus.el
+
+
+2006-01-25 12:51:16 GMT	Michael Olson <mwolson@gnu.org>	patch-5
+
+    Summary:
+      Don't insert too many spaces around task number.
+    Revision:
+      planner--main--1.0--patch-5
+
+    * planner.el (planner-task-format, planner-format-task): Apply patch from
+      Stefan Reichör that keeps extra spaces from being inserted when
+      planner-use-task-numbers is nil.
+
+    modified files:
+     planner.el
+
+
+2006-01-24 02:11:47 GMT	Michael Olson <mwolson@gnu.org>	patch-4
+
+    Summary:
+      planner-calendar: Make a <calendar> tag.
+    Revision:
+      planner--main--1.0--patch-4
+
+    * planner-calendar.el (planner-calendar-insert-calendar-maybe): Insert a
+      <calendar> tag, rather than using a <lisp> tag, since we can't yet tell
+      <lisp> to publish read-only.
+      (planner-calendar-move-calendar-to-top-of-page-maybe): Use
+      planner-insert-markup rather than `insert'.  Make sure we can snarf the
+      region safely, even if it is read-only.
+      (planner-publish-calendar-tag): New function that publishes a
+      <calendar> tag.
+    
+    * planner-publish.el (planner-publish-markup-tags): Docfix.
+
+    modified files:
+     planner-calendar.el planner-publish.el
+
+
+2006-01-23 17:22:16 GMT	Michael Olson <mwolson@gnu.org>	patch-3
+
+    Summary:
+      Make planner-visit-link more robust.
+    Revision:
+      planner--main--1.0--patch-3
+
+    * planner.el (planner-visit-link): Make this more robust by merging in
+      some changes from Muse.  Thanks to Seth Falcon for the sample fix.
+      Among other things, this correctly adds the file extension when
+      visiting a new Muse file.
+
+    modified files:
+     planner.el
+
+
+2006-01-21 01:55:13 GMT	Michael Olson <mwolson@gnu.org>	patch-2
+
+    Summary:
+      Debian package refinements.
+    Revision:
+      planner--main--1.0--patch-2
+
+    * Makefile (debrevision): New rule that causes a Debian package with a
+      revision to be built.  The main difference between this and
+      `debrelease' is that the .orig.tar.gz file is left alone.
+      (debbuild): New rule factored from debrelease.
+      (debclean): Removed, since we use slightly differing variations of this
+      in debrelease and debrevision.
+    
+    * debian/README.Debian: Add comments and my debian repo.
+    
+    * debian/emacsen-install: Make sure we symlink planner-autoloads.el.  Thanks to
+      Romain Francoise for noticing.
+    
+    * debian/rules: DTRT with NEWS and README.Debian.
+
+    modified files:
+     Makefile Makefile.defs debian/README.Debian debian/changelog
+     debian/emacsen-install debian/rules
+
+    renamed files:
+     debian/.arch-ids/NEWS.Debian.id
+       ==> debian/.arch-ids/NEWS.id
+     debian/NEWS.Debian
+       ==> debian/NEWS
+
+
+2006-01-19 01:57:47 GMT	Michael Olson <mwolson@gnu.org>	patch-1
+
+    Summary:
+      Debian fixups.
+    Revision:
+      planner--main--1.0--patch-1
+
+    * debian/emacsen-startup: Remove unnecessary path addition.
+    
+    * debian/rules: Explicitly install README.Debian and NEWS.Debian.
+
+    modified files:
+     debian/emacsen-startup debian/rules
+
+
 2006-01-17 01:16:25 GMT	Michael Olson <mwolson@gnu.org>	patch-184
 
     Summary:

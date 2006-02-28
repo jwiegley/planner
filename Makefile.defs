@@ -20,5 +20,5 @@ PROJECT    = planner
 DEBNAME    = planner-el
 VERSION    = 3.40
 MANUAL     = planner-el
-LASTUPLOAD = 3.40-1
+LASTUPLOAD = 3.40-2
 BUILDOPTS  =

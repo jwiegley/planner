@@ -1,5 +1,29 @@
 Planner NEWS --- History of user-visible changes    -*- outline -*-
 
+* Changes in Planner 3.41 (unreleased)
+
+** Bugfixes
+
+*** Make planner-visit-link more robust.
+*** Don't insert too many spaces around task number.
+*** planner-authz: Work with latest changes in planner-publish.
+*** planner-gnus: Fix buggy browsing behavior.
+
+** Compatibility fixes
+
+*** planner-appt: Fix initialization for XEmacs.
+*** planner-appt: For XEmacs, create a diary file if one does not exist.
+
+** New features
+
+*** planner-authz: Add planner-multi support.
+*** planner-authz: Consider all of a note's links when building an
+access list.
+*** planner-authz: Only publish dependencies if they haven't already
+been published.
+*** planner-calendar: Make a <calendar> tag.
+*** planner-publish: Enable multiple links with "categories" attribute.
+
 * Changes in Planner 3.40
 
 ** Migration to Muse backend from emacs-wiki is complete.
