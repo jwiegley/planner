@@ -389,12 +389,6 @@ the hook's global value rather than its local value."
   (planner-appt-remove-task-id
    (planner-remove-links description)))
 
-(defun planner-appt-task-schedule-item-p (string)
-  "Return t if STRING is a schedule item derived from a task."
-  ;; Look for any property in the string since STRING will usually be
-  ;; derived from a buffer substring which may have been edited.
-  (text-property-any 0 (length string) 'appt-task t string))
-
 
 ;;; Showing Appointments In Various Ways
 
@@ -434,32 +428,47 @@ Internal variable: to set up appointment methods use one of:
 		(concat "# " text)
 	      text))))
 
+(defvar --planner-appt-lines-added-to-section '()
+  "Internal variable:
+Remembers lines added by `planner-appt-update-appt-section' the last
+time it was called.")
+
+(defun planner-appt-task-schedule-item-p (string)
+  "Return t if STRING is a schedule item derived from a task."
+  (member string --planner-appt-lines-added-to-section))
+;;   ;; Look for any property in the string since STRING will usually be
+;;   ;; derived from a buffer substring which may have been edited.
+;;   (text-property-any 0 (length string) 'appt-task t string))
+
 (defun planner-appt-update-appt-section ()
     (save-excursion
     (planner-seek-to-first planner-appt-task-appointments-section)
-    (let ((bound (set-marker
-		  (make-marker)
-		  (save-excursion
-		    (planner-appt-seek-to-end-of-current-section)
-		    (point)))))
-      ;; Insert all task appointments, delete the old ones, then
-      ;; sort.
+    (let ((bound (make-marker))
+	  (lines-to-delete
+	   (copy-sequence --planner-appt-lines-added-to-section))
+	  line)
+      (save-excursion
+	(planner-appt-seek-to-end-of-current-section)
+	(set-marker bound (point)))
       (dolist (appt (append --planner-appt-tasks-added-appts
 			    --planner-appt-tasks-earlier-appts))
-	(let ((beg (point)))
-	  (insert (funcall planner-appt-format-appt-section-line-function
-			   (cadr appt)))
-	  (add-text-properties beg (point) '(appt-task t))
-	  (insert ?\n)))
-      (while (re-search-forward planner-appt-schedule-appt-regexp bound t)
-	;; Remove the line if it was previously added by this
-	;; function.
-	(when (planner-appt-task-schedule-item-p (match-string 0))
-;;             (text-property-any (match-beginning 0) (match-end 0)
-;;                                  'appt-task t)
-	  (replace-match "")
-	  (when (eq (char-after) ?\n)
-	    (delete-char 1))))
+	(setq line (funcall planner-appt-format-appt-section-line-function
+			    (cadr appt)))
+	(setq lines-to-delete (delete line lines-to-delete))
+	(save-excursion
+	  (unless (search-forward line bound t)
+	    (insert line ?\n)))
+	;; Remember the line even if it was already there
+	(push line --planner-appt-lines-added-to-section))
+      ;; Remove lines of deleted tasks
+      (dolist (del-line lines-to-delete)
+	(setq --planner-appt-lines-added-to-section
+	      (delete del-line --planner-appt-lines-added-to-section))
+	(save-excursion
+	  (when (search-forward del-line bound t)
+	    (replace-match "")
+	    (when (eq (char-after) ?\n)
+	      (delete-char 1)))))
       (set-marker bound nil))
     ;; Use schedule sorting with some changes
     (let ((planner-appt-schedule-section
@@ -575,11 +584,11 @@ Internal variable: to set up appointment methods use one of:
 	    (goto-char (point-min))
 	    (while (re-search-forward planner-appt-forthcoming-regexp nil t)
 	      (setq line (match-string 0))
-	      (if (and (string-match planner-appt-schedule-appt-regexp line)
-		       (not (planner-appt-task-schedule-item-p line)))
-		  (setq time (save-match-data
-			       (appt-convert-time (match-string 1 line)))
-			text (match-string 0 line))
+	      (if (string-match planner-appt-schedule-appt-regexp line)
+		  (unless (planner-appt-task-schedule-item-p line)
+		    (setq time (save-match-data
+				 (appt-convert-time (match-string 1 line)))
+			  text (match-string 0 line)))
 		(setq task-info (planner-current-task-info))
 		(setq task-data (planner-appt-forthcoming-task-data task-info))
 		(when (and task-data
