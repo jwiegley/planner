@@ -520,9 +520,9 @@ time it was called.")
 ;; Display/Insert Forthcoming Appointments
 
 (defvar planner-appt-forthcoming-regexp
-  (concat "\\(?:"
+  (concat "\\("
 	  planner-appt-schedule-appt-regexp
-	  "\\)\\|\\(?:"
+	  "\\)\\|\\("
 	  planner-live-task-regexp
 	  planner-appt-task-regexp
 	  "\\)"))
