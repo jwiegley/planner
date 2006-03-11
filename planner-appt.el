@@ -496,6 +496,11 @@ time it was called.")
 (put 'with-planner-appt-update-section-disabled 'lisp-indent-function 0)
 (put 'with-planner-appt-update-section-disabled 'edebug-form-spec '(body))
 
+;; Compatibility fix for Xemacs [and for Emacs <21?]
+(if (fboundp 'fit-window-to-buffer)
+    (defalias 'planner-fit-window-to-buffer 'fit-window-to-buffer)
+  (defalias 'planner-fit-window-to-buffer 'shrink-window-if-larger-than-buffer))
+
 ;; Display Current Appointments
 (defun planner-appt-show-alerts ()
   "Display a list of currently active alerts in another window."
@@ -509,7 +514,7 @@ time it was called.")
 	    (insert "\n" (cadr appt)))
 	(insert "\nNone"))
       (goto-char (point-min)))
-    (fit-window-to-buffer (display-buffer buf))))
+    (planner-fit-window-to-buffer (display-buffer buf))))
 
 
 ;; Display/Insert Forthcoming Appointments
@@ -718,7 +723,7 @@ time it was called.")
 	      (or days planner-appt-forthcoming-days) t)))
     (goto-char (point-min)))
   (display-buffer planner-appt-forthcoming-display-buffer)
-  (fit-window-to-buffer
+  (planner-fit-window-to-buffer
    (get-buffer-window planner-appt-forthcoming-display-buffer)))
 
 
