@@ -11,7 +11,6 @@ Michael Olson: Current maintainer
                (assigned past and future changes for Emacs)
 
 Sacha Chua: Previous maintainer from 2004-01-01 to 2005-10
-            Contributor: (changes too numerous to list)
             Author of:
              - planner-accomplishments.el
              - planner-cyclic.el
@@ -26,6 +25,7 @@ Sacha Chua: Previous maintainer from 2004-01-01 to 2005-10
              - planner-rss.el
              - planner-tasks-overview.el
              - planner-vm.el
+            Contributor: (changes too numerous to list)
             (assigned past and future changes)
 
 Keith Amidon: Contributor:
@@ -132,15 +132,16 @@ Jody Klymak: Contributor,
               - planner-bibtex.el
               - planner-diary.el (documentation)
 
-Andrew J. Korty: Contributor:
-                  - planner-bbdb.el
-                  - planner-tasks-overview.el (1 line changed)
-                  - planner.el (1 line changed)
-                 Author of:
+Andrew J. Korty: Author of:
                   - planner-authz.el
                   - planner-report.el
+                 Contributor:
+                  - planner-bbdb.el
+                  - planner-publish.el (1 line changed)
+                  - planner-tasks-overview.el (1 line changed)
+                  - planner.el (1 line changed)
 
-Peter K. Lee: Author of planner-publish.el,
+Peter K. Lee: Author of planner-publish.el
               Contributor:
                - planner-accomplishments.el (2 lines changed)
                - planner-timeclock-summary.el (15+ lines changed)
@@ -154,16 +155,16 @@ Angus Lees: Contributor:
 Wei-Hao Lin: Contributor:
               - planner-bibtex.el (1 line changed)
 
-Dryice Dong Liu: Contributor:
-                  - planner-deadline.el
-                  - planner-log-edit.el (12 lines changed)
-                  - planner-el.texi (15+ lines changed)
-                  - planner.el (15+ lines changed)
-                 Author of:
+Dryice Dong Liu: Author of:
                   - planner-bookmark.el
                   - planner-rank.el
                   - planner-timeclock-summary.el
                   - planner-trunk.el
+                 Contributor:
+                  - planner-deadline.el
+                  - planner-log-edit.el (12 lines changed)
+                  - planner-el.texi (15+ lines changed)
+                  - planner.el (15+ lines changed)
 
 Chris McMahan: Contributor:
                 - planner-publish.el (15+ lines changed)
@@ -185,7 +186,7 @@ Jim Ottaway: Author of planner-appt.el, Contributor:
               - planner.el
              (assignment pending)
 
-Chris Parsons: Author of planner-ical.el,
+Chris Parsons: Author of planner-ical.el
                Contributor:
                 - planner-timeclock-summary.el (15+ lines changed)
                 - planner.el (15+ lines changed)
@@ -214,12 +215,12 @@ David D. Smith: Contributor:
                  - planner-rss.el (15+ lines changed)
                  - planner.el (15+ lines changed)
 
-John Sullivan: Author of planner-el.texi,
+John Sullivan: Author of planner-el.texi
                Contributor:
                 - planner-w3m.el
                (assigned past and future changes)
 
-Yvonne Thomson: Author of planner-wl.el,
+Yvonne Thomson: Author of planner-wl.el
                 Contributor:
                  - planner.el (15+ lines changed)
 

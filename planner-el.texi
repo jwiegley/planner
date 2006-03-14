@@ -6201,7 +6201,3 @@ Public License instead of this License.
 @printindex cp
 
 @bye
-
-@c Local Variables:
-@c ispell-local-pdict: "ispell-dict"
-@c End:

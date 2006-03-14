@@ -10,25 +10,25 @@
 ;;          Keith Amidon <camalot AT picnicpark dot org>
 ;; Description: trunk(group) tasks for the Emacs planner
 
-;; This file is not part of GNU Emacs.
+;; This file is part of Planner.  It is not part of GNU Emacs.
 
-;; This is free software; you can redistribute it and/or modify it under
-;; the terms of the GNU General Public License as published by the Free
-;; Software Foundation; either version 2, or (at your option) any later
-;; version.
-;;
-;; This is distributed in the hope that it will be useful, but WITHOUT
-;; ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-;; FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-;; for more details.
-;;
+;; Planner is free software; you can redistribute it and/or modify it
+;; under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 2, or (at your option)
+;; any later version.
+
+;; Planner is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; along with Planner; see the file COPYING.  If not, write to the
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Commentary:
-;;
+
 ;; This file provides `planner-trunk-tasks', which groups the tasks
 ;; according to `planner-trunk-rule-list'. Please see the docstring
 ;; for details. Remember to customize `planner-trunk-rule-list' before
@@ -43,6 +43,7 @@
 ;;          information.
 
 ;;; Things that would be nice to do:
+
 ;; - Respect hidden outline sections when trunking and rehide after
 ;;   trunk is complete if they are present.
 ;; - If point is in the tasks section, keep point on the same line.
