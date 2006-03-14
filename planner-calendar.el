@@ -78,7 +78,7 @@
   :type 'integer
   :group 'planner-calendar)
 
-(defcustom planner-calendar-html-tag-marker "<div class=\"content\">"
+(defcustom planner-calendar-html-tag-marker "<div id=\"content\">"
   "*Default html block element to add calendar HTML to."
   :type 'string
   :group 'planner-calendar)
