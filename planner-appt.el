@@ -36,6 +36,9 @@
 ;; Add "(planner-appt-insinuate)" to your configuration to make
 ;; Planner work with appt.
 ;;
+;; See the Appointments section of the Planner manual for further
+;; details.
+;;
 ;; Contributors:
 ;;
 ;; * Seth Falcon supplied the idea and the code that is the basis of
