@@ -61,6 +61,7 @@
 
 (require 'planner)
 (require 'appt)
+(require 'calendar)
 
 ;;; Customization
 
@@ -157,6 +158,11 @@ in the buffer."
   "Title of the section for forthcoming appointments."
   :group 'planner-appt
   :type 'string)
+
+(defcustom planner-appt-forthcoming-show-day-names-flag t
+  "When non nil, show day names in forthcoming appointments."
+  :group 'planner-appt
+  :type 'boolean)
 
 (defcustom planner-appt-forthcoming-repeat-date-string "          "
   "String to insert for repeated dates.
@@ -670,20 +676,37 @@ time it was called.")
 ;; Format the data into a big string to make it easy either to put
 ;; into a display buffer or into the day page.
 (defun planner-appt-forthcoming-format (appt-data)
-  (let ((last-date "")
-	(empty-cell-p (string-match
+  (let* ((last-date "")
+         (empty-cell-p (string-match
 		       (format "\\`[%s]+\\'" muse-regexp-blank)
-		       planner-appt-forthcoming-repeat-date-string)))
+		       planner-appt-forthcoming-repeat-date-string))
+         (calendar-abbrev-length
+          ;; compatibility fix for Gnu Emacs < 22 and XEmacs
+          (if (boundp 'calendar-abbrev-length)
+              calendar-abbrev-length
+            3))
+         (day-padding (make-string (1+ calendar-abbrev-length) ?\ )))
     (mapconcat #'(lambda (a)
 		   (prog1
 		       (concat
 			(if (string= (car a) last-date)
-			    (if empty-cell-p
-				planner-appt-forthcoming-repeat-date-string
-			      (planner-make-link
-			       (car a)
-			       planner-appt-forthcoming-repeat-date-string))
-			  (planner-make-link (car a)))
+                            (concat
+                             (when planner-appt-forthcoming-show-day-names-flag
+                               day-padding)
+                             (if empty-cell-p
+                                 planner-appt-forthcoming-repeat-date-string
+                               (planner-make-link
+                                (car a)
+                                planner-appt-forthcoming-repeat-date-string)))
+                          (concat
+                           (when planner-appt-forthcoming-show-day-names-flag
+                             (concat
+                              (calendar-day-name
+                               (planner-filename-to-calendar-date (car a))
+                               ;; compatibility:
+                               calendar-abbrev-length)
+                              " "))
+                           (planner-make-link (car a))))
 			" | "
 			;; Remove @s from times to avoid spurious
 			;; highlighting.
@@ -1610,7 +1633,6 @@ VERBOSE is ignored."
 ;;  diary is to be by-passed for appointments, it makes sense to mark
 ;;  the calendar using day pages.
 
-(require 'calendar)
 
 ;; Use a different face from the diary-entry-marker so we can
 ;; see where the different marks come from.

@@ -4413,6 +4413,22 @@ The name of the section to use for inserting a list of forthcoming
 appts.  The default value is @code{"Forthcoming Appointments"}.
 @end defopt
 
+@defopt planner-appt-forthcoming-show-day-names-flag
+When non-nil (the default), day names will be shown in forthcoming
+appointments.
+@end defopt
+
+@defopt planner-appt-forthcoming-repeat-date-string
+String to insert for repeated dates.
+
+When there are multiple appointments for a date, the date is inserted
+in the first appointment and the others have this string in their date
+cell.
+
+If the string consists of anything other than whitespace, then a link
+to the day page for the appoinment is created.
+@end defopt
+
 @defopt planner-appt-forthcoming-look-at-cyclic-flag
 When non-nil, find forthcoming appointments in the cyclic diary file
 (@pxref{Cyclic Tasks}) as well as in plan pages. Default is @samp{t}.
