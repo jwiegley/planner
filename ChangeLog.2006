@@ -1,3 +1,210 @@
+2006-03-15 12:38:11 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-19
+
+    Summary:
+      Merged from jeho@jeho.org--2005 (patch 56-57), mwolson@gnu.org--2006-planner-el (patch 16-19)
+    Revision:
+      planner--main--1.0--patch-21
+
+    * planner-appt.el (planner-appt-forthcoming-show-day-names-flag): New
+      option that indicates whether to show day names in forthcoming
+      appointments.
+      (planner-appt-forthcoming-format): Add day name insertion.
+    
+    * planner-el.texi: Add documentation about new feature [and also for
+      planner-appt-forthcoming-repeat-date-string].
+
+    modified files:
+     planner-appt.el planner-el.texi
+
+
+2006-03-14 21:13:28 GMT	Michael Olson <mwolson@gnu.org>	patch-20
+
+    Summary:
+      planner-appt: Mention that documentation is available in Planner manual.
+    Revision:
+      planner--main--1.0--patch-20
+
+    * planner-appt.el: Mention that further details are available in the
+      Planner manual.
+
+    modified files:
+     planner-appt.el
+
+
+2006-03-14 20:03:31 GMT	Michael Olson <mwolson@gnu.org>	patch-19
+
+    Summary:
+      planner-calendar: Fix publishing bug.
+    Revision:
+      planner--main--1.0--patch-19
+
+    * planner-calendar.el (planner-calendar-html-tag-marker): Use the correct
+      value so that the calendar is published properly.  Thanks to Christian
+      Clercin and René.
+
+    modified files:
+     planner-calendar.el
+
+
+2006-03-11 15:29:42 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-15
+
+    Summary:
+      Merged from jeho@jeho.org--2005 (patch 54-55), mwolson@gnu.org--2006-planner-el (patch 14-15)
+    Revision:
+      planner--main--1.0--patch-18
+
+    * planner-appt.el (planner-fit-window-to-buffer): Use
+      shrink-window-if-large-than-buffer if fit-window-to-buffer is not
+      available.
+      (planner-appt-forthcoming-regexp): Remove the shyness from the groups:
+      this makes it match ok in XEmacs [don't know why it didn't before
+      though].
+
+    modified files:
+     planner-appt.el
+
+
+2006-03-13 03:43:23 GMT	Michael Olson <mwolson@gnu.org>	patch-17
+
+    Summary:
+      Add COPYING file; do bookkeeping.
+    Revision:
+      planner--main--1.0--patch-17
+
+    * COPYING: New file containing the GNU General Public License.
+    
+    * AUTHORS: Bookkeeping.
+    
+    * README: Add License section.
+    
+    * planner*.el: Update headers.
+
+    new files:
+     .arch-ids/COPYING.id COPYING
+
+    modified files:
+     AUTHORS README planner-accomplishments.el planner-appt.el
+     planner-authz.el planner-bbdb.el planner-bibtex.el
+     planner-bookmark.el planner-calendar.el planner-cyclic.el
+     planner-deadline.el planner-diary.el planner-el.texi
+     planner-erc.el planner-experimental.el planner-export-diary.el
+     planner-gnats.el planner-gnus.el planner-ical.el planner-id.el
+     planner-ledger.el planner-lisp.el planner-log-edit.el
+     planner-mhe.el planner-multi.el planner-notes-index.el
+     planner-psvn.el planner-publish.el planner-rank.el
+     planner-rdf.el planner-report.el planner-rmail.el
+     planner-rss.el planner-schedule.el planner-tasks-overview.el
+     planner-timeclock-summary-proj.el planner-timeclock-summary.el
+     planner-timeclock.el planner-trunk.el planner-unix-mail.el
+     planner-vm.el planner-w3m.el planner-wl.el planner-xtla.el
+     planner.el
+
+
+2006-03-06 15:49:19 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-13
+
+    Summary:
+      Merged from jeho@jeho.org--2005 (patch 51-53), mwolson@gnu.org--2006-planner-el (patch 13)
+    Revision:
+      planner--main--1.0--patch-16
+
+    * planner-appt.el: Revert to the old method of tracking appts added to
+      the schedule.  The text property method was simpler, but failed when
+      re-visiting today's plan page [since text properties don't get saved].
+      (planner-appt-update-appt-section): fix wrong side of bound error
+      (--planner-appt-lines-added-to-section): global variable tracking appts
+      added to the schedule
+      (planner-appt-task-schedule-item-p): use
+      --planner-appt-lines-added-to-section
+      (planner-appt-update-appt-section): revert to the old method
+      (planner-appt-forthcoming-get-appts): fix small bug where an appt
+      schedule item would fall through the conditional  and try to be parsed
+      as a task item.
+
+    modified files:
+     planner-appt.el
+
+
+2006-02-28 16:49:28 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-12
+
+    Summary:
+      Merged from mwolson@gnu.org--2006-planner-el (patch 12)
+    Revision:
+      planner--main--1.0--patch-15
+
+    * planner-appt.el (planner-appt-forthcoming-get-appts): Use
+      `insert-file-contents' instead of `insert-file-contents-literally'.
+
+    modified files:
+     planner-appt.el
+
+
+2006-02-27 19:38:45 GMT	Andrew J. Korty <ajk@iu.edu>	patch-10
+
+    Summary:
+      sort status report entries by plan page name
+    Revision:
+      planner-el--devel--0--patch-10
+
+    * planner-report.el (planner-report-generate): sort pages by name using
+      string<
+    
+
+    modified files:
+     planner-report.el
+
+
+2006-02-27 11:38:48 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-9
+
+    Summary:
+      small fix to README file
+    Revision:
+      planner-el--devel--0--patch-9
+
+    * README: remove (setq load-path ...) from the load-path example
+
+    modified files:
+     README
+
+
+2006-02-27 10:34:20 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-8
+
+    Summary:
+      planner-appt: fix highlighting in plan pages
+    Revision:
+      planner-el--devel--0--patch-8
+
+    * planner-appt.el (planner-appt-task-highlight): check that a task has
+      today's date
+
+    modified files:
+     planner-appt.el
+
+
+2006-02-27 04:46:50 GMT	Michael Olson <mwolson@gnu.org>	patch-13
+
+    Summary:
+      Prepare new Debian package.
+    Revision:
+      planner--main--1.0--patch-13
+
+
+    modified files:
+     Makefile.defs debian/changelog debian/control
+     debian/emacsen-install debian/rules
+
+
+2006-02-27 04:04:17 GMT	Michael Olson <mwolson@gnu.org>	patch-12
+
+    Summary:
+      Update NEWS and ChangeLog
+    Revision:
+      planner--main--1.0--patch-12
+
+
+    modified files:
+     ChangeLog.2006 NEWS
+
+
 2006-02-22 01:57:37 GMT	Andrew J. Korty <ajk@iu.edu>	patch-7
 
     Summary:

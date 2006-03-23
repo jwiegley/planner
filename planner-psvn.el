@@ -1,6 +1,6 @@
 ;;; planner-psvn.el --- psvn.el integration for the Emacs Planner
 
-;; Copyright (C) 2005 Stefan Reichör
+;; Copyright (C) 2005, 2006 Free Software Foundation, Inc.
 
 ;; Author: Stefan Reichör <stefan@xsteve.at>
 ;; Keywords: planner, psvn
@@ -67,6 +67,14 @@ The function will be run in the log buffer."
   :group 'planner-psvn)
 
 
+;; compatibility for older psvn.el revisions
+(cond ((fboundp 'svn-run)
+       (defalias 'planner-svn-run 'svn-run))
+      ((fboundp 'svn-run-svn)
+       (defalias 'planner-svn-run 'svn-run-svn))
+      (t
+       (error "No `svn-run' command found")))
+
 (defun planner-psvn-generate-url (repo-path revision &optional link-prefix no-link-postfix)
   (planner-make-link (concat "psvn://" repo-path "@" revision)
                      (if link-prefix
@@ -89,11 +97,12 @@ Suitable for use in `planner-annotation-functions'."
   "If this is a psvn url, handle it."
   (when (string-match "\\`psvn:/?/?\\(.+\\)@\\([0-9]+\\)" url)
     (let ((repo-path (match-string 1 url))
-          (svn-rev (string-to-number (match-string 2 url))))
-      (svn-run-svn nil t 'diff "diff"
-                   (concat repo-path "@" (number-to-string (- svn-rev 1)))
-                   (concat repo-path "@" (number-to-string svn-rev)))
-      (svn-status-diff-mode))
+          (svn-rev (string-to-number (match-string 2 url)))
+          (cur-buf (current-buffer)))
+      (planner-svn-run nil t 'diff "diff"
+                       (concat repo-path "@" (number-to-string (- svn-rev 1)))
+                       (concat repo-path "@" (number-to-string svn-rev)))
+      (svn-status-activate-diff-mode))
     t))
 
 (defun planner-psvn-log-edit-extract-file-name (file-info)
