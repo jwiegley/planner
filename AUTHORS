@@ -43,7 +43,8 @@ Fran Burstall: Contributor:
 
 James Clarke: Author of planner-bibtex.el
 
-Jeremy Cowgar: Author of planner-gnats.el,
+Jeremy Cowgar: Author of:
+                - planner-gnats.el
                Contributor:
                 - planner-wl.el (6 lines changed)
 
@@ -66,7 +67,8 @@ Seth Falcon: Contributor:
 Gerd Flaig: Contributor:
              - planner-lisp.el (1 line changed)
 
-Frederik Fouvry: Author of planner-unix-mail.el
+Frederik Fouvry: Author of:
+                  - planner-unix-mail.el
                  Contributor:
                   - planner-rmail.el (15+ lines changed)
                   - planner.el (14 lines changed)
@@ -128,7 +130,7 @@ Sven Kloppenburg: Contributor:
                    - planner-gnus.el (5 lines changed)
                    - planner.el (1 line changed)
 
-Jody Klymak: Contributor,
+Jody Klymak: Contributor:
               - planner-bibtex.el
               - planner-diary.el (documentation)
 
@@ -141,7 +143,8 @@ Andrew J. Korty: Author of:
                   - planner-tasks-overview.el (1 line changed)
                   - planner.el (1 line changed)
 
-Peter K. Lee: Author of planner-publish.el
+Peter K. Lee: Author of:
+               - planner-publish.el
               Contributor:
                - planner-accomplishments.el (2 lines changed)
                - planner-timeclock-summary.el (15+ lines changed)
@@ -173,10 +176,14 @@ Daniel Neri: Contributor:
               - planner-gnus.el (~10 lines changed)
               - planner.el (~5 lines changed)
 
-Greg Novak: Contributor:
+Greg Novak: Author of:
+             - planner-zoom.el
+            Contributor:
              - planner-vm.el (1 line changed)
 
-Jim Ottaway: Author of planner-appt.el, Contributor:
+Jim Ottaway: Author of:
+              - planner-appt.el
+             Contributor:
               - planner-bibtex.el
               - planner-el.texi
               - planner-id.el
@@ -186,7 +193,8 @@ Jim Ottaway: Author of planner-appt.el, Contributor:
               - planner.el
              (assignment pending)
 
-Chris Parsons: Author of planner-ical.el
+Chris Parsons: Author of:
+                - planner-ical.el
                Contributor:
                 - planner-timeclock-summary.el (15+ lines changed)
                 - planner.el (15+ lines changed)
@@ -215,12 +223,14 @@ David D. Smith: Contributor:
                  - planner-rss.el (15+ lines changed)
                  - planner.el (15+ lines changed)
 
-John Sullivan: Author of planner-el.texi
+John Sullivan: Author of:
+                - planner-el.texi
                Contributor:
                 - planner-w3m.el
                (assigned past and future changes)
 
-Yvonne Thomson: Author of planner-wl.el
+Yvonne Thomson: Author of:
+                 - planner-wl.el
                 Contributor:
                  - planner.el (15+ lines changed)
 

@@ -827,6 +827,17 @@ Overlays might be moved and or split."
                 (move-overlay o end (overlay-end o))
               (delete-overlay o))))))))
 
+;; Provide a simpler replacement for `remove-if-not'
+(defun planner-remove-if-not (predicate seq)
+  "Remove all items not satisfying PREDICATE in SEQ.
+This is a non-destructive function; it makes a copy of SEQ to
+avoid corrupting the original SEQ."
+  (let (newseq)
+    (dolist (el seq)
+      (when (funcall predicate el)
+        (setq newseq (cons el newseq))))
+    (nreverse newseq)))
+
 (defun planner-unhighlight-region (begin end &optional verbose)
   "Remove all visual highlights in the buffer (except font-lock)."
   (planner-zap-overlays begin end)
