@@ -1,3 +1,59 @@
+2006-03-27 23:52:31 GMT	Michael Olson <mwolson@gnu.org>	patch-25
+
+    Summary:
+      planner-erc: Improve greatly.
+    Revision:
+      planner--main--1.0--patch-25
+
+    * planner-erc.el: Update the syntax for IRC URLs.  Add warning for users
+      of old versions of ERC.
+      (planner-erc-url-regexp): New variable that specifies the syntax of IRC
+      URLs.
+      (planner-erc-annotation-from-erc): Use `erc-server-announced-name'.
+      (planner-erc-browse-url): Figure out the desired chat buffer.  If no
+      chat buffer exists for the given URL, connect to the server.
+
+    modified files:
+     planner-erc.el
+
+
+2006-03-25 04:46:53 GMT	Michael Olson <mwolson@gnu.org>	patch-24
+
+    Summary:
+      planner-zoom.el: New file used for navigating Planner pages.
+    Revision:
+      planner--main--1.0--patch-24
+
+    * AUTHORS: Bookkeeping.
+    
+    * planner.el (planner-remove-if-not): New function that implements a
+      simplified version of `remove-if-not'.
+    
+    * planner-zoom.el: New file by Gregory Novak that implements easy
+      navigation of Planner pages.
+
+    new files:
+     .arch-ids/planner-zoom.el.id planner-zoom.el
+
+    modified files:
+     AUTHORS planner.el
+
+
+2006-03-23 14:14:17 GMT	Michael Olson <mwolson@gnu.org>	patch-23
+
+    Summary:
+      planner-psvn.el: Install update from author.
+    Revision:
+      planner--main--1.0--patch-23
+
+    * planner-psvn.el: Apply modified patch from Stefan Reichör that improves
+      compatibility with newer versions of psvn.el and pops to the diff
+      buffer.
+
+    modified files:
+     planner-psvn.el
+
+
 2006-03-15 12:38:11 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-19
 
     Summary:
