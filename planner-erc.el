@@ -1,12 +1,6 @@
 ;;; planner-erc.el --- ERC support for Planner, an organizer for Emacs
 
-;; Copyright (C) 2004 Free Software Foundation, Inc.
-
-;;; Commentary:
-;;
-;;;_* Commentary
-
-;;;_ + Package description
+;; Copyright (C) 2004, 2006 Free Software Foundation, Inc.
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-erc.el
@@ -33,27 +27,39 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;;_ + Usage
-;;
+;;; Commentary:
+
 ;; Place planner-erc.el in your load path and add this to your .emacs:
 ;;
-;;    (require 'planner-erc)
+;; (require 'planner-erc)
+
+;; IRC URLs may be of the following forms.
 ;;
-;; ERC URLs are of the form
+;; irc://server/nick,isnick or
+;; irc://server/#channel or
+;; irc://server
+
+;; Annotations will be in the following forms.
 ;;
-;; erc://server/nick/channel or
-;; erc://server/nick or
-;; erc://server/nick
-;;
-;; Annotations will be of the form
-;; [[erc://server/nick/#channel][Chat with nick on server#channel]]
-;; [[erc://server/nick][Chat with nick on server]]
-;; [[erc://server][Chat on server]]
+;; [[irc://server/nick,isnick][Chat with nick on server#channel]]
+;; [[irc://server/nick,isnick][Chat with nick on server]]
+;; [[irc://server/#channel][Chat on server#channel]]
+;; [[irc://server][Chat on server]]
+
+;;; Contributors:
+
+;;; Code:
 
 (require 'planner)
 (require 'erc)
 
-;;; Code:
+(unless (boundp 'erc-server-announced-name)
+  (message "ERC 5.1 or higher is required; please upgrade ERC"))
+
+(defvar planner-irc-regexp
+  "\\`[ei]rc://\\([^:/]+\\)\\([^/]+\\)?\\(?:/\\([^,/]+\\)\\(.*\\)\\)?"
+  "Regexp used to match IRC URLs.")
+
 ;;;###autoload
 (defun planner-erc-annotation-from-erc ()
   "Return an annotation for the current line.
@@ -69,40 +75,59 @@ This function can be added to `planner-annotation-functions'."
                          (elt (get-text-property (point) 'erc-parsed) 1)))))
                   (planner-make-link
                    (concat "irc://"
-                           erc-announced-server-name "/"
+                           erc-server-announced-name "/"
                            (substring nick 1) ",isnick")
                    (concat "Chat with " nick " on "
-                           erc-announced-server-name (erc-default-target))
-		   t))
+                           erc-server-announced-name (erc-default-target))
+                   t))
               (planner-make-link
                (concat "irc://"
-                       erc-announced-server-name "/"
+                       erc-server-announced-name "/"
                        (erc-default-target))
-               (concat "Chat on " erc-announced-server-name
+               (concat "Chat on " erc-server-announced-name
                        (erc-default-target))
-	       t))
+               t))
           (planner-make-link
-           (concat "irc://" erc-announced-server-name "/"
+           (concat "irc://" erc-server-announced-name "/"
                    (erc-default-target))
            (concat "Chat with " (erc-default-target) " on "
-                   erc-announced-server-name)
-	   t))
+                   erc-server-announced-name)
+           t))
       (planner-make-link
-       (concat "irc://" erc-announced-server-name)
-       (concat "Chat on " erc-announced-server-name)
+       (concat "irc://" erc-server-announced-name)
+       (concat "Chat on " erc-server-announced-name)
        t))))
 
 ;;;###autoload
 (defun planner-erc-browse-url (url)
-  "If this is an ERC URL, jump to it.
-This just connects to the server--you have to join the channel or privmsg
-people yourself."
-  ;; If anyone can figure out how to get it to automatically open the
-  ;; channel window, that would be ultra cool.
-  ;; Also, we need a way to canonicalize going to a particular server.
-  ;; But this will do for now.
-  (when (string-match "\\`[ei]rc://\\([^/]+\\)" url)
-    (erc-select (match-string 1 url))
+  "If this is an IRC URL, jump to it."
+  (when (string-match planner-irc-regexp url)
+    (let ((server (match-string 1 url))
+          (port (match-string 2 url))
+          (target (match-string 3 url))
+          (flags (match-string 4 url))
+          buffer-list)
+      ;; find existing buffer
+      (setq buffer-list
+            (erc-buffer-filter
+             (lambda nil
+               (let ((server-buffer (erc-server-buffer)))
+                 (and server-buffer
+                      (string= server
+                               (with-current-buffer server-buffer
+                                 erc-server-announced-name)))))))
+      ;; switch to buffer or create new connection
+      (if buffer-list
+          (if (not (stringp target))
+              ;; assume that the car is always the server buffer
+              (switch-to-buffer (car buffer-list))
+            (switch-to-buffer
+             (or (catch 'found
+                   (dolist (buffer buffer-list)
+                     (when (string= target (buffer-name buffer))
+                       (throw 'found buffer))))
+                 (car buffer-list))))
+        (erc-select :server server :port port)))
     t))
 
 
@@ -112,13 +137,6 @@ people yourself."
 (custom-add-option 'planner-annotation-functions
                    'planner-erc-annotation-from-erc)
 
-(planner-update-wiki-project)
 (provide 'planner-erc)
-
-;;;_* Local emacs vars.
-
-;; Local variables:
-;; allout-layout: (* 0 : )
-;; End:
 
 ;;; planner-erc.el ends here
