@@ -277,6 +277,20 @@ user2, while on plan pages obey the \"parent\" rule.
   :type '(repeat (regexp (choice boolean function))
 		 (repeat string)))
 
+(defcustom planner-authz-markup-regexps
+  '((2300 "\\(<li>\\)\\(<&| [^<]*>\\)\\(.*\\)\\(</&>\\)\\(</li>\\)" 3
+          planner-authz-fix-list-item))
+  "List of markup rules for publishing PLANNER with `planner-authz' restrictions.
+For more on the structure of this list, see `muse-publish-markup-regexps'."
+  :group 'planner-authz
+  :type '(repeat (choice
+                  (list :tag "Markup rule"
+                        integer
+                        (choice regexp symbol)
+                        integer
+                        (choice string function symbol))
+                  function)))
+
 (defcustom planner-authz-markup-functions
   '((table . planner-authz-mason-markup-table))
   "An alist of style types to custom functions for that kind of text."
@@ -403,6 +417,12 @@ to PAGE.  Nil is always returned for day pages."
         (setq pages (cdr pages))))
     result))
 
+(defun planner-authz-fix-list-item ()
+  "Rearrange list items restricted by `planner-authz' to avoid empty list items on the published page."
+  (replace-match "\\2\\1\\3\\5\\4")
+  (muse-publish-mark-read-only (match-beginning 0) (match-end 2))
+  (muse-publish-mark-read-only (match-beginning 4) (match-end 0)))
+
 (defun planner-authz-generate-mason-component (project)
   "Generate the Mason component restricting content.
 The component's name is taken from
@@ -497,6 +517,7 @@ component restricts access to users specified by <authz> and
         (while (search-forward "<&:" end t)
           (replace-match "<&|" t t))))))
 
+
 (defun planner-authz-index-as-string (&optional as-list exclude-private)
   "Generate an index of all Muse pages with authorization controls.
 In the published index, only those links to pages which the remote
@@ -506,33 +527,24 @@ If EXCLUDE-PRIVATE is non-nil, exclude files that have private permissions.
 If EXCLUDE-CURRENT is non-nil, exclude the current file from the output."
   (with-temp-buffer
     (insert (planner-index-as-string as-list exclude-private))
-    (goto-char (point-min))
-    (while (and (re-search-forward
-                 (if as-list
-                     (concat "^[" muse-regexp-blank "]+\\(-["
-                             muse-regexp-blank "]*\\)")
-                   (concat "^\\([" muse-regexp-blank "]*\\)"))
-                 nil t)
-                (save-match-data (looking-at muse-explicit-link-regexp)))
-      (when as-list
-        (let ((func (muse-markup-function 'list)))
-          (if (functionp func)
-              (save-excursion (funcall func))))
-        (re-search-forward "<li" nil t)
-        (goto-char (match-beginning 0)))
-      (let* ((link (buffer-substring (point) (line-end-position)))
-             (pages (mapcar 'planner-link-base
-                            (if (featurep 'planner-multi)
-                                (planner-multi-split link)
-                              link)))
-             (users (if pages (planner-authz-multi-users pages))))
-        (when users
-          (planner-insert-markup (muse-markup-text
-                                  'planner-authz-begin users))
-          (if as-list
-              (re-search-forward "</li>" nil t)
-            (end-of-line))
-          (planner-insert-markup (muse-markup-text 'planner-authz-end)))))
+    (when muse-publishing-p
+      (goto-char (point-min))
+      (while (and (re-search-forward
+                   (if as-list
+                       (concat "^[" muse-regexp-blank "]+-["
+                               muse-regexp-blank "]*")
+                     (concat "^[" muse-regexp-blank "]*"))
+                   nil t)
+                  (looking-at muse-explicit-link-regexp))
+        (let* ((link (buffer-substring (point) (line-end-position)))
+               (page (planner-link-base link))
+               (users (if page (planner-authz-users page))))
+          (if users
+              (progn
+                (insert (format "<authz users=\"%s\">" users))
+                (end-of-line)
+                (insert "</authz>"))
+            (end-of-line)))))
     (buffer-substring (point-min) (point-max))))
 
 (defun planner-authz-republish-dependencies-maybe (linked-pages)
@@ -776,6 +788,7 @@ The list of users is returned as space-separated string, based on a
          :before     'planner-authz-before-markup
          :after      'planner-authz-after-markup
          :functions  'planner-authz-markup-functions
+         :regexps    'planner-authz-markup-regexps
          :strings    'planner-authz-mason-markup-strings
          :tags       (append planner-authz-markup-tags
                              planner-publish-markup-tags))))

@@ -8,7 +8,7 @@ SITEFLAG = --no-site-file
 
 # Installation options
 # PREFIX is only used here.
-PREFIX   = /usr/local
+PREFIX   = /usr/pkg
 ELISPDIR = $(PREFIX)/share/emacs/site-lisp/planner
 INFODIR  = $(PREFIX)/info
 
