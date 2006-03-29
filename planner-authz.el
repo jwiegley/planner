@@ -749,7 +749,7 @@ current page."
 
 (defun planner-authz-multi-union (list)
   "Merge a list of `planner-authz' access lists, returning a list of all the unique user names in any of those access lists."
-  (let (union)
+  (let (sublist union)
     (while list
       (setq sublist (car list))
       (while sublist
