@@ -207,7 +207,7 @@ DATA is a list of (priority status date plan description)."
              (mapcar 'cdr file-list))
       (goto-char (point-min))
       (while (not (eobp))
-        (when (looking-at "^\\([^:]+\\):\\(.+\\)")
+        (when (looking-at "^\\([^:\n]+\\):\\(.+\\)")
           (let ((info (planner-task-info-from-string
                        (match-string 1) (match-string 2))))
             (add-to-list

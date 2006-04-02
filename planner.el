@@ -2032,7 +2032,7 @@ reported."
             (goto-char (planner-line-beginning-position))
             ;; Non-completed or cancelled tasks only
             (if (looking-at
-                 "^#?\\([A-C]\\)\\([0-9]*\\)\\s-+\\([^XC]\\)\\s-+\\(.+\\)")
+                 "^#?\\([A-C]\\)\\([0-9]*\\)\\s-+\\([^XC\n]\\)\\s-+\\(.+\\)")
                 (condition-case err
                     (when (planner-copy-or-move-task date)
                       (setq count (1+ count)))
@@ -4013,7 +4013,7 @@ Specify \".\" or leave this blank to include all pages."
                           (planner-read-date "nil by default. Start")
                           (planner-read-date "nil by default. End")
                           t)))))
-  (planner-list-tasks-with-status "[^XC]" pages))
+  (planner-list-tasks-with-status "[^XC\n]" pages))
 
 ;;;_ + Notes
 

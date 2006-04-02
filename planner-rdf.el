@@ -131,10 +131,10 @@
 
 ;; common match strings - links
 (defvar planner-rdf-matchstr-plink1
-  "\\[\\[\\([^[]+?\\)\\]\\[\\(.+?\\)\\]\\]"
+  "\\[\\[\\([^[\n]+?\\)\\]\\[\\(.+?\\)\\]\\]"
   "Link like [[<link>][<text>]]. Match link and text.")
 (defvar planner-rdf-matchstr-plink2
-  "\\[\\[\\([^[]+?\\)\\]\\]"
+  "\\[\\[\\([^[\n]+?\\)\\]\\]"
   "Link like [[<link>]]. Match link.")
 
 (defvar planner-rdf-matchstr-pagenotelink

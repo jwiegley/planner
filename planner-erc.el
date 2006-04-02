@@ -57,7 +57,7 @@
   (message "ERC 5.1 or higher is required; please upgrade ERC"))
 
 (defvar planner-irc-regexp
-  "\\`[ei]rc://\\([^:/]+\\)\\([^/]+\\)?\\(?:/\\([^,/]+\\)\\(.*\\)\\)?"
+  "\\`[ei]rc://\\([^:/\n]+\\)\\([^/\n]+\\)?\\(?:/\\([^,/\n]+\\)\\(.*\\)\\)?"
   "Regexp used to match IRC URLs.")
 
 ;;;###autoload

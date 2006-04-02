@@ -86,7 +86,7 @@
 (defvar planner-id-values nil
   "Alist with (key nextvalue) pairs.")
 
-(defvar planner-id-regexp "{{\\([^:]+\\):\\([0-9]+\\)}}"
+(defvar planner-id-regexp "{{\\([^:\n]+\\):\\([0-9]+\\)}}"
   "Regexp matching planner IDs.")
 
 (defun planner-id-get-id-from-string (string &optional key)
@@ -94,7 +94,7 @@
 If KEY is specified, match against that."
   (when (string-match
          (concat "{{\\("
-                 (or key "[^:]+")
+                 (or key "[^:\n]+")
                  "\\):\\([0-9]+\\)}}") string)
     (cons (planner-match-string-no-properties 1 string)
           (planner-match-string-no-properties 2 string))))
@@ -255,9 +255,9 @@ Update the linked page, if any."
         (save-excursion
           (goto-char here)
           (skip-chars-backward " \t\n")
-          (or (looking-at "{{Tasks:[^}]+}}")
+          (or (looking-at "{{Tasks:[^}\n]+}}")
               (and (search-backward "{{" (planner-line-beginning-position) t)
-                   (looking-at "{{Tasks:[^}]+}}"))
+                   (looking-at "{{Tasks:[^}\n]+}}"))
               (<= here (match-end 0)))))))
 
 (eval-and-compile
@@ -321,7 +321,7 @@ EVENT is the mouse event."
   "Highlight IDs as unobtrusive, clickable text from BEG to END.
 VERBOSE is ignored."
   (goto-char beg)
-  (while (re-search-forward "{{[^}]+}}" end t)
+  (while (re-search-forward "{{[^}\n]+}}" end t)
     (planner-highlight-region
      (match-beginning 0)
      (match-end 0)

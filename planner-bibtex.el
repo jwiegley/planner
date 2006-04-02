@@ -46,7 +46,7 @@
 (defvar planner-bibtex-separator ":" "Character separating filename and label.")
 (defvar planner-bibtex-regexp
   (concat "\\`bibtex:\\([^"
-          planner-bibtex-separator "]+\\)"
+          planner-bibtex-separator "\n]+\\)"
           planner-bibtex-separator "\\(.+\\)") "Regexp matching URLs.")
 
 ;;; Code:

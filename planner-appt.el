@@ -276,7 +276,7 @@ time, and match group 3 the alert text."
 (defun planner-appt-seek-to-end-of-current-section ()
   "Go to the end of the current section."
   (goto-char
-   (or (and (re-search-forward "^\\*[^*]" nil t)
+   (or (and (re-search-forward "^\\*[^*\n]" nil t)
 	    (1- (planner-line-beginning-position)))
        (point-max))))
 
@@ -388,7 +388,7 @@ the hook's global value rather than its local value."
   (if (string-match
 	 (concat "\\s-*"
 		 (if (boundp 'planner-id-regexp)
-		   "{{\\([^:]+\\):\\([0-9]+\\)}}"))
+		     planner-id-regexp))
 	 description)
       (replace-match "" t t description)
     description))

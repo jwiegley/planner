@@ -51,7 +51,7 @@ Point will be on the same line as the task."
   :options '(planner-deadline-update)
   :group 'planner-deadline)
 
-(defcustom planner-deadline-regexp "\\({{Deadline:\\s-+\\([0-9]+\\.[0-9]+\\.[0-9]+\\)[^}]*}}\\)"
+(defcustom planner-deadline-regexp "\\({{Deadline:\\s-+\\([0-9]+\\.[0-9]+\\.[0-9]+\\)[^}\n]*}}\\)"
   "Regular expression for deadline data.
 The special deadline string should be regexp group 1. The
 date (YYYY.MM.DD) should be regexp group 2."

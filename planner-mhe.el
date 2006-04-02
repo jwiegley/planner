@@ -129,7 +129,7 @@ Suitable for use in `planner-annotation-functions'."
 ;;;###autoload
 (defun planner-mhe-browse-url (url)
   "If this is a MH-E URL, jump to it."
-  (when (string-match "\\`mhe://\\(.+\\)/\\([^>]+\\)" url)
+  (when (string-match "\\`mhe://\\(.+\\)/\\([^>\n]+\\)" url)
     (let* ((folder (match-string 1 url))
            (num (match-string 2 url))
            (show-buf (concat "show-" folder)))

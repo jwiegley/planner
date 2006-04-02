@@ -93,7 +93,7 @@ This function can be added to `planner-annotation-functions'."
 ;;;###autoload
 (defun planner-vm-browse-url (url)
   "If this is an VM URL, jump to it."
-  (when (string-match "\\`vm://\\(.+\\)/\\([^/]+\\)$" url)
+  (when (string-match "\\`vm://\\(.+\\)/\\([^/\n]+\\)$" url)
     (let ((message-id (match-string 2 url))
           (inbox (match-string 1 url)))
       ; open the inbox read-only

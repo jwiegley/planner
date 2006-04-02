@@ -110,7 +110,7 @@
       (goto-char (point-min))
       (while (re-search-forward
               (concat
-               "^. [^ ]+ [^ ]+ "
+               "^. [^ \n]+ [^ \n]+ "
                "\\(" (regexp-quote (planner-timeclock-plan-string info)) "\\)"
                (regexp-quote (planner-task-description info)) "$") nil t)
         (replace-match
@@ -129,7 +129,7 @@
       (goto-char (point-min))
       (while (re-search-forward
               (concat
-               "^. [^ ]+ [^ ]+ "
+               "^. [^ \n]+ [^ \n]+ "
                (regexp-quote (planner-timeclock-plan-string info))
                "\\("
                (regexp-quote (planner-task-description info))
