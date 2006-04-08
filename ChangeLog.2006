@@ -1,3 +1,71 @@
+2006-04-08 01:34:44 GMT	Michael Olson <mwolson@gnu.org>	patch-30
+
+    Summary:
+      planner-registry: Minor code cleanup.
+    Revision:
+      planner--main--1.0--patch-30
+
+    * planner-registry.el (planner-registry-show): Remove boundp check.
+
+    modified files:
+     planner-registry.el
+
+
+2006-04-08 01:32:20 GMT	Michael Olson <mwolson@gnu.org>	patch-29
+
+    Summary:
+      Include planner-registry.el.
+    Revision:
+      planner--main--1.0--patch-29
+
+    * planner-registry.el: New file that implements a registry of URLs and
+      Planner annotations.  This used to be called muse-registry.el, but it
+      has been renamed to planner-registry.el since it fits better with
+      Planner.
+
+    new files:
+     .arch-ids/planner-registry.el.id planner-registry.el
+
+    modified files:
+     AUTHORS
+
+
+2006-04-02 18:20:31 GMT	Michael Olson <mwolson@gnu.org>	patch-28
+
+    Summary:
+      Correct several regexps.
+    Revision:
+      planner--main--1.0--patch-28
+
+    If a regexp has a character set negation, make sure it includes the
+    newline, so that newlines aren't matched.
+
+    modified files:
+     planner-appt.el planner-bibtex.el planner-deadline.el
+     planner-erc.el planner-id.el planner-mhe.el planner-rdf.el
+     planner-tasks-overview.el planner-timeclock.el planner-vm.el
+     planner.el
+
+
+2006-03-29 20:23:27 GMT	Andrew J. Korty <ajk@iu.edu>	patch-25
+
+    Summary:
+      Merge some authz fixes.
+    Revision:
+      planner--main--1.0--patch-27
+
+    * planner-authz.el (planner-authz-fix-list-item): new function to move
+      the <li> tags to the inside to avoid a blank bullet when a list item is
+      totally access controlled
+      (planner-authz-markup-regexps): use it
+      (planner-authz-index-as-string): use <authz> tags to mark up the index
+      and rely on the new regexp entry to clean up the results
+      (planner-authz-multi-union): declare `sublist'
+
+    modified files:
+     planner-authz.el
+
+
 2006-03-27 23:52:31 GMT	Michael Olson <mwolson@gnu.org>	patch-25
 
     Summary:

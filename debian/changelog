@@ -1,3 +1,13 @@
+planner-el (3.40.arch.31-1) unstable; urgency=low
+
+  * New Arch snapshot.
+  * Bug fix: "planner-el: 'C-c C-p' chokes", thanks to LI Daobing (Closes:
+    #350515).
+  * Bug fix: "planner-el: remember integration failing?", thanks to Daniel
+    Martins (Closes: #328681).
+
+ -- Michael W. Olson (GNU address) <mwolson@gnu.org>  Fri,  7 Apr 2006 22:53:01 -0400
+
 planner-el (3.40-3) unstable; urgency=low
 
   * Acknowledge NMU: "planner-el: FTBFS: Missing Build-Depends on 'emacs21'",
