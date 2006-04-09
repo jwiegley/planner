@@ -97,7 +97,6 @@ Getting Started
 
 More about Planner
 
-* Basic Configuration::         
 * Navigation::                  
 * More about Tasks::            
 * More about Notes::            
@@ -503,7 +502,10 @@ projects. Don't forget to use your own name here in place of
          ;; style.
 
          (:base "planner-xhtml"
-                ;; value of `planner-publishing-directory'
+                ;; where files are published to
+                ;; (the value of `planner-publishing-directory', if
+                ;;  you have a configuration for an older version
+                ;;  of Planner)
                 :path "~/public_html/Plans"))))
 @end example
 
@@ -1425,7 +1427,6 @@ planning in Emacs!
 @chapter More about Planner
 
 @menu
-* Basic Configuration::         
 * Navigation::                  
 * More about Tasks::            
 * More about Notes::            
@@ -1436,31 +1437,7 @@ planning in Emacs!
 * Experimental Functions::      
 @end menu
 
-@node Basic Configuration, Navigation, More about Planner, More about Planner
-@section Basic Configuration
-@comment node-name, next, previous, up
-
-You may want to customize the following variables before you begin
-using Planner.
-
-@defopt planner-directory
-Plain-text planner files will be stored in this directory.  Default:
-@file{~/Plans}.
-@end defopt
-
-@defopt planner-publishing-directory
-Planner HTML files will be published to this directory.  If you want
-to view your tasks, schedule and notes using a web browser, upload the
-contents of this directory to your website.  Default:
-@file{~/WebWiki}.
-@end defopt
-
-If you change these variables after Planner is loaded, please be sure
-to run @code{M-: (planner-update-wiki-project)}. It might be a good idea
-to add @code{(planner-update-wiki-project)} to the end of your
-@file{~/.emacs}.
-
-@node Navigation, More about Tasks, Basic Configuration, More about Planner
+@node Navigation, More about Tasks, More about Planner, More about Planner
 @comment  node-name,  next,  previous,  up
 @section Starting with Day Pages
 
@@ -3158,14 +3135,15 @@ the file.
 
 @defopt planner-annotation-use-relative-file
 If t, always use relative filenames.
-@code{planner-annotation-use-relative-file} can also be a function
-that takes the filename and returns non-nil if the link should be
-relative.  Filenames are resolved relative to
-@code{planner-directory}.  That is, the created link will be of the
-form @samp{../../somefile} instead of @samp{/absolute/path/to/file}.
-This can be helpful if you publish your planner files to the Net and
-your directory structure ensures that relative links resolve the same
-from @code{planner-directory} and @code{planner-publishing-directory}.
+@code{planner-annotation-use-relative-file} can also be a function that
+takes the filename and returns non-nil if the link should be relative.
+Filenames are resolved relative to the first directory of your Planner
+project in @code{muse-project-alist}.  That is, the created link will be
+of the form @samp{../../somefile} instead of
+@samp{/absolute/path/to/file}.  This can be helpful if you publish your
+planner files to the Net and your directory structure ensures that
+relative links resolve the same from your Plan pages and their
+respective publishing directory.
 @end defopt
 
 @node Interactive Lisp, Publishing, Annotations, More about Planner
@@ -3227,9 +3205,10 @@ files when you save them, add the following code to your
             nil t))
 @end example
 
-Published files are stored in @code{planner-publishing-directory}.
-Just copy the contents of this directory to your webserver, and you're
-all set! Of course, publishing is completely optional.
+Published files are stored in the path specified by
+@code{muse-project-alist} for your Planner project.  Just copy the
+contents of this directory to your webserver, and you're all set! Of
+course, publishing is completely optional.
 
 Here are some more features related to publishing:
 
@@ -3447,8 +3426,9 @@ the following to your @file{~/.emacs}.
 @example
 (planner-ical-export-file
  (planner-today)
- (expand-file-name "tasks.ics"
-                   planner-publishing-directory))
+ (expand-file-name
+   "tasks.ics"
+   (muse-style-element :path (car (cddr (muse-project planner-project))))))
 @end example
 
 @defun planner-ical-export-page page &optional file
