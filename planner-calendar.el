@@ -195,7 +195,7 @@ If ARROWS is non-nil, include prev/next month arrows."
 
 (defun planner-calendar-from-wiki (&optional arrows wiki)
   "Generate a string of html (possibly with ARROWS) for a calendar for WIKI."
-  (let ((page (or wiki (planner-page-name))))
+  (let ((page (or wiki (planner-page-name) (planner-today))))
     (save-match-data
       (when (string-match planner-date-regexp page)
 	(let ((year (string-to-number (substring page 0 4)))
