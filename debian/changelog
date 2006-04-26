@@ -1,3 +1,9 @@
+planner-el (3.40.arch.38-1) unstable; urgency=low
+
+  * New Arch snapshot.
+
+ -- Michael W. Olson (GNU address) <mwolson@gnu.org>  Wed, 26 Apr 2006 15:29:45 -0400
+
 planner-el (3.40.arch.31-1) unstable; urgency=low
 
   * New Arch snapshot.

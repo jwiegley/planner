@@ -47,8 +47,8 @@
 ;; add a hook function like this:
 ;;
 ;;   (eval-after-load "muse-publish"
-;;     (add-hook 'muse-after-publish-hook
-;;               'planner-calendar-create-today-link nil t))
+;;     '(add-hook 'muse-after-publish-hook
+;;                'planner-calendar-create-today-link nil t))
 
 ;;; Contributors:
 
@@ -354,8 +354,9 @@ support POSIX \"ln\"."
   (let ((arrows (cdr (assoc "arrows" attrs)))
 	(wiki (cdr (assoc "wiki" attrs))))
     (delete-region beg end)
+    (planner-insert-markup "<div class=\"calendar\">\n")
     (planner-insert-markup (planner-calendar-from-wiki arrows wiki))
-    (muse-publish-mark-read-only beg (point))))
+    (planner-insert-markup "</div>\n")))
 
 (eval-after-load "planner-publish"
   '(progn
