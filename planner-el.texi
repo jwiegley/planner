@@ -3226,20 +3226,24 @@ Here are some more features related to publishing:
 @cindex calendar, publishing
 @cindex @file{planner-calendar.el}, using
 
-Here is an example Emacs Lisp snippet that automatically publishes
-calendars in your day pages.
+To publish calendars in your day pages, it is necessary to do two steps.
+
+@itemize
+@item Add (require 'planner-calendar) to your configuration.
+@item Add a <calendar> tag to either your header, footer, or
+@var{planner-day-page-template}, depending on where you want it to
+appear.
+@end itemize
+
+It is also possible to create a symlink from the current day page to the
+page name specified by @var{planner-calendar-today-page-name}.  To
+accomplish this, add the following to your configuration.
 
 @example
-(require 'planner-calendar)
 (eval-after-load "muse-publish"
   '(progn
-     (add-hook 'muse-before-publish-hook
-               'planner-calendar-insert-calendar-maybe nil t)
      (add-hook 'muse-after-publish-hook
-               'planner-calendar-create-today-link t t)
-     (add-hook 'muse-after-publish-hook
-               'planner-calendar-move-calendar-to-top-of-page-maybe
-               t t)))
+               'planner-calendar-create-today-link t t)))
 @end example
 
 @defopt planner-calendar-prev-month-button
@@ -3258,25 +3262,10 @@ Number of characters to use for day column header names.
 Default name for published today page link.
 @end defopt
 
-@defun planner-calendar-insert-calendar-maybe
-Add this function to @code{muse-before-publish-hook} in
-@code{planner-mode} buffers in order to automatically add a day page
-during the calendar. This cannot be done from the page header because
-the inserted text still needs to be processed.
-@end defun
-
 @defun planner-calendar-create-today-link
 Add this function to @code{muse-after-publish-hook} to
 create a ``today'' soft-link to the newest published planner day page,
 on operating systems that support POSIX @command{ln}.
-@end defun
-
-@defun planner-calendar-move-calendar-to-top-of-page-maybe
-Add this function to @code{muse-after-publish-hook} if you want
-the calendar inserted by @code{planner-calendar-insert-calendar-maybe}
-to be moved to the beginning of the page. This work-around is
-necessary because some functions used by @file{planner-calendar.el}
-only work during markup.
 @end defun
 
 @node Authz Access Restriction, RSS Publication, Publishing Calendars, Publishing

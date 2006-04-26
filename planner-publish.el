@@ -382,11 +382,45 @@ This may be text or a filename."
 
 ;;;_ + Publishing hooks
 
+(defcustom planner-publish-prepare-regexps
+  '((100 "^\\(\\*+\\)\\s-+" 0 planner-publish-section))
+  "List of markup rules to apply before publishing a page with Planner.
+See `muse-publish-markup-regexps' for details on the syntax used."
+  :type '(repeat (choice
+                  (list :tag "Markup rule"
+                        integer
+                        (choice regexp symbol)
+                        integer
+                        (choice string function symbol))
+                  function))
+  :group 'planner-publish)
+
+(defcustom planner-publish-finalize-regexps
+  '()
+  "List of markup rules to apply after publishing a page with Planner.
+See `muse-publish-markup-regexps' for details on the syntax used."
+  :type '(repeat (choice
+                  (list :tag "Markup rule"
+                        integer
+                        (choice regexp symbol)
+                        integer
+                        (choice string function symbol))
+                  function))
+  :group 'planner-publish)
+
 (defun planner-publish-prepare-buffer ()
   (goto-char (point-min))
-  (muse-publish-markup "sections"
-                       '((100 "^\\(\\*+\\)\\s-+" 0
-                              planner-publish-section))))
+  (muse-publish-markup "preparing Planner page"
+                       planner-publish-prepare-regexps)
+  ;; indicate that we are to continue preparing the buffer
+  nil)
+
+(defun planner-publish-finalize-buffer ()
+  (goto-char (point-min))
+  (muse-publish-markup "finalizing Planner page"
+                       planner-publish-finalize-regexps)
+  ;; indicate that we are to continue finalizing the buffer
+  nil)
 
 ;;;_ + Markup
 
@@ -626,9 +660,9 @@ DIRECTORY and START."
       (insert "\n"))))
 
 (defvar planner-section-tagnames
-  "Alist of sections and their tag name."
   '(("Tasks" . "tasks-section")
-    ("Notes" . "notes-section")))
+    ("Notes" . "notes-section"))
+  "Alist of sections and their tag name.")
 
 (defun planner-publish-section-tagname (text)
   "A routine that checks `planner-section-tagnames' for tagname."
@@ -658,6 +692,7 @@ DIRECTORY and START."
                      :tags      'planner-publish-markup-tags
                      :strings   'planner-xml-markup-strings
                      :before    'planner-publish-prepare-buffer
+                     :after     'planner-publish-finalize-buffer
                      :header    'planner-xml-header
                      :footer    'planner-xml-footer)
   (muse-derive-style "planner-html" "html"
@@ -666,6 +701,7 @@ DIRECTORY and START."
                      :tags      'planner-publish-markup-tags
                      :strings   'planner-html-markup-strings
                      :before    'planner-publish-prepare-buffer
+                     :after     'planner-publish-finalize-buffer
                      :header    'planner-html-header
                      :footer    'planner-html-footer)
   (muse-derive-style "planner-xhtml" "xhtml"
@@ -674,6 +710,7 @@ DIRECTORY and START."
                      :tags      'planner-publish-markup-tags
                      :strings   'planner-html-markup-strings
                      :before    'planner-publish-prepare-buffer
+                     :after     'planner-publish-finalize-buffer
                      :header    'planner-xhtml-header
                      :footer    'planner-xhtml-footer))
 

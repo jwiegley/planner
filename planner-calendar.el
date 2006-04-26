@@ -34,11 +34,15 @@
 ;; You will need to install Emacs Muse before this is of any use to
 ;; you.
 
-;; Read the documentation for `planner-calendar-insert-calendar-maybe',
-;; `planner-calendar-move-calendar-to-top-of-page-maybe' and
-;; `planner-calendar-create-today-link' for how to use the functions
-;; in this file from Muse hooks.
+;; To publish calendars in your day pages, it is necessary to do two
+;; steps.
 ;;
+;; 1. Add (require 'planner-calendar) to your configuration.
+;;
+;; 2. Add a <calendar> tag to either your header, footer, or
+;;    `planner-day-page-template', depending on where you want it to
+;;    appear.
+
 ;; If you decide to create a today link for published planner pages,
 ;; add a hook function like this:
 ;;
@@ -57,7 +61,9 @@
 (require 'calendar)
 (require 'muse)
 (require 'planner)
-(require 'planner-publish)
+
+(eval-when-compile
+  (require 'planner-publish))
 
 (defgroup planner-calendar nil
   "Options controlling the behaviour of planner calendar publication."
@@ -344,43 +350,6 @@ support POSIX \"ln\"."
 	 (date (planner-filename-to-calendar-date page)))
     (planner-calendar-next-month-href date name max-days)))
 
-(defun planner-calendar-insert-calendar-maybe ()
-  "Insert the calendar on day pages.
-Add this to `muse-before-publish-hook'.  This can't be done from
-the page header, as header text is added after much of the page
-buffer has been marked up."
-  (let ((page (planner-page-name)))
-    (when (and page (string-match planner-date-regexp page))
-      (goto-char (point-min))
-      (insert "<calendar arrows=t>\n"))))
-
-(defun planner-calendar-move-calendar-to-top-of-page-maybe ()
-  "Move calendar to just after `planner-calendar-html-tag-marker'.
-Add this to `muse-after-publish-hook'."
-  (when (string-match planner-date-regexp (or (planner-page-name) ""))
-    (goto-char (point-min))
-    (let* ((inhibit-read-only t)
-	   (body (and (search-forward planner-calendar-html-tag-marker
-				      nil 'noerror)
-		      (forward-line 1)
-		      (point)))
-	   (start (save-excursion
-		    (and (search-forward "<table class=\"month-calendar\"")
-			 (forward-line 0)
-			 (point))))
-	   (end (save-excursion
-		  (and start
-		       (goto-char start)
-		       (search-forward "</table>")
-		       (point))))
-	   (calendar (and start end
-			(buffer-substring start end))))
-    (when (and body calendar)
-      (delete-region start end)
-      (goto-char body)
-      (planner-insert-markup calendar (string-match planner-date-regexp
-						    (planner-page-name)))))))
-
 (defun planner-publish-calendar-tag (beg end attrs)
   (let ((arrows (cdr (assoc "arrows" attrs)))
 	(wiki (cdr (assoc "wiki" attrs))))
@@ -388,9 +357,13 @@ Add this to `muse-after-publish-hook'."
     (planner-insert-markup (planner-calendar-from-wiki arrows wiki))
     (muse-publish-mark-read-only beg (point))))
 
-(add-to-list 'planner-publish-markup-tags
-	     '("calendar" nil t planner-publish-calendar-tag)
-	     t)
+(eval-after-load "planner-publish"
+  '(progn
+     (add-to-list 'planner-publish-markup-tags
+		  '("calendar" nil t planner-publish-calendar-tag)
+		  t)
+     (add-to-list 'planner-publish-finalize-regexps
+		  '(200 "<\\(calendar\\)>" 0 muse-publish-markup-tag))))
 
 (provide 'planner-calendar)
 
