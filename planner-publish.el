@@ -102,7 +102,7 @@ For more on the structure of this list, see
 
 (defcustom planner-publish-markup-tags
   '(("nested-section" t nil planner-publish-nested-section-tag)
-    ("title" t nil planner-publish-title-tag)
+    ("title" t t planner-publish-title-tag)
     ("content" t nil planner-publish-content-tag)
     ("tasks-section" t nil planner-publish-tasks-section-tag)
     ("notes-section" t nil planner-publish-notes-section-tag)
@@ -182,8 +182,8 @@ This may be text or a filename."
 (defcustom planner-html-markup-strings
   '((planner-begin-nested-section . "<div class=\"section\">")
     (planner-end-nested-section   . "</div>")
-    (planner-begin-title         . "<div class=\"title\">")
-    (planner-end-title           . "</div>")
+    (planner-begin-title         . "<h%s>")
+    (planner-end-title           . "</h%s>")
     (planner-begin-content       . "<div class=\"content\">")
     (planner-end-content         . "</div>")
     (planner-begin-body          . "<div class=\"body\">")
@@ -247,10 +247,6 @@ table.muse-table tbody td { border: 1px solid #ccdeed; }
                     font-size: 11px; }
 
 .title { margin: 0; padding; 0 }
-
-.section .title { font-size: 14px; }
-.section .section .title { font-size: 12px; }
-.section .section .section .title { font-size: 11px; }
 
 /* Tasks section */
 .task .A { color: red }
@@ -435,7 +431,7 @@ heavily from Sacha's personal configs."
                       (or (planner-note-timestamp info) "")
                       (or (planner-note-link info) "")
                       (or (planner-note-link-text info) ""))
-              "<title>" (planner-note-title info) "</title>\n"
+              "<title level=\"3\">" (planner-note-title info) "</title>\n"
               "<content>\n" (planner-note-body info) "\n\n</content>\n"
               "</note>\n"))))
 
@@ -460,12 +456,13 @@ of each section."
     (goto-char end)
     (planner-insert-markup (muse-markup-text 'planner-end-nested-section))))
 
-(defun planner-publish-title-tag (beg end)
-  (save-excursion
-    (goto-char beg)
-    (planner-insert-markup (muse-markup-text 'planner-begin-title))
-    (goto-char end)
-    (planner-insert-markup (muse-markup-text 'planner-end-title))))
+(defun planner-publish-title-tag (beg end attrs)
+  (let ((level (cdr (assoc "level" attrs))))
+    (save-excursion
+      (goto-char beg)
+      (planner-insert-markup (muse-markup-text 'planner-begin-title level))
+      (goto-char end)
+      (planner-insert-markup (muse-markup-text 'planner-end-title level)))))
 
 (defun planner-publish-content-tag (beg end)
   (save-excursion
@@ -646,7 +643,8 @@ DIRECTORY and START."
          (title (buffer-substring (match-end 0) (planner-line-end-position)))
          (tagname (planner-publish-section-tagname title)))
     (delete-region (match-beginning 0) (match-end 0))
-    (insert (format "<%s level=\"%s\"><title>" tagname depth))
+    (insert (format "<%s level=\"%s\"><title level=\"%s\">"
+                    tagname depth (1+ depth)))
     (end-of-line)
     (insert "</title>")
     (planner-publish-section-close depth (format "</%s>" tagname))))
