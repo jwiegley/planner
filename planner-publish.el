@@ -248,6 +248,10 @@ table.muse-table tbody td { border: 1px solid #ccdeed; }
 
 .title { margin: 0; padding; 0 }
 
+/* optional calendar section */
+.calendar { float: right; }
+table.month-calendar { font-size: 9px; }
+
 /* Tasks section */
 .task .A { color: red }
 .task .B { color: green }
