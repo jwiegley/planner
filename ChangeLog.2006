@@ -1,3 +1,195 @@
+2006-04-26 19:59:37 GMT	Michael Olson <mwolson@gnu.org>	patch-40
+
+    Summary:
+      planner-calendar: Default to today if not publishing a day page.
+    Revision:
+      planner--main--1.0--patch-40
+
+    * planner-calendar.el (planner-calendar-from-wiki): Default to current
+      day if we're not publishing a day page.
+
+    modified files:
+     planner-calendar.el
+
+
+2006-04-26 19:55:13 GMT	Michael Olson <mwolson@gnu.org>	patch-39
+
+    Summary:
+      Add default CSS elements for calendar stuff.
+    Revision:
+      planner--main--1.0--patch-39
+
+    * planner-publish.el (planner-html-style-sheet): Add some default CSS
+      elements for calendar stuff.
+
+    modified files:
+     planner-publish.el
+
+
+2006-04-26 19:35:10 GMT	Michael Olson <mwolson@gnu.org>	patch-38
+
+    Summary:
+      planner-calendar: Surround generated calendar with <div> tag.
+    Revision:
+      planner--main--1.0--patch-38
+
+    * planner-calendar.el: Fix example.
+      (planner-publish-calendar-tag): Surround in a <div> section for ease of
+      use.
+    
+    * planner-el.texi (Publishing Calendars): Make the example simpler.
+    
+    * planner-publish.el (planner-insert-markup): If we're using Muse 3.02.6,
+      manually make the region read-only.
+
+    modified files:
+     Makefile.defs debian/changelog planner-calendar.el
+     planner-el.texi planner-publish.el
+
+
+2006-04-26 18:09:14 GMT	Michael Olson <mwolson@gnu.org>	patch-37
+
+    Summary:
+      Minor docfix.
+    Revision:
+      planner--main--1.0--patch-37
+
+    * planner-publish.el (planner-publish-prepare-buffer) 
+      (planner-publish-finalize-buffer): Docfix.
+
+    modified files:
+     planner-publish.el
+
+
+2006-04-26 18:01:36 GMT	Michael Olson <mwolson@gnu.org>	patch-36
+
+    Summary:
+      Make publishing of calendars work better using a new method.
+    Revision:
+      planner--main--1.0--patch-36
+
+    * planner-calendar.el: Docfix.  Recognize <calendar> tags even in the
+      header and footer.
+      (planner-calendar-insert-calendar-maybe) 
+      (planner-calendar-move-calendar-to-top-of-page-maybe): Remove, since
+      they are not needed by the new method.
+    
+    * planner-el.texi (Publishing Calendars): Update.
+    
+    * planner-publish.el (planner-publish-prepare-regexps): New option that
+      specifies the publishing regexps to apply before doing other
+      publishing.
+      (planner-publish-finalize-regexps): New option that specifies the
+      publishing regexps to apply after doing other publishing.
+      (planner-publish-prepare-buffer): Use planner-publish-prepare-regexps.
+      (planner-publish-finalize-buffer): New function that finalizes Planner
+      buffers after publishing.
+      (planner-section-tagnames): Fix ordering error.
+
+    modified files:
+     planner-calendar.el planner-el.texi planner-publish.el
+
+
+2006-04-26 03:22:20 GMT	Michael Olson <mwolson@gnu.org>	patch-35
+
+    Summary:
+      Use h2, h3, ... for headings.
+    Revision:
+      planner--main--1.0--patch-35
+
+    * planner-publish.el (planner-publish-markup-tags) [title]: Accept
+      attributes.
+      (planner-html-markup-strings) [planner-begin-title, planner-end-title]:
+      Use normal style headings, i.e. h2.
+      (planner-html-style-sheet): Remove nested title hacks.
+      (planner-publish-markup-note): Use title level of 3.
+      (planner-publish-title-tag): Accept attributes.  Call muse-markup-text
+      with a level argument.
+      (planner-publish-section): Store level as heading level + 1, since the
+      topmost level heading should be h2.
+
+    modified files:
+     planner-publish.el
+
+
+2006-04-25 22:03:34 GMT	Michael Olson <mwolson@gnu.org>	patch-34
+
+    Summary:
+      Fix a paragraph publishing problem near end of file.
+    Revision:
+      planner--main--1.0--patch-34
+
+    * planner-publish.el (planner-html-markup-strings)
+      [planner-end-note-categories]: Remove newline.
+      (planner-publish-prepare-buffer): Rework to use the Muse markup engine.
+      (planner-publish-markup-note): Docfix.
+      (planner-publish-nested-section-tag): Docfix.
+      (planner-publish-notes-section-tag): Insert newline.
+      (planner-publish-note-tag): Insert newline.
+      (planner-sectionalize-delimiter, planner-sectionalize-page) 
+      (sectionalize-markup-tagname, sectionalize-markup-tagname) 
+      (sectionalize): Remove.
+      (planner-publish-section-close): New function that finds where the
+      closing tag of DEPTH should go, and inserts TEXT.
+      (planner-section-tagnames): Mapping of sections to their tag name.
+      (planner-publish-section-tagname): New function that finds the tag name
+      for the given section.
+      (planner-publish-section): New function that publishing the current
+      heading as a section.  This should fix a problem with sections at the
+      end of a file, given only one newline at end.
+
+    modified files:
+     planner-publish.el
+
+
+2006-04-09 19:29:19 GMT	Michael Olson <mwolson@gnu.org>	patch-33
+
+    Summary:
+      manual: Fix errors introduced in last patch.
+    Revision:
+      planner--main--1.0--patch-33
+
+    * planner-el.texi: Fix a couple of errors.
+
+    modified files:
+     planner-el.texi
+
+
+2006-04-09 19:27:03 GMT	Michael Olson <mwolson@gnu.org>	patch-32
+
+    Summary:
+      manual: Remove use of old Planner variables.
+    Revision:
+      planner--main--1.0--patch-32
+
+    * planner-el.texi: Remove use of old Planner variables.  Thanks to
+      Sebastian Luque for the report.
+      (Creating Your Planner): Clarify comment.
+      (Basic Configuration): Remove node, since its content is presented
+      elsewhere.
+      (Annotations, Publishing): Don't use old Planner variables in
+      explanation.
+      (iCal Task Publication): Give a more up-to-date example.
+
+    modified files:
+     planner-el.texi
+
+
+2006-04-08 02:57:43 GMT	Michael Olson <mwolson@gnu.org>	patch-31
+
+    Summary:
+      Prepare new Debian package for Arch snapshot.
+    Revision:
+      planner--main--1.0--patch-31
+
+    * ChangeLog.2006: Update.
+    
+    * debian/changelog: Prepare new Debian package for Arch snapshot.
+
+    modified files:
+     ChangeLog.2006 Makefile.defs debian/changelog
+
+
 2006-04-08 01:34:44 GMT	Michael Olson <mwolson@gnu.org>	patch-30
 
     Summary:
