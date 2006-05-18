@@ -48,7 +48,7 @@
 ;;
 ;;   (eval-after-load "muse-publish"
 ;;     '(add-hook 'muse-after-publish-hook
-;;                'planner-calendar-create-today-link nil t))
+;;                'planner-calendar-create-today-link))
 
 ;;; Contributors:
 
@@ -193,21 +193,31 @@ If ARROWS is non-nil, include prev/next month arrows."
 	 "</table>\n")))
     string))
 
-(defun planner-calendar-from-wiki (&optional arrows wiki)
-  "Generate a string of html (possibly with ARROWS) for a calendar for WIKI."
-  (let ((page (or wiki (planner-page-name) (planner-today))))
-    (save-match-data
-      (when (string-match planner-date-regexp page)
-	(let ((year (string-to-number (substring page 0 4)))
-	      (month (string-to-number (substring page 5 7))))
-	  (planner-calendar month year arrows))))))
+(defun planner-calendar-coerce-day-page (&optional page)
+  "Figure out what day page to use, based on PAGE."
+  (save-match-data
+    (unless page
+      (or (and (setq page (planner-page-name))
+	       (stringp page)
+	       (string-match planner-date-regexp page))
+	  (setq page (planner-today)))))
+  page)
 
-(defun planner-calendar-published-file-href (wiki &optional name nop)
-  "Return an href anchor string to the published WIKI if WIKI exists."
-  (if (and (planner-page-file wiki)
-	   (not (planner-private-p (planner-page-file wiki))))
-      (planner-link-href wiki (or name wiki))
-    (or name wiki)))
+(defun planner-calendar-from-page (&optional arrows page)
+  "Generate a string of html (possibly with ARROWS) for a calendar for PAGE."
+  (setq page (planner-calendar-coerce-day-page page))
+  (when (and (stringp page)
+	     (save-match-data (string-match planner-date-regexp page)))
+    (let ((year (string-to-number (substring page 0 4)))
+	  (month (string-to-number (substring page 5 7))))
+      (planner-calendar month year arrows))))
+
+(defun planner-calendar-published-file-href (page &optional name nop)
+  "Return an href anchor string to the published PAGE if PAGE exists."
+  (if (and (planner-page-file page)
+	   (not (planner-private-p (planner-page-file page))))
+      (planner-link-href page (or name page))
+    (or name page)))
 
 (defun planner-calendar-yesterday (date)
   "Return the day before DATE as a (month day year) list."
@@ -253,9 +263,12 @@ support POSIX \"ln\"."
 	 (source-file (planner-published-file
 		       (planner-calendar-date-to-filename
 			(planner-calendar-today)))))
-    (when (file-exists-p target-file)
-      (funcall planner-delete-file-function target-file))
-    (make-symbolic-link source-file target-file t)))
+    (when (and (stringp target-file)
+	       (stringp source-file)
+	       (file-exists-p source-file))
+      (when (file-exists-p target-file)
+	(funcall planner-delete-file-function target-file))
+      (make-symbolic-link source-file target-file t))))
 
 (defun planner-calendar-prev-date (date &optional max-days)
   "Return the first day before DATE with a day page."
@@ -265,9 +278,9 @@ support POSIX \"ln\"."
     (while (and (not done) (> days 0))
       (setq yesterday (planner-calendar-yesterday yesterday)
 	    days (1- days))
-      (let ((wiki (planner-calendar-date-to-filename yesterday)))
-	(setq done (and (planner-page-file wiki)
-			(not (planner-private-p (planner-page-file wiki)))))))
+      (let ((page (planner-calendar-date-to-filename yesterday)))
+	(setq done (and (planner-page-file page)
+			(not (planner-private-p (planner-page-file page)))))))
     (if done yesterday nil)))
 
 (defun planner-calendar-next-date (date &optional max-days)
@@ -278,9 +291,9 @@ support POSIX \"ln\"."
     (while (and (not done) (> days 0))
       (setq tomorrow (planner-calendar-tomorrow tomorrow)
 	    days (1- days))
-      (let ((wiki (planner-calendar-date-to-filename tomorrow)))
-	(setq done (and (planner-page-file wiki)
-			(not (planner-private-p (planner-page-file wiki)))))))
+      (let ((page (planner-calendar-date-to-filename tomorrow)))
+	(setq done (and (planner-page-file page)
+			(not (planner-private-p (planner-page-file page)))))))
     (if done tomorrow nil)))
 
 (defun planner-calendar-prev-date-href (date name &optional nop max-days)
@@ -312,51 +325,53 @@ support POSIX \"ln\"."
     (planner-calendar-published-file-href
      (planner-calendar-date-to-filename next-date) name nop)))
 
-(defun planner-calendar-prev-day-wiki (&optional wiki max-days)
+(defun planner-calendar-prev-day-page (&optional page max-days)
   "Return the first planner day page before this one."
-  (let* ((page (or wiki (planner-page-name)))
-	 (date (planner-filename-to-calendar-date page)))
+  (unless page (setq page (planner-page-name)))
+  (let ((date (planner-filename-to-calendar-date page)))
     (planner-calendar-date-to-filename
      (planner-calendar-prev-date date max-days))))
 
-(defun planner-calendar-next-day-wiki (&optional wiki max-days)
+(defun planner-calendar-next-day-page (&optional page max-days)
   "Return the first planner day page after this one."
-  (let* ((page (or wiki (planner-page-name)))
-	 (date (planner-filename-to-calendar-date page)))
+  (unless page (setq page (planner-page-name)))
+  (let ((date (planner-filename-to-calendar-date page)))
     (planner-calendar-date-to-filename
      (planner-calendar-next-date date max-days))))
 
-(defun planner-calendar-prev-date-href-from-wiki (name &optional wiki max-days)
+(defun planner-calendar-prev-date-href-from-page (name &optional page max-days)
   "Return an href anchor string for the first day page before this one."
-  (let* ((page (or wiki (planner-page-name)))
-	 (date (planner-filename-to-calendar-date page)))
+  (unless page (setq page (planner-page-name)))
+  (let ((date (planner-filename-to-calendar-date page)))
     (planner-calendar-prev-date-href date name max-days)))
 
-(defun planner-calendar-next-date-href-from-wiki (name &optional wiki max-days)
+(defun planner-calendar-next-date-href-from-page (name &optional page max-days)
   "Return an href anchor string for the first day page after this one."
-  (let* ((page (or wiki (planner-page-name)))
-	 (date (planner-filename-to-calendar-date page)))
+  (unless page (setq page (planner-page-name)))
+  (let ((date (planner-filename-to-calendar-date page)))
     (planner-calendar-next-date-href date name max-days)))
 
-(defun planner-calendar-prev-month-href-from-wiki (name &optional wiki max-days)
+(defun planner-calendar-prev-month-href-from-page (name &optional page max-days)
   "Return a string for the last day page in first month before this one."
-  (let* ((page (or wiki (planner-page-name)))
-	 (date (planner-filename-to-calendar-date page)))
+  (unless page (setq page (planner-page-name)))
+  (let ((date (planner-filename-to-calendar-date page)))
     (planner-calendar-prev-month-href date name max-days)))
 
-(defun planner-calendar-next-month-href-from-wiki (name &optional wiki max-days)
+(defun planner-calendar-next-month-href-from-page (name &optional page max-days)
   "Return a string for the first day page in the first month after this one."
-  (let* ((page (or wiki (planner-page-name)))
-	 (date (planner-filename-to-calendar-date page)))
+  (unless page (setq page (planner-page-name)))
+  (let ((date (planner-filename-to-calendar-date page)))
     (planner-calendar-next-month-href date name max-days)))
 
 (defun planner-publish-calendar-tag (beg end attrs)
-  (let ((arrows (cdr (assoc "arrows" attrs)))
-	(wiki (cdr (assoc "wiki" attrs))))
+  (let* ((arrows (cdr (assoc "arrows" attrs)))
+	 (page (cdr (assoc "page" attrs)))
+	 (calendar (planner-calendar-from-page arrows page)))
     (delete-region beg end)
-    (planner-insert-markup "<div class=\"calendar\">\n")
-    (planner-insert-markup (planner-calendar-from-wiki arrows wiki))
-    (planner-insert-markup "</div>\n")))
+    (when calendar
+      (planner-insert-markup "<div class=\"calendar\">\n")
+      (planner-insert-markup calendar)
+      (planner-insert-markup "</div>\n"))))
 
 (eval-after-load "planner-publish"
   '(progn
@@ -364,7 +379,8 @@ support POSIX \"ln\"."
 		  '("calendar" nil t planner-publish-calendar-tag)
 		  t)
      (add-to-list 'planner-publish-finalize-regexps
-		  '(200 "<\\(calendar\\)>" 0 muse-publish-markup-tag))))
+		  '(200 "<\\(calendar\\)\\(\\s-+[^<>\n]+[^</>\n]\\)?\\(/\\)?>"
+			0 muse-publish-markup-tag))))
 
 (provide 'planner-calendar)
 

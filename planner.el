@@ -916,7 +916,6 @@ page will be created if it does not already exist."
 
 (defalias 'planner-time-less-p 'muse-time-less-p)
 (defalias 'planner-private-p 'muse-project-private-p)
-(defalias 'planner-published-file 'muse-publish-output-file)
 (defalias 'planner-follow-name-at-point 'muse-follow-name-at-point)
 (defalias 'planner-next-reference 'muse-next-reference)
 (defalias 'planner-previous-reference 'muse-previous-reference)
@@ -925,6 +924,12 @@ page will be created if it does not already exist."
 ;; with multiple directories.
 (defun planner-directory ()
   (car (cadr (muse-project planner-project))))
+
+(defun planner-published-file (file &optional output-dir style)
+  (unless output-dir
+    (setq output-dir (file-name-directory
+                      muse-publishing-current-output-path)))
+  (muse-publish-output-file file output-dir style))
 
 (defun planner-remove-links (description)
   "Remove explicit links from DESCRIPTION."
@@ -3033,38 +3038,45 @@ which `muse-project-private-p' returns non-nil."
       (insert index)
       (current-buffer))))
 
-(defun planner-index-as-string (&optional as-list exclude-private)
+(defun planner-index-as-string (&optional as-list exclude-private
+                                          exclude-daypages)
   "Generate an index of all Wiki pages.
-List planner pages separately. If AS-LIST is non-nil, format it
-as a list. If EXCLUDE-PRIVATE is non-nil, exclude anything for
-which `muse-project-private-p' returns non-nil."
+Day pages are listed separately.
+
+If AS-LIST is non-nil, format it as a list.
+
+If EXCLUDE-PRIVATE is non-nil, exclude anything for which
+`muse-project-private-p' returns non-nil.
+
+If EXCLUDE-DAYPAGES is non-nil, exclude day pages from the list."
   (let ((index (muse-index-as-string as-list exclude-private)))
     (with-temp-buffer
       (insert index)
       (goto-char (point-min))
       (delete-matching-lines
        "\\[\\[[0-9][0-9][0-9][0-9]\\.[0-9][0-9]\\.[0-9][0-9]\\]\\]")
-      (goto-char (point-max))
-      (unless (bolp) (insert "\n"))
-      (if planner-publish-dates-first-p
-          (progn
-            (goto-char (point-min))
-            (insert "\n")
-            (goto-char (point-min)))
-        (insert "\n"))
-      (let ((dates (mapcar 'car (planner-list-daily-files)))
-            month last-month)
-        (while dates
-          (setq month (substring (car dates) 0 7))
-          (unless (string= month last-month)
-            (setq last-month month)
-            (insert "\n" month " |"))
-          (insert " [[" (car dates) "][."
-                  (substring (car dates) 8)
-                  " ]]")
-          (setq dates (cdr dates)))
-        (when planner-publish-dates-first-p
-          (insert "\n")))
+      (unless exclude-daypages
+        (goto-char (point-max))
+        (unless (bolp) (insert "\n"))
+        (if planner-publish-dates-first-p
+            (progn
+              (goto-char (point-min))
+              (insert "\n")
+              (goto-char (point-min)))
+          (insert "\n"))
+        (let ((dates (mapcar 'car (planner-list-daily-files)))
+              month last-month)
+          (while dates
+            (setq month (substring (car dates) 0 7))
+            (unless (string= month last-month)
+              (setq last-month month)
+              (insert "\n" month " |"))
+            (insert " [[" (car dates) "][."
+                    (substring (car dates) 8)
+                    " ]]")
+            (setq dates (cdr dates)))
+          (when planner-publish-dates-first-p
+            (insert "\n"))))
       (buffer-string))))
 
 ;;;_  + Info

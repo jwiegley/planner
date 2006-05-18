@@ -1761,6 +1761,8 @@ This module modifies the behavior of @file{planner.el}, adding global
 task IDs so that tasks can be edited and updated. Planner IDs are of
 the form @samp{@{@{Identifier:Number@}@}}.
 
+@subheading Options
+
 @defopt planner-id-add-task-id-flag
 Non-nil means automatically add global task IDs to newly-created
 tasks. If nil, use @command{planner-id-add-task-id} to add IDs to
@@ -1779,6 +1781,8 @@ task. By default, linked tasks are automatically updated.
 File that contains ID tracking data. This file is automatically
 overwritten.
 @end defopt
+
+@subheading Functions
 
 The following interactive functions are defined in @file{planner-id.el}:
 
@@ -1862,6 +1866,8 @@ marked the task as done.) To turn off this behavior:
 @example
 (setq planner-cyclic-diary-nag nil)
 @end example
+
+@subheading Functions
 
 @file{planner-cyclic-diary} includes the following interactive
 functions:
@@ -1949,11 +1955,15 @@ the task will be of the form
 #A0 _ Some task @{@{Deadline: 2004.09.12 - 2 days@}@}
 @end example
 
+@subheading Options
+
 @defopt planner-deadline-regexp
 Regular expression for deadline data.
 The special deadline string should be regexp group 1. The
 date (YYYY.MM.DD) should be regexp group 2.
 @end defopt
+
+@subheading Functions
 
 @defun planner-deadline-update
 Replace the text for all tasks with deadlines. Deadlines are of the
@@ -2089,6 +2099,8 @@ such as @samp{[[TasksByProject][p]] [[TasksByContext][c]]} and use
 @file{planner-trunk.el} to sort and organize tasks for easy reference.
 (@pxref{Grouping Tasks})
 
+@subheading Options
+
 @defopt planner-multi-copy-tasks-to-page
 Automatically copy newly-created tasks to the specified page.
 @end defopt
@@ -2149,6 +2161,8 @@ in the link, Emacs will display the previous info page.
 If you select @samp{TaskPool}, Emacs will display the @samp{TaskPool}
 plan page.  Plan pages organize your tasks and notes about a project
 in one file.
+
+@subheading Functions
 
 You can use @command{planner-seek-next-unfinished-task} to move to the
 next unfinished task on the current page.
@@ -2248,6 +2262,8 @@ the priorities on linked pages automatically. You can organize tasks
 into groups by putting a blank line between groups of tasks.
 Planner will maintain the groupings and only sort the tasks within
 that group.
+
+@subheading Functions
 
 @defun planner-replan-task page-name
 Change or assign the plan page for the current task.  @var{page-name}
@@ -2360,6 +2376,8 @@ use @command{planner-copy-or-move-task} and
 probably more hassle than it's worth, though, so let Planner take care
 of this for you.
 
+@subheading Options
+
 @defopt planner-carry-tasks-forward
 If non-nil, carry unfinished tasks forward automatically.
 If a positive integer, scan that number of days in the past.
@@ -2367,6 +2385,8 @@ If 0, scan all days for unfinished tasks.
 If t, scan one day in the past (old behavior).
 If nil, do not carry unfinished tasks forward.
 @end defopt
+
+@subheading Functions
 
 @defun plan &optional force-days
 Start your planning for the day, carrying unfinished tasks forward.
@@ -2409,6 +2429,8 @@ references to past tasks.
 
 If you find yourself not using this functionality, you can turn off task
 numbers by using the following option.
+
+@subheading Options
 
 @defopt planner-use-task-numbers
 Non-nil means use task numbers when creating tasks.  This allows you
@@ -2477,6 +2499,8 @@ Pretty}), you can set @code{planner-sort-tasks-key-function} to one of
 @code{planner-sort-tasks-by-importance}, and
 @code{planner-sort-tasks-by-urgency}.
 
+@subheading Options
+
 @defopt planner-rank-change-hook
 Functions to run after @code{planner-rank-change}.
 @end defopt
@@ -2515,6 +2539,8 @@ functions.
 @defopt planner-rank-rank-calculate-function
 Define the function called to calculate rank.
 @end defopt
+
+@subheading Functions
 
 @defun planner-rank-change &optional importance urgency
 Set the Importance and Urgency of the current task.
@@ -2667,6 +2693,8 @@ be manual, call @code{planner-accomplishments-update}.
 
 @end itemize
 
+@subheading Options
+
 @defopt planner-accomplishments-section
 Header for the accomplishments section in a plan page.
 Used by @code{planner-accomplishments-update}.
@@ -2676,6 +2704,8 @@ Used by @code{planner-accomplishments-update}.
 Alist of status-label maps also defining the order of display.
 Used by @code{planner-accomplishments-format-table}.
 @end defopt
+
+@subheading Functions
 
 @defun planner-accomplishments-insinuate ()
 Automatically call @code{planner-accomplishments-update} when saving
@@ -2706,6 +2736,8 @@ Seeing how you've scheduled tasks over the next few days can help you
 decide when to schedule another task. Table entries will be of the form
 
 @var{date} | @var{link} | @var{priority} @var{status} | @var{task-description}
+
+@subheading Functions
 
 To display the tasks between a set of day pages, use
 
@@ -2757,6 +2789,8 @@ called with an interactive prefix, prompt for the plan page(s) to
 display. Load @file{planner-multi.el} to be able to specify multiple
 pages.
 @end defun
+
+@subheading Keys
 
 @key{TAB}, @kbd{SHIFT-TAB} and @key{RET} navigate links in the usual
 fashion.
@@ -2821,6 +2855,8 @@ You can jump to the linked note with
 
 Deleting a note can be dangerous, as the notes are automatically
 numbered.  Removing a note could break links in other pages.
+
+@subheading Functions
 
 @defun planner-create-note page
 Create a note to be remembered in @var{page} (today if @var{page} is
@@ -2977,6 +3013,8 @@ To customize presentation, you can write a function that generates
 the appropriate @code{<planner-notes-index>} tags. You can also use
 @code{planner-extract-note-headlines} in your own functions.
 
+@subheading Functions
+
 The following interactive functions are defined in
 @file{planner-notes-index.el}:
 
@@ -3018,26 +3056,7 @@ save a file. Tasks are sorted by priority (ABC) and status (_oP>XC) on
 day pages. On plan pages, tasks are sorted by priority (ABC), status
 (XC), and date. Undated tasks are sorted after dated tasks.
 
-@defun planner-sort-tasks
-Sort tasks according to planner-sort-tasks-key-function. By default,
-sort tasks according to priority and position on day pages, and
-according to status, priority, date, and position on plan pages.
-@end defun
-
-@defun planner-renumber-tasks
-Update task numbering.
-@end defun
-
-@defun planner-align-tasks
-Align tasks neatly. You can add this to @code{write-file-functions} to
-have the tasks automatically lined up whenever you save.  For best
-results, ensure @code{planner-align-tasks} is run after
-@code{planner-renumber-tasks}.
-@end defun
-
-@defun planner-fix-tasks
-Sort, renumber and align tasks.
-@end defun
+@subheading Options
 
 @defopt planner-sort-tasks-key-function
 Control task sorting. Some options include
@@ -3080,6 +3099,29 @@ note in the middle. However, if you use a lot of cross-referencing,
 note renumbering will break those links.
 @end defopt
 
+@subheading Functions
+
+@defun planner-sort-tasks
+Sort tasks according to planner-sort-tasks-key-function. By default,
+sort tasks according to priority and position on day pages, and
+according to status, priority, date, and position on plan pages.
+@end defun
+
+@defun planner-renumber-tasks
+Update task numbering.
+@end defun
+
+@defun planner-align-tasks
+Align tasks neatly. You can add this to @code{write-file-functions} to
+have the tasks automatically lined up whenever you save.  For best
+results, ensure @code{planner-align-tasks} is run after
+@code{planner-renumber-tasks}.
+@end defun
+
+@defun planner-fix-tasks
+Sort, renumber and align tasks.
+@end defun
+
 @node Annotations, Interactive Lisp, Making Files Pretty, More about Planner
 @comment  node-name,  next,  previous,  up
 @section Annotations
@@ -3113,8 +3155,11 @@ The same happens with remembering notes, except that it ends up in the
 @samp{* Notes} section of your page instead.
 
 By default, @file{planner.el} can annotate tasks and notes based on
-the current filename.  To change the behavior of annotations,
-customize the following options:
+the current filename.
+
+@subheading Options
+
+To change the behavior of annotations, customize the following options:
 
 @defopt planner-annotation-functions
 A list of functions tried in order by
@@ -3229,11 +3274,26 @@ Here are some more features related to publishing:
 To publish calendars in your day pages, it is necessary to do two steps.
 
 @itemize
-@item Add (require 'planner-calendar) to your configuration.
-@item Add a <calendar> tag to either your header, footer, or
+@item Add @code{(require 'planner-calendar)} to your configuration.
+@item Add a @samp{<calendar>} tag to either your header, footer, or
 @var{planner-day-page-template}, depending on where you want it to
 appear.
 @end itemize
+
+To display a calendar based on a different day (given here as DAYPAGE),
+use @code{<calendar page="DAYPAGE">}.
+
+To get arrows to previous and next months to show up, use
+@code{<calendar arrows="t">}.  The text in
+@var{planner-calendar-prev-month-button} and
+@var{planner-calendar-next-month-button} will be used for the arrows to
+the previous and next months, respectively.
+
+By default, Muse will not display the arrows properly, due to
+limitations in the special-escaping algorithm.  To work around this,
+remove the @samp{&} rule from @var{muse-xml-markup-specials}, or from
+@var{muse-html-markup-specials} if you are using the 3.02.6 version of
+Muse.
 
 It is also possible to create a symlink from the current day page to the
 page name specified by @var{planner-calendar-today-page-name}.  To
@@ -3242,8 +3302,10 @@ accomplish this, add the following to your configuration.
 @example
 (eval-after-load "muse-publish"
   '(add-hook 'muse-after-publish-hook
-             'planner-calendar-create-today-link t t))
+             'planner-calendar-create-today-link))
 @end example
+
+@subheading Options
 
 @defopt planner-calendar-prev-month-button
 HTML text used for previous month buttons.
@@ -3260,6 +3322,8 @@ Number of characters to use for day column header names.
 @defopt planner-calendar-today-page-name
 Default name for published today page link.
 @end defopt
+
+@subheading Functions
 
 @defun planner-calendar-create-today-link
 Add this function to @code{muse-after-publish-hook} to
@@ -3316,6 +3380,8 @@ line. For example:
 #authz ajk sacha
 @end example
 
+@subheading Options
+
 @defopt planner-authz-project-default
 Default access list for project pages (not day pages).  If a given
 project page doesn't contain a @samp{#authz} tag, it will receive the
@@ -3338,6 +3404,8 @@ date pages anyway.
 Same as @kbd{planner-authz-day-note-default}, but for tasks.
 @end defopt
 
+@subheading Functions
+
 @defun planner-authz-publish-index
 Publish an index for the planner marked up with Mason code.
 Only those links to pages which the remote user is authorized to
@@ -3354,6 +3422,20 @@ access will be shown.
 @file{planner-rss.el} allows you to publish your notes in the RSS 2.0
 XML format for blog syndication. You will also want to customize the
 following variables:
+
+To manually add the current note to all the matching RSS feeds, invoke
+@command{planner-rss-add-note}. You can specify a filename with the
+universal prefix, like this: @kbd{C-u M-x planner-rss-add-note}.
+
+If you use the @file{remember-planner.el} module to create notes, you
+can automatically publish new notes to RSS feeds by adding the
+following code to your @file{.emacs} (or @file{_emacs}).
+
+@example
+(add-to-list 'remember-planner-append-hook 'planner-rss-add-note t)
+@end example
+
+@subheading Options
 
 @defopt planner-rss-base-url
 Base absolute URL for published blog entries. Should include trailing
@@ -3374,17 +3456,7 @@ and item limits for feeds that match. For example, you can use
 most recent items.
 @end defopt
 
-To manually add the current note to all the matching RSS feeds, invoke
-@command{planner-rss-add-note}. You can specify a filename with the
-universal prefix, like this: @kbd{C-u M-x planner-rss-add-note}.
-
-If you use the @file{remember-planner.el} module to create notes, you
-can automatically publish new notes to RSS feeds by adding the
-following code to your @file{.emacs} (or @file{_emacs}).
-
-@example
-(add-to-list 'remember-planner-append-hook 'planner-rss-add-note t)
-@end example
+@subheading Functions
 
 @file{planner-rss.el} defines the following interactive functions:
 
@@ -3418,6 +3490,8 @@ the following to your @file{~/.emacs}.
    "tasks.ics"
    (muse-style-element :path (car (cddr (muse-project planner-project))))))
 @end example
+
+@subheading Functions
 
 @defun planner-ical-export-page page &optional file
 Export PAGE's tasks in the iCal format.
@@ -3571,6 +3645,8 @@ in your load path, and add this to your @file{.emacs} (or
 @example
 (require 'planner-experimental)
 @end example
+
+@subheading Functions
 
 @file{planner-experimental.el} defines the following interactive
 functions:
@@ -3744,6 +3820,8 @@ the correct annotation.
 
 @file{planner-wl} does not define any interactive functions.
 
+@subheading Keys
+
 To add keybindings to Wanderlust, call:
 
 @example
@@ -3885,13 +3963,13 @@ Lisp code and not your diary entries.
 
 @end enumerate
 
-@kbd{C-c C-e} updates the diary sections.  @kbd{C-u C-c C-e} forces an
-update---it inserts the diary section for the day, even if the day is in
-the past or if there is no @samp{Diary} section in the buffer.
-
 If you want to see your diary entries for more than just one day, set
 @code{planner-diary-number-of-days} accordingly.  This works for either
 of the two approaches.
+
+@kbd{C-c C-e} updates the diary sections.  @kbd{C-u C-c C-e} forces an
+update---it inserts the diary section for the day, even if the day is in
+the past or if there is no @samp{Diary} section in the buffer.
 
 If you want to use the Cal-Desk package, simply follow the instructions
 in @file{cal-desk.el}.  If you get the Cal-Desk layout from the Calendar
@@ -3907,6 +3985,8 @@ Calendar integration, add this to your @file{.emacs} (or @file{_emacs}):
 
 If @code{planner-diary-create-section-flag} is non-nil, sections are
 always inserted if necessary.
+
+@subheading Options
 
 @defopt planner-diary-create-section-flag
 Non-nil means create the requested diary sections if they do not
@@ -3925,6 +4005,8 @@ non-nil.
 Non-nil means don't omit any data when copying diary entries into day
 pages.
 @end defopt
+
+@subheading Functions
 
 @file{planner-diary.el} defines the following interactive functions:
 
@@ -4025,6 +4107,7 @@ case, you should also @command{remove-hook} @samp{planner-calendar-show}
 from @code{calendar-move-hook}.
 @end defun
 
+@subheading Keys
 
 @file{planner-diary.el} adds the following keybinding to Planner, if
 @command{planner-diary-insinuate} is in your @file{.emacs} (or
@@ -4352,6 +4435,8 @@ appointment alert will be set up.
 The command @command{planner-appt-show-alerts} will show all appointment
 alerts currently scheduled.
 
+@subheading Functions
+
 There are two commands that show appointments in the future; the one
 displays them in a pop-up buffer, the other puts the information into
 the current day page.
@@ -4370,6 +4455,8 @@ days ahead to look. Its default value is defined by
 @code{planner-appt-forthcoming-days}.  The section heading to use is
 defined by @code{planner-appt-forthcoming-appt-section}.
 @end deffn
+
+@subheading Options
 
 @defopt planner-appt-forthcoming-days
 The number of days to look ahead for forthcoming appointments.  The
@@ -4407,6 +4494,8 @@ When non-nil, find forthcoming appointments in the cyclic diary file
 @subsubsection Appointment Updating on Save
 @cindex appointments, updating on save
 
+@subheading Options
+
 @defopt planner-appt-update-appts-on-save-flag
 When non-nil, update appointment reminders whenever today's plan page is
 saved. Default value is @samp{nil}.
@@ -4419,6 +4508,8 @@ saved. Default value is @samp{nil}.
 Not strictly part of appointment handling, but if one isn't using
 the diary, marking dates with plan pages seems to make sense.
 
+@subheading Functions
+
 @defun planner-appt-calendar-insinuate
 Add a hook to diary display so that dates in the calendar that have day
 pages are highlighted
@@ -4427,6 +4518,8 @@ pages are highlighted
 @node Appointment Hooks,  , Appointment and Calendar Integration, Appointments
 @comment  node-name,  next,  previous,  up
 @subsubsection Appointment Hooks
+
+@subheading Options
 
 @defvr {Hook} planner-appt-update-hook
 Hook run after @code{planner-appt-update} has updated the appointment
@@ -4558,22 +4651,6 @@ s: seconds, m: minutes, h: hours, d: days, w: weeks
 directory, but you can alternatively get it from
 @url{http://www.newartisans.com/johnw/Emacs/schedule.el} if desired.
 
-@file{planner-schedule.el} defines the following interactive
-functions:
-
-@defun planner-schedule-show-end-project
-Display the estimated project completion time.
-@end defun
-
-@file{planner-schedule.el} defines the following keybindings:
-
-@kbd{C-c RET} is bound to @command{planner-schedule-show-end-project}.
-@kbd{C-c C-m} is also bound to
-@command{planner-schedule-show-end-project}.
-
-In XEmacs, @command{planner-schedule-show-end-project} is bound to
-@kbd{C-c C-T c-e} and @kbd{C-c C-S-t C-e}.
-
 @file{schedule.el} provides a single Lisp function,
 @code{schedule-completion-time}. It takes an Emacs time object and a
 quantity of seconds. It returns an Emacs time object that represents
@@ -4635,6 +4712,26 @@ To call this function, do:
 
 @end example
 
+@subheading Keys
+
+@file{planner-schedule.el} defines the following keybindings:
+
+@kbd{C-c RET} is bound to @command{planner-schedule-show-end-project}.
+@kbd{C-c C-m} is also bound to
+@command{planner-schedule-show-end-project}.
+
+In XEmacs, @command{planner-schedule-show-end-project} is bound to
+@kbd{C-c C-T c-e} and @kbd{C-c C-S-t C-e}.
+
+@subheading Functions
+
+@file{planner-schedule.el} defines the following interactive
+functions:
+
+@defun planner-schedule-show-end-project
+Display the estimated project completion time.
+@end defun
+
 @file{schedule.el} does not define any interactive functions, or
 keybindings.
 
@@ -4678,11 +4775,8 @@ day page includes sections that match
 
 @end example
 
-You can manually update ledger sections with the following command:
-
-@defun planner-ledger-insert-maybe
-Update any ledger sections on the current page.
-@end defun
+You can manually update ledger sections with the
+@command{planner-ledger-insert-maybe} command.
 
 You can also automatically update ledger sections with the following
 hook:
@@ -4700,10 +4794,7 @@ form @samp{payment due: payee, amount [comment]}.  Example:
 #A2 _ payment due: baz, 1000.00
 @end example
 
-@defun planner-ledger-add-entry-from-task
-Create a ledger entry based on the task at point.  Task should match
-@code{planner-ledger-payment-task-regexp}.
-@end defun
+@subheading Options
 
 @defopt planner-ledger-balance-accounts
 List of accounts to be included or excluded from the balance overview.
@@ -4725,6 +4816,17 @@ other data in this section, as it will be overwritten.
 @defopt planner-ledger-payment-task-regexp
 Regular expression matching special ledger tasks.
 @end defopt
+
+@subheading Functions
+
+@defun planner-ledger-insert-maybe
+Update any ledger sections on the current page.
+@end defun
+
+@defun planner-ledger-add-entry-from-task
+Create a ledger entry based on the task at point.  Task should match
+@code{planner-ledger-payment-task-regexp}.
+@end defun
 
 @node Contacts and Conversations, Tracking Research and Resources, Finances, Managing Your Information
 @comment  node-name,  next,  previous,  up
@@ -4900,6 +5002,8 @@ you load the module, @code{planner-log-edit-add-note} will be added to
 and optionally a list of modified files will be added to today's page
 if you use the the Emacs version control interface. (@pxref{Version
 Control, , , Emacs, GNU Emacs Manual})
+
+@subheading Options
 
 @defopt planner-log-edit-include-files-flag
 Non-nil means include a list of committed files in the note.
