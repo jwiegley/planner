@@ -599,8 +599,7 @@ If nil, do not carry unfinished tasks forward."
   :group 'planner-tasks)
 
 (defcustom planner-marks-regexp "[_oXDCP]"
-  "Regexp that matches status character for a task.
-If you change this, also change `planner-publishing-markup'."
+  "Regexp that matches status character for a task."
   :type 'regexp
   :group 'planner-tasks)
 
@@ -2221,8 +2220,7 @@ SKIP-BUFFER is non-nil, do not save that buffer."
 
 ;;;_   + Extraction
 
-(defvar planner-task-regexp
-  (concat "^#[A-C][0-9]*\\s-+" planner-marks-regexp "\\s-+")
+(defvar planner-task-regexp (concat "^#[A-C][0-9]*\\s-+.\\s-+")
   "Regexp used to match tasks.")
 
 (defvar planner-live-task-regexp "^#[ABC][0-9]*\\s-+[_oDP]\\s-+"
@@ -3148,29 +3146,29 @@ instead, except t means scan only yesterday."
                                      'close)
                               (buffer-list))))
           ;; Limit the list for force-days
-            (when (and (integerp force-days)
-                       (> (length names) force-days))
-              (setcdr (nthcdr (1- force-days) names) nil))
-            (when force-days
-              (while names
-                (find-file (cdar names))
-                ;; Attempt to copy all the tasks
-                (when (not (equal today (planner-page-name)))
-                  (let ((planner-tasks-file-behavior nil))
-                    (planner-copy-or-move-region (point-min) (point-max)
-                                                 (planner-today) t))
-                  (unless (buffer-modified-p)
-                    (kill-buffer (current-buffer))))
-                (setq names (cdr names))))
-            ;; Jump to the most recent daily page
-            (if (or planner-carry-tasks-forward
-                    (planner-page-file today)
-                    (null names))
-                (planner-goto-today)
-              (planner-goto (caar names)))
-            ;; Save/kill files if configured to do so
-            (when planner-tasks-file-behavior
-              (planner-save-buffers live-buffers))))
+          (when (and (integerp force-days)
+                     (> (length names) force-days))
+            (setcdr (nthcdr (1- force-days) names) nil))
+          (when force-days
+            (while names
+              (find-file (cdar names))
+              ;; Attempt to copy all the tasks
+              (when (not (equal today (planner-page-name)))
+                (let ((planner-tasks-file-behavior nil))
+                  (planner-copy-or-move-region (point-min) (point-max)
+                                               (planner-today) t))
+                (unless (buffer-modified-p)
+                  (kill-buffer (current-buffer))))
+              (setq names (cdr names))))
+          ;; Jump to the most recent daily page
+          (if (or planner-carry-tasks-forward
+                  (planner-page-file today)
+                  (null names))
+              (planner-goto-today)
+            (planner-goto (caar names)))
+          ;; Save/kill files if configured to do so
+          (when planner-tasks-file-behavior
+            (planner-save-buffers live-buffers))))
     (planner-find-file (or planner-default-page
                            planner-initial-page))))
 
