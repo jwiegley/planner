@@ -355,6 +355,10 @@ VERBOSE is ignored."
 (setq planner-jump-to-linked-task-function 'planner-id-jump-to-linked-task)
 (setq planner-find-task-function 'planner-id-find-task)
 
+(eval-after-load "planner-publish"
+  '(add-to-list 'planner-publish-markup-regexps
+                '(1270 planner-id-regexp 0 "")))
+
 (provide 'planner-id)
 
 ;;; planner-id.el ends here

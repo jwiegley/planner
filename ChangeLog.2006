@@ -1,3 +1,124 @@
+2006-05-23 22:14:14 GMT	Michael Olson <mwolson@gnu.org>	patch-46
+
+    Summary:
+      Remove duplicate note links when publishing.
+    Revision:
+      planner--main--1.0--patch-46
+
+    * planner-publish.el (planner-publish-note-tag): Ensure that a page
+      cannot appear in both link and categories.
+
+    modified files:
+     planner-publish.el
+
+
+2006-05-23 16:19:01 GMT	Michael Olson <mwolson@gnu.org>	patch-45
+
+    Summary:
+      Remove task IDs when publishing.
+    Revision:
+      planner--main--1.0--patch-45
+
+    * planner-id.el ("planner-publish"): Remove Task IDs and anything else
+      that uses the ID syntax when publishing.
+
+    modified files:
+     planner-id.el
+
+
+2006-05-18 20:05:12 GMT	Michael Olson <mwolson@gnu.org>	patch-44
+
+    Summary:
+      Publish diary sections in a meaningful way.
+    Revision:
+      planner--main--1.0--patch-44
+
+    * planner-publish.el (planner-publish-markup-tags): Add entry for
+      diary-section.
+      (planner-xml-markup-strings, planner-html-markup-strings): Add strings
+      for diary section.
+      (planner-html-style-sheet): Add CSS elements for Diary section.
+      (planner-publish-diary-section-tag): New function that publishes the
+      diary in a way that preserves line breaks, using the verse tag
+      function.
+      (planner-section-tagnames): Transform Diary sections to diary-section
+      tags.
+
+    modified files:
+     planner-publish.el
+
+
+2006-05-18 16:40:36 GMT	Michael Olson <mwolson@gnu.org>	patch-43
+
+    Summary:
+      Make notes publish with nicer default CSS elements.
+    Revision:
+      planner--main--1.0--patch-43
+
+    * planner-publish.el (planner-html-style-sheet): Add style elements for
+      Notes section.  This causes the note anchors to be placed on the same
+      line as note headings, which is the way it used to be.
+
+    modified files:
+     planner-publish.el
+
+
+2006-05-17 21:43:59 GMT	Michael Olson <mwolson@gnu.org>	patch-42
+
+    Summary:
+      Work on calendar, manual, and index generation.
+    Revision:
+      planner--main--1.0--patch-42
+
+    * planner-calendar.el: Fix example in header.  Remove the word "wiki"
+      from everything, since "page" works better.
+      (planner-calendar-coerce-day-page): New function that determines which
+      day page to base the calendar on.
+      (planner-calendar-from-page): Use `planner-calendar-coerce-day-page'.
+      Check for null page name.
+      (planner-calendar-create-today-link): Make sure that the page we are
+      linking to actually exists.  This function should now be safe to add
+      globally to muse-after-publish-hook.
+      (planner-publish-calendar-tag): If no calendar is returned, don't
+      insert anything.
+      ("planner-publish-finalize-regexps"): Use a better regexp to match the
+      calendar tag, so that it is processed correctly.
+    
+    * planner-el.texi: Add subheadings for Keys, Options, and Functions, if
+      applicable.
+      (Publishing Calendars): Mention "page" and "arrows" options.  Mention
+      workaround for problem where the text in the arrows doesn't get
+      published correctly.  Give working example for
+      planner-calendar-create-today-link.
+    
+    * planner.el (planner-published-file): Try to figure out where the file
+      exists, if the output directory is not specified.  This could be more
+      elaborate to handle multiple source directories, but I haven't gotten
+      around to that yet.
+      (planner-index-as-string): Add exclude-daypages option for those who do
+      not want day pages to show up in the index.
+
+    modified files:
+     planner-calendar.el planner-el.texi planner.el
+
+
+2006-05-09 00:30:01 GMT	Michael Olson <mwolson@gnu.org>	patch-41
+
+    Summary:
+      planner-el.texi: Update location of schedule.el.
+    Revision:
+      planner--main--1.0--patch-41
+
+    * planner-el.texi (Timeclock): Note that timeclock.el comes with GNU
+      Emacs, and direct XEmacs users to use the version that comes with
+      Planner in the contrib directory.
+      (schedule.el): Use correct URL and note that this comes with Planner.
+      Thanks to Adrian Aichner for the report.
+
+    modified files:
+     ChangeLog.2006 Makefile.defs debian/changelog planner-el.texi
+
+
 2006-04-26 19:59:37 GMT	Michael Olson <mwolson@gnu.org>	patch-40
 
     Summary:

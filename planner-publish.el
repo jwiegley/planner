@@ -104,6 +104,7 @@ For more on the structure of this list, see
   '(("nested-section" t nil planner-publish-nested-section-tag)
     ("title" t t planner-publish-title-tag)
     ("content" t nil planner-publish-content-tag)
+    ("diary-section" t nil planner-publish-diary-section-tag)
     ("tasks-section" t nil planner-publish-tasks-section-tag)
     ("notes-section" t nil planner-publish-notes-section-tag)
     ("notes"   nil nil planner-publish-notes-tag)
@@ -129,6 +130,8 @@ See `muse-publish-markup-tags' for more information."
     (planner-end-content         . "")
     (planner-begin-body          . "")
     (planner-end-body            . "")
+    (planner-begin-diary-section  . "<diary>")
+    (planner-end-diary-section    . "</diary>")
     (planner-begin-task-section  . "<tasks>")
     (planner-end-task-section    . "</tasks>")
     (planner-begin-task-body     . "")
@@ -188,6 +191,8 @@ This may be text or a filename."
     (planner-end-content         . "</div>")
     (planner-begin-body          . "<div class=\"body\">")
     (planner-end-body            . "</div>")
+    (planner-begin-diary-section . "<div id=\"diary\" class=\"section\">")
+    (planner-end-diary-section   . "</div>")
     (planner-begin-task-section  . "<div id=\"tasks\" class=\"section\">")
     (planner-end-task-section    . "</div>")
     (planner-begin-task-body     . "<ul class=\"body\">")
@@ -252,12 +257,20 @@ table.muse-table tbody td { border: 1px solid #ccdeed; }
 .calendar { float: right; }
 table.month-calendar { font-size: 9px; }
 
+/* Diary section */
+#diary p { margin-top: 1em; }
+
 /* Tasks section */
 .task .A { color: red }
 .task .B { color: green }
 .task .C { color: navy }
 .task .done      { color: gray; text-decoration: line-through; }
 .task .cancelled { color: gray; text-decoration: italic; }
+
+/* Notes section */
+.note { margin-top: 1.5em; }
+.note .anchor  { float: left; margin-right: 5px; }
+.note .details { margin-top: .5em; }
 
 </style>"
   "Store your stylesheet definitions here.  The provided default
@@ -511,6 +524,15 @@ of each section."
     (goto-char beg)
     (planner-insert-markup (muse-markup-text 'planner-begin-content))))
 
+(defun planner-publish-diary-section-tag (beg end)
+  (save-excursion
+    (goto-char beg)
+    (planner-insert-markup (muse-markup-text 'planner-begin-diary-section))
+    (forward-line 1)
+    (muse-publish-verse-tag (point) end)
+    (goto-char end)
+    (planner-insert-markup (muse-markup-text 'planner-end-diary-section))))
+
 (defun planner-publish-tasks-section-tag (beg end)
   (save-excursion
     (goto-char beg)
@@ -616,8 +638,11 @@ DIRECTORY and START."
                                                timestamp)
                              (muse-markup-text 'planner-begin-note-link))
       (insert link)
-      (planner-insert-markup (muse-markup-text 'planner-end-note-link)
-                             (muse-markup-text 'planner-begin-note-categories))
+      (planner-insert-markup (muse-markup-text 'planner-end-note-link))
+      ;; remove link item from categories to avoid duplicates
+      (setq categories (planner-replace-regexp-in-string (regexp-quote link)
+                                                         categories "" t t))
+      (planner-insert-markup (muse-markup-text 'planner-begin-note-categories))
       (insert categories)
       (planner-insert-markup (muse-markup-text 'planner-end-note-categories))
       (insert ?\n)
@@ -666,7 +691,8 @@ DIRECTORY and START."
       (insert "\n"))))
 
 (defvar planner-section-tagnames
-  '(("Tasks" . "tasks-section")
+  '(("Diary" . "diary-section")
+    ("Tasks" . "tasks-section")
     ("Notes" . "notes-section"))
   "Alist of sections and their tag name.")
 

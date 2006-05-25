@@ -2,8 +2,9 @@ Source: planner-el
 Section: misc
 Priority: optional
 Maintainer: Michael W. Olson (GNU address) <mwolson@gnu.org>
+Build-Depends: debhelper (>> 4.0.0)
 Build-Depends-Indep: debhelper (>> 4.0.0), emacs21 | emacsen, texinfo, texi2html
-Standards-Version: 3.6.2
+Standards-Version: 3.7.2
 
 Package: planner-el
 Architecture: all
