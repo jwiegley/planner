@@ -837,6 +837,23 @@ avoid corrupting the original SEQ."
         (setq newseq (cons el newseq))))
     (nreverse newseq)))
 
+;; Display a warning
+(defun planner-display-warning (message)
+  "Display the given MESSAGE as a warning."
+  (if (fboundp 'display-warning)
+      (display-warning 'planner message
+                       (if (featurep 'xemacs)
+                           'warning
+                         :warning))
+    (let ((buf (get-buffer-create "*Planner warnings*")))
+      (with-current-buffer buf
+        (goto-char (point-max))
+        (insert "Warning (planner): " message)
+        (unless (bolp)
+          (newline)))
+      (display-buffer buf)
+      (sit-for 0))))
+
 (defun planner-unhighlight-region (begin end &optional verbose)
   "Remove all visual highlights in the buffer (except font-lock)."
   (planner-zap-overlays begin end)
@@ -3122,6 +3139,12 @@ instead, except t means scan only yesterday."
   ;; Special treatment of t for planner-carry-tasks-forward is for
   ;; backward compatibility.
   (interactive "P")
+  (unless muse-project-alist
+    (planner-display-warning
+     (concat "The variable `muse-project-alist' has not defined.\n"
+             "\nSee the \"Creating Your Planner\" chapter in the Planner"
+             " manual\nfor details on how to set this up."))
+    (error "The variable `muse-project-alist' has not been defined"))
   (if planner-use-day-pages
       (progn
         (unless force-days
