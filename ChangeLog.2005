@@ -1,4 +1,3 @@
-
 2005-12-31 00:34:19 GMT	Michael Olson <mwolson@gnu.org>	patch-143
 
     Summary:
@@ -279,12 +278,12 @@
 2005-12-16 15:32:18 GMT	Michael Olson <mwolson@gnu.org>	patch-131
 
     Summary:
-      planner-xtla: Apply patch from Stefan Reichör.
+      planner-xtla: Apply patch from Stefan ReichÃ¶r.
     Revision:
       planner-muse--mwolson--1.0--patch-131
 
     * planner-xtla.el (planner-xtla-log-edit-add-note): Apply patch from
-      Stefan Reichör.  This should write the note to planner-today rather
+      Stefan ReichÃ¶r.  This should write the note to planner-today rather
       than temp*.muse.
 
     modified files:
@@ -1260,7 +1259,7 @@
 
     * planner.el (planner-filename-to-calendar-date): Use match-string
       instead of substring to extract the days.  This should allow shortened
-      filenames like "2005.1.6" to Just Work.  Thanks to Edgar Gonçalves for
+      filenames like "2005.1.6" to Just Work.  Thanks to Edgar GonÃ§alves for
       the report.
 
     modified files:
@@ -3200,7 +3199,7 @@
       planner--dev--1.0--patch-441
 
     * planner.el (planner-save-buffers): Supress planner-id fixing in
-      automatically-saved pages. Thanks to Edgar Gonçalves for helping track
+      automatically-saved pages. Thanks to Edgar GonÃ§alves for helping track
       down this bug.
 
     modified files:
@@ -3845,7 +3844,7 @@
       planner--dev--1.0--patch-420
 
     * planner.el (planner-annotation-as-kill): Merge patch from Stefan
-      Reichör adding interactive prefix to planner-annotation-as-kill,
+      ReichÃ¶r adding interactive prefix to planner-annotation-as-kill,
       allowing users to specify description.
     
     * planner-el.texi (Hyperlinks): New section documenting
@@ -4201,7 +4200,7 @@
       planner--dev--1.0--patch-402
 
     * planner-xtla.el (planner-xtla-log-edit-add-note): Merge patch from
-      Stefan Reichör providing planner-log-edit like functionality for xtla.
+      Stefan ReichÃ¶r providing planner-log-edit like functionality for xtla.
 
     modified files:
      ChangeLog planner-xtla.el
@@ -4832,7 +4831,7 @@
       planner--dev--1.0--patch-377
 
     * planner-gnus.el (planner-gnus-browse-url): Pick up the group name properly.
-      Thanks to Stefan Reichör for the patch!
+      Thanks to Stefan ReichÃ¶r for the patch!
       (planner-gnus-group-threshold): New. Might help with planner-gnus-browse-url and
       large groups.
 
@@ -5076,9 +5075,9 @@
     Revision:
       planner--dev--1.0--patch-371
 
-    * planner.el (planner-annotation-from-dired): New from Stefan Reichör.
+    * planner.el (planner-annotation-from-dired): New from Stefan ReichÃ¶r.
      (planner-annotation-functions): Add planner-annotation-from-dired.
-    * planner-psvn.el: New from Stefan Reichör.
+    * planner-psvn.el: New from Stefan ReichÃ¶r.
     * planner-el.texi (Acknowledgements): Add note about planner-psvn.
     
 
@@ -8046,7 +8045,7 @@
     Revision:
       planner--dev--1.0--patch-285
 
-    	* planner-xtla.el: New from Stefan ReichÃ¶r.
+    	* planner-xtla.el: New from Stefan ReichÃƒÂ¶r.
     
     	* planner.texi (XTLA): Document planner-xtla.el
 
@@ -8350,3 +8349,9 @@
 
     modified files:
      ChangeLog planner-timeclock-summary.el
+
+See ChangeLog.2004 for earlier changes.
+
+;; Local Variables:
+;; coding: utf-8
+;; End:

@@ -1,4 +1,3 @@
-
 2004-12-27 05:27:14 GMT	Sacha Chua <sacha@free.net.ph>	patch-267
 
     Summary:
@@ -253,11 +252,11 @@
 2004-12-23 08:11:54 GMT	Sacha Chua <sacha@free.net.ph>	patch-250
 
     Summary:
-      Docfix: Correct Stefan Reichör's e-mail address.
+      Docfix: Correct Stefan ReichÃ¶r's e-mail address.
     Revision:
       planner--dev--1.0--patch-250
 
-    	* planner.el: Correct Stefan Reichör's e-mail address.
+    	* planner.el: Correct Stefan ReichÃ¶r's e-mail address.
 
     modified files:
      ChangeLog planner.el
@@ -1306,7 +1305,7 @@
     Revision:
       planner--dev--1.0--patch-188
 
-    	* planner-gnus.el: Merge patch from Mario Domg�rgen.
+    	* planner-gnus.el: Merge patch from Mario Domgörgen.
     	(planner-gnus-get-message-id): Allow the use of article numbers.
     	(planner-gnus-annotation-from-summary): Allow process marks.
     	(planner-gnus-browse-url): Allow process marks.
@@ -1363,7 +1362,7 @@
         section because the URL in it mentions someone who also helped out
         with this file in some way.
     
-        * planner-vm.el: Add Parts copyright notice for J�rgen Doser.  Add
+        * planner-vm.el: Add Parts copyright notice for Jürgen Doser.  Add
         him also to the newly-made contributors section.
     
         * planner-wl.el: Add email address for Yvonne Thomson.  Add Parts
@@ -1376,7 +1375,7 @@
         notices for David D. Smith, Yvonne Thomson, Michael Olson, and
         Maciej Kalisak.  Add more detail to thanks section.  Add David
         D. Smith, Daniel Neri, Mario Peter, Yvonne Thomson, Hoan Ton-That,
-        Michael Olson, Maciej Kalisak, Dale P. Smith, and Stefan Reich�r
+        Michael Olson, Maciej Kalisak, Dale P. Smith, and Stefan Reichör
         to the newly-made contributors section.
         (planner-annotation-from-info): Move "Thanks to ..."  notice to
         contributors section.
@@ -1396,7 +1395,7 @@
       planner--dev--1.0--patch-186
 
     	* planner-gnus.el (planner-gnus-annotation-from-summary): Take
-    	process marks into account. Thanks to Mario Domg�rgen for the
+    	process marks into account. Thanks to Mario Domgörgen for the
     	patch.
 
 
@@ -2109,7 +2108,7 @@
       planner--dev--1.0--patch-147
 
     	* planner-vm.el (planner-vm-browse-url): Merge patch
-    	from Jürgen Doser.
+    	from JÃ¼rgen Doser.
 
     modified files:
      planner-vm.el
@@ -6683,3 +6682,7 @@
 
     modified files:
      emacs-wiki.el
+
+;; Local Variables:
+;; coding: utf-8
+;; End:
