@@ -943,9 +943,11 @@ page will be created if it does not already exist."
 
 (defun planner-published-file (file &optional output-dir style)
   (unless output-dir
-    (setq output-dir (file-name-directory
-                      muse-publishing-current-output-path)))
-  (muse-publish-output-file file output-dir style))
+    (setq output-dir (and muse-publishing-current-output-path
+                          (file-name-directory
+                           muse-publishing-current-output-path))))
+  (when output-dir
+    (muse-publish-output-file file output-dir style)))
 
 (defun planner-remove-links (description)
   "Remove explicit links from DESCRIPTION."
@@ -1385,8 +1387,12 @@ DATE."
       (error "No next planner file"))))
 
 (defun planner-yesterday ()
-  "Return the date yesterday."
+  "Return the date of yesterday."
   (planner-calculate-date-from-day-offset (planner-today) -1))
+
+(defun planner-tomorrow ()
+  "Return the date of tomorrow."
+  (planner-calculate-date-from-day-offset (planner-today) 1))
 
 (defcustom planner-expand-name-favor-future-p nil
   "If non-nil, `planner-expand-name' defaults to future dates."

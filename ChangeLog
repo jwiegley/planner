@@ -1,3 +1,72 @@
+2006-05-30 21:14:09 GMT	Michael Olson <mwolson@gnu.org>	patch-51
+
+    Summary:
+      Avoid a backtrace when using planner-calendar and not publishing.
+    Revision:
+      planner--main--1.0--patch-51
+
+    * planner.el (planner-published-file): Avoid error when not publishing.
+      (planner-yesterday): Docfix.
+      (planner-tomorrow): New function that returns the date for tomorrow.
+
+    modified files:
+     planner.el
+
+
+2006-05-29 14:22:16 GMT	Michael Olson <mwolson@gnu.org>	patch-50
+
+    Summary:
+      Make ChangeLog conform to conventions better.
+    Revision:
+      planner--main--1.0--patch-50
+
+    * ChangeLog: Renamed from ChangeLog.2006 in order to follow Emacs
+      conventions better.  Specify the buffer encoding.  Add helpful notices
+      at the bottom of this and ChangeLog.2005.
+
+    modified files:
+     ChangeLog ChangeLog.2004 ChangeLog.2005 NEWS debian/rules
+
+    renamed files:
+     .arch-ids/ChangeLog.2006.id
+       ==> .arch-ids/ChangeLog.id
+     ChangeLog.2006
+       ==> ChangeLog
+
+
+2006-05-26 14:44:08 GMT	Michael Olson <mwolson@gnu.org>	patch-49
+
+    Summary:
+      Display a helpful message if muse-project-alist undefined.
+    Revision:
+      planner--main--1.0--patch-49
+
+    * planner.el (planner-display-warning): New function that displays a
+      warning window.  This is useful for longer explanations of errors.
+      (plan): Display a helpful message if `muse-project-alist' is not
+      defined.
+
+    modified files:
+     planner.el
+
+
+2006-05-25 01:20:42 GMT	Michael Olson <mwolson@gnu.org>	patch-48
+
+    Summary:
+      Fix lock up with old delegated task mark.
+    Revision:
+      planner--main--1.0--patch-48
+
+    * planner.el (planner-marks-regexp): Docfix.
+      (planner-task-regexp): Don't include marks; be more lenient, since
+      planner-id uses this as a metric for finding a task, and we don't want
+      tasks with strange marks to cause it not to find a task.
+      (plan): Indentation.
+
+    modified files:
+     planner.el
+
+
 2006-05-23 22:14:14 GMT	Michael Olson <mwolson@gnu.org>	patch-46
 
     Summary:

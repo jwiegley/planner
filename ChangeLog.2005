@@ -701,13 +701,6 @@
        planner.el gets a chance to convert everything into XML-like tags (I'd
        rather work with the <section> tags, but Muse needs support for nested
        tags of the same name)
-    
-    --This line, and those below, will be ignored--
-    Files to commit:
-       <can't compute list>
-    
-    This list might be incomplete or outdated if editing the log
-    message was not invoked from an up-to-date changes buffer!
 
     modified files:
      planner-authz.el
@@ -1591,13 +1584,6 @@
     * planner-rss.el (planner-rss-add-note): Add anchor- to numeric anchors.
       This catches up with an emacs-wiki change for XHTML compliance. Thanks
       to Andrew Plumb for pointing this out!
-    
-    --This line, and those below, will be ignored--
-    Files to commit:
-       <can't compute list>
-    
-    This list might be incomplete or outdated if editing the log
-    message was not invoked from an up-to-date changes buffer!
 
     modified files:
      planner-rss.el
@@ -2566,13 +2552,6 @@
     * planner-calendar.el (planner-calendar-nop-buttons-flag): New option.
       (planner-calendar): Use planner-calendar-nop-buttons-flag.
       (planner-calendar-published-file-href): Make sure <nop> is needed.
-    
-    --This line, and those below, will be ignored--
-    Files to commit:
-       <can't compute list>
-    
-    This list might be incomplete or outdated if editing the log
-    message was not invoked from an up-to-date changes buffer!
 
     modified files:
      planner-calendar.el planner.el

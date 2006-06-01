@@ -78,6 +78,16 @@
 ;;; Code:
 
 (unless (featurep 'xemacs)
+  (when (fboundp 'planner-display-warning)
+    (planner-display-warning
+     (concat "Do not use this version of timeclock.el with Emacs.\n"
+	     "\nYour version of Emacs almost certainly comes with a"
+	     " version of\ntimeclock.el already, so please use that"
+	     " instead.  One way to solve\nthis is to use the"
+	     " following.\n"
+	     "\n (add-to-list 'load-path \"path/to/planner/contrib\""
+	     " t)\n\nThe `t' argument will put this at the bottom of"
+	     " the load path.")))
   (error "Do not use this version of timeclock.el with Emacs"))
 
 (defgroup timeclock nil
