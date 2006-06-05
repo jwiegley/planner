@@ -624,7 +624,16 @@ If nil, do not carry unfinished tasks forward."
 
 
 (defvar planner-mode-map
-  (let ((map (copy-keymap muse-mode-map)))
+  (let ((map (make-sparse-keymap)))
+    (cond
+     ;; XEmacs
+     ((featurep 'xemacs)
+      (set-keymap-parents map muse-mode-map))
+     ;; Emacs
+     ((fboundp 'set-keymap-parent)
+      (set-keymap-parent map muse-mode-map))
+     ;; if we can't inherit the keymap, copy it instead
+     (t (setq map (copy-keymap muse-mode-map))))
     (define-key map "\C-c\C-n" 'planner-goto-today)
     ;; moving between daily pages C-c C-j for goto (used to be C-g,
     ;; but that was confusing)
