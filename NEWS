@@ -6,23 +6,54 @@ Planner NEWS --- History of user-visible changes    -*- outline -*-
 
 *** Make planner-visit-link more robust.
 *** Don't insert too many spaces around task number.
+*** Fix lock up with old delegated task mark.
+*** planner-el.texi: Many updates and clarifications were added.
+*** planner-appt: Fix highlighting in plan pages.
 *** planner-authz: Work with latest changes in planner-publish.
+*** planner-calendar: Fix many bugs and improve implementation.
+Be sure to read the "Publishing Calendars" section of the manual for
+details, as the common setup for Planner 3.40 will not work.
+This feature should now be much easier to get working.
+*** planner-calendar: If the current page is not a daypage,
+default to publishing a calendar for today.
 *** planner-gnus: Fix buggy browsing behavior.
+*** planner-publish: Fix erroneous output at end of file.
 
 ** Compatibility fixes
 
 *** planner-appt: Fix initialization for XEmacs.
 *** planner-appt: For XEmacs, create a diary file if one does not exist.
+*** planner-erc: Work with newer versions of ERC.
+*** planner-psvn: Make this work with newer versions of psvn.el.
 
 ** New features
 
+*** Display a helpful message if muse-project-alist is undefined.
+*** New function `planner-tomorrow' returns the date for tomorrow.
+*** planner-appt: New option `planner-appt-forthcoming-show-day-names-flag'
+that indicates whether to show day names in forthcoming appointments.
 *** planner-authz: Add planner-multi support.
 *** planner-authz: Consider all of a note's links when building an
 access list.
 *** planner-authz: Only publish dependencies if they haven't already
 been published.
+*** planner-authz: Improve list handling.
 *** planner-calendar: Make a <calendar> tag.
+*** planner-calendar: Surround generated calendar with <div> tag.
+*** planner-erc: Connect to an existing chat session when following a
+link, if possible.
+*** planner-id: Remove task IDs when publishing.
 *** planner-publish: Enable multiple links with "categories" attribute.
+*** planner-publish: Use <h2>, <h3>, etc. for headings.
+*** planner-publish: Add default CSS elements for calendar, notes,
+and diary sections.
+*** planner-publish: Preserve line breaks when publishing diary section.
+*** planner-report: Sort pages by plan page name.
+
+** New files
+
+*** planner-registry.el: Registry of URLs and Planner annotations.
+*** planner-zoom.el: Navigate plan pages.
 
 * Changes in Planner 3.40
 

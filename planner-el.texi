@@ -384,11 +384,14 @@ files.
 # Register the Muse archive
 tla register-archive http://www.mwolson.org/archives/2006
 
+# Register the Planner archive
+tla register-archive http://arch.gna.org/planner-el/archive-2006
+
 # Get the Muse archive
 tla get mwolson@@gnu.org--2006/muse--main--1.0 muse
 
 # Download planner module into the planner/ subdirectory
-tla get mwolson@@gnu.org--2006/planner--main--1.0 planner
+tla get mwolson@@gnu.org--2006-planner-el/planner-el--devel--1.0 planner
 @end example
 
 Then add the following lines to your @code{~/.emacs}:
@@ -645,8 +648,7 @@ both tasks and notes.
 The customizability of Planner means you can make your personal
 information manager truly personal. Planner strives to be as flexible
 as possible, and we would love to adapt Planner to fit your needs.
-Browse through our mailing list at
-@url{http://lists.nongnu.org/mailman/listinfo/emacs-wiki-discuss} to
+Browse through our mailing list (@pxref{Getting Help}) to
 find out how other people are using Planner, and post your feature
 requests and bug reports there!
 
@@ -1372,7 +1374,7 @@ and notes from anywhere.
 
 @item
 Think about how you plan your day and look for ways to improve it. Ask
-the mailing list for tips.
+the mailing list (@pxref{Getting Help}) for tips.
 
 @item
 Browse the rest of this manual, the source code, and other resources on
@@ -1417,10 +1419,10 @@ planner-copy-or-move-region}
 
 @end itemize
 
-That's all you need to know in order to use Planner as a basic TODO
-and notes manager, but there's a whole lot more. Read through this
-manual and our mailing list archives for lots of wonderful ideas about
-planning in Emacs!
+That's all you need to know in order to use Planner as a basic TODO and
+notes manager, but there's a whole lot more. Read through this manual
+and our mailing list archives (@pxref{Getting Help}) for lots of
+wonderful ideas about planning in Emacs!
 
 @node More about Planner, Managing Your Information, Getting Started, Top
 @comment  node-name,  next,  previous,  up
@@ -1767,8 +1769,7 @@ the form @samp{@{@{Identifier:Number@}@}}.
 Non-nil means automatically add global task IDs to newly-created
 tasks. If nil, use @command{planner-id-add-task-id} to add IDs to
 existing tasks, or @command{planner-id-add-task-id-to-all} to add to
-all tasks on the current page. (Development version 2004.05.05:
-planner--dev--1.0--patch-81)
+all tasks on the current page.
 @end defopt
 
 @defopt planner-id-update-automatically
@@ -5650,10 +5651,10 @@ advanced, setups.
 
 There is no One True Way to plan. Every person is different. We hope
 you'll find a good starting point among the example configurations
-below. If what you want to do does not perfectly fit under one of
-these examples, please post a description of the way you plan to the
-emacs-wiki-discuss mailing list. We look forward to helping you
-customizing planner to fit your needs.
+below. If what you want to do does not perfectly fit under one of these
+examples, please post a description of the way you plan to our mailing
+list (@pxref{Getting Help}).  We look forward to helping you customizing
+planner to fit your needs.
 
 @menu
 * File Organization::           
@@ -5815,14 +5816,41 @@ Planner has an official website at @url{http://www.plannerlove.com/}.
 It is a collaborative wiki.
 
 Bugs may be reported using the Planner Bug-Tracker at
-@url{https://gna.org/bugs/?group=planner-el}.
+@url{http://gna.org/bugs/?group=planner-el}.
 
-You can join the mailing list at
-@email{emacs-wiki-discuss@@nongnu.org} using the subscription form at
-@url{http:// mail.nongnu.org/ mailman/ listinfo/
-emacs-wiki-discuss}. This mailing list is also available via Gmane
-(@url{http://gmane.org/}). The group is called
-@samp{gmane.emacs.wiki.general}.
+Planner has three mailing lists.
+
+@table @samp
+
+@item planner-el-announce
+Low-traffic list for planner-related announcements.
+
+You can join this mailing list (@email{planner-el-announce@@gna.org})
+using the subscription form at
+@url{http://mail.gna.org/listinfo/planner-el-announce/}.  This
+mailing list is also available via Gmane (@url{http://gmane.org/}). The
+group is called @samp{gmane.emacs.planner.announce}.
+
+@item planner-el-discuss
+Discussion, bugfixes, suggestions, tips, and the like for Planner.
+This mailing list also includes the content of planner-el-announce.
+
+You can join this mailing list (@email{planner-el-discuss@@gna.org})
+using the subscription form at
+@url{http://mail.gna.org/listinfo/planner-el-discuss/}.  This mailing
+list is also available via Gmane with the identifier
+@samp{gmane.emacs.planner.general}.
+
+@item planner-el-cvs
+Log messages for changes committed to Planner.
+
+You can join this mailing list (@email{planner-el-cvs@@gna.org}) using
+the subscription form at
+@url{http://mail.gna.org/listinfo/planner-el-cvs/}.  This mailing list
+is also available via Gmane with the identifier
+@samp{gmane.emacs.planner.cvs}.
+
+@end table
 
 You can also contact the maintainer of Planner, Michael Olson, at
 @email{mwolson@@gnu.org}, but it is better to use the other options.
