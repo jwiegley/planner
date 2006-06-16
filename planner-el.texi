@@ -4139,6 +4139,9 @@ There is a lot of code redundancy in the development version.  This is
 intentional and makes it easier to change the code for one type of diary
 section without breaking others.
 
+@subheading Diary views
+
+@cindex @file{planner-diary.el}, views
 Currently Planner-Diary supports six different views of your diary
 entries:
 
@@ -4174,6 +4177,44 @@ your diary entries:
 The function @code{planner-diary-entries-here} takes two optional
 arguments---the diary file you want to use and the number of days you
 want to display.
+
+@subheading Exporting Planner-specific Diary files
+
+@cindex @file{planner-diary.el}, exporting entries
+If you would like to export diary entries from your Planner pages to
+separate Diary files, add @code{(require 'planner-export-diary)} to your
+config.  The following steps describe the usage of the functions and
+options contained in this file.
+
+@enumerate
+
+@item
+Customize @code{planner-export-diary-file}.  The default value is
+``~/diary.planner''.
+
+@item
+Add the following line to your main Diary file (default: ``~/diary'').
+
+@example
+#include ~/diary.planner
+@end example
+
+@item
+Then, call @command{M-x planner-export-diary-future} whenever you want
+future diary entries published. You can automatically publish entries by
+adding either of the following to your .emacs.
+
+@itemize
+
+@item (planner-export-diary-future)
+Publish future entries on startup.
+
+@item (add-hook 'planner-mode-hook 'planner-export-diary-setup)
+Publish future entries whenever you save a Planner file.
+
+@end itemize
+
+@end enumerate
 
 @node Appointments, Timeclock, Diary, Scheduling and Time
 @comment  node-name,  next,  previous,  up
@@ -4885,17 +4926,21 @@ and add this to your @file{.emacs} (or @file{_emacs}):
 
 @end example
 
-ERC URLs are of the form, @samp{irc://server/nick/#channel},
-@samp{irc://server/nick} or @samp{irc://server/nick}.
-
-Annotations will be of the form:
+IRC URLs may be of the following forms.
 
 @example
+irc://server/nick,isnick
+irc://server/#channel
+irc://server
+@end example
 
-[[irc://server/nick/#channel][Chat with nick on server#channel]]
-[[irc://server/nick][Chat with nick on server]]
+Annotations will be in the following forms.
+
+@example
+[[irc://server/nick,isnick][Chat with nick on server#channel]]
+[[irc://server/nick,isnick][Chat with nick on server]]
+[[irc://server/#channel][Chat on server#channel]]
 [[irc://server][Chat on server]]
-
 @end example
 
 @file{planner-erc.el} does not define any interactive functions, or
