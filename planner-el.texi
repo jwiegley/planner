@@ -136,6 +136,7 @@ Task Reports and Overviews
 * Accomplishments::             
 * Task Overviews::              
 * <tasks> tag::                 
+* planner-zoom::                View and navigate tasks by time period
 
 More about Notes
 
@@ -2638,7 +2639,8 @@ presentations of your tasks.
 @menu
 * Accomplishments::             
 * Task Overviews::              
-* <tasks> tag::                 
+* <tasks> tag::             
+* planner-zoom::                View and navigate tasks by time period    
 @end menu
 
 @node Accomplishments, Task Overviews, Task Reports and Overviews, Task Reports and Overviews
@@ -2796,7 +2798,7 @@ pages.
 @key{TAB}, @kbd{SHIFT-TAB} and @key{RET} navigate links in the usual
 fashion.
 
-@node <tasks> tag,  , Task Overviews, Task Reports and Overviews
+@node <tasks> tag, planner-zoom, Task Overviews, Task Reports and Overviews
 @subsubsection <tasks> tag
 @cindex <tasks> tag
 @cindex task reports
@@ -2823,6 +2825,138 @@ All tasks
 @end example
 
 Warning: this function can be slow, as it checks all the day pages!
+
+@node planner-zoom, ,<tasks> tag, Task Reports and Overviews
+@comment  node-name,  next,  previous,  up
+@section planner-zoom
+@cindex planner-zoom
+@cindex view, weekly
+@cindex view, quarterly
+@cindex view, monthly
+@cindex view, yearly
+
+When assessing where you stand in relation to the tasks you have set
+out for yourself, you might want a way to survey those tasks in groups
+divided by time periods, like by the week or by the month. You could
+create all of these overview pages by hand, but if you like to have
+this kind of overview frequently, you might find manually creating
+such pages to be tedious and time consuming.
+
+@file{planner-zoom} is an optional module designed to make it easy to
+view your task information grouped by year, quarter, month, week or
+day.
+
+To install this module, just load it in your @file{.emacs} (or
+@file{_emacs}):
+
+@example
+(require 'planner-zoom)
+@end example
+
+This module will recognize planner pages named according to the
+following scheme:
+
+@table @asis
+
+@item year view
+@file{2006.Year}
+
+@item quarter view
+@file{2006.Quarter2}
+
+@item month view
+@file{2006.January}
+
+@item week view
+@file{2006.January.Week3}
+
+@item day view
+@file{2006.01.02}
+
+@end table
+
+@subheading Keybindings
+
+This module also adds key bindings that you can use when looking at a
+Planner page to easily jump between the different time-period views.
+
+@table @kbd
+
+@item S-up
+Move to the view corresponding to the time period one step larger than
+the current one. For example, it moves from the weekly view to the
+monthly view. It calls @code{planner-zoom-iup}.
+
+@item S-down 
+Move to the view corresponding to the time period one step smaller
+than the current one. For example, it moves from the weekly view to
+the daily view. It calls @code{planner-zoom-idown}.
+
+@item S-left
+Stay in the same time-period view as the current one, but move one
+interval earlier. For example, it moves from @file{2006.January.Week3}
+to @file{2006.January.Week2}. It calls @code{planner-zoom-iprev}.
+
+@item S-right
+Stay in the same time-period view as the current one, but move one
+interval later. For example, it moves from @file{2006.January.Week3}
+to @file{2006.January.Week4}. It calls @code{planner-zoom-inext}.
+
+@end table
+
+@subheading Example usage
+
+Look at the page named @file{2006.January} and then hit @kbd{S-down}
+which will show @file{2006.January.Week1}. Then hit @kbd{S-left} and
+@kbd{S-right} to look at @file{2006.January.Week2},
+@file{2006.January.Week3}, etc.
+
+@subheading Advanced tips and options
+
+You can use any prefix argument with @code{planner-zoom-iup} and
+@code{planner-zoom-idown} to have the new view display in a window
+other than the current one. This also works with a nonnumeric prefix
+argument and @code{planner-zoom-inext} or @code{planner-zoom-iprev}.
+For these two functions, a numeric prefix will specify the number of
+intervals to move.
+
+If you don't like the default patterns for naming the time-period view
+pages, you can change them by customizing @code{planner-zoom-regexps}.
+
+Some people believe weeks start with Sunday, and some believe they
+start with Monday. To accommodate both of these colliding worldviews,
+@code{planner-zoom-first-day-of-week} can be customized. Its default
+value is @samp{1}, which is Monday. If you would prefer Sunday, change
+it to @samp{0}. The month to which a week belongs is the month in
+which the first day of the week falls.
+
+@subheading Command reference
+
+@defun planner-zoom-iup name other-window
+Move to the next higher level in the hierarchy. With a prefix
+argument, show the desired page in the other window.
+@end defun
+
+@defun planner-zoom-idown name other-window
+Move to the next lower level in the hierarchy. If the current date is
+within the higher-level time range, zoom to the lower level time range
+that also contains today. Otherwise, just go to the first lower-level
+time range. With a prefix argument, show the desired page in the other
+window.
+@end defun
+
+@defun panner-zoom-inext name num other-window
+Move to the next time range at the same level in the hierarchy. With a
+numeric prefix argument, move by that number of time ranges. With a
+non-numeric prefix argument, show the desired page in the other window.
+@end defun
+
+@defun planner-zoom-iprev name num other-window
+Move to the previous time range at the same level in the hierarchy.
+With a numeric prefix argument, move by that number of time ranges.
+With a non-numeric prefix argument, show the desired page in the other
+window.
+@end defun
 
 @node More about Notes, Making Files Pretty, More about Tasks, More about Planner
 @section More about Notes
