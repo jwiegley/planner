@@ -1,3 +1,134 @@
+2006-06-18 03:20:47 GMT	John Sullivan <john@wjsullivan.net>	patch-46
+
+    Summary:
+      Document planner-zoom.
+    Revision:
+      planner--main--1.0--patch-59
+
+    modified files:
+     planner-el.texi
+
+
+2006-06-16 03:59:59 GMT	Michael Olson <mwolson@gnu.org>	patch-58
+
+    Summary:
+      Spot check documentation through planner-gnus.el.
+    Revision:
+      planner--main--1.0--patch-58
+
+    * planner-el.texi (Planner-Diary Advanced Features): Add a few index
+      entries.  Document planner-export-diary.el.
+      (Emacs Relay Chat): Update the syntax.
+
+    modified files:
+     planner-el.texi
+
+
+2006-06-08 21:57:22 GMT	Michael Olson <mwolson@gnu.org>	patch-57
+
+    Summary:
+      planner-el.texi: Use shared Arch archive in instructions.
+    Revision:
+      planner--main--1.0--patch-57
+
+    * planner-el.texi (Installing from Arch): Use shared archive instead of
+      my personal archive.
+
+    modified files:
+     planner-el.texi
+
+
+2006-06-08 21:36:15 GMT	Michael Olson <mwolson@gnu.org>	patch-56
+
+    Summary:
+      Document new mailing lists in the manual.
+    Revision:
+      planner--main--1.0--patch-56
+
+    * planner-el.texi (Getting Help): Document new mailing
+      lists.
+      (Overview, Review, Sample Configuration Files): Point to Getting Help
+      section for mailing list information.
+
+    modified files:
+     planner-el.texi
+
+
+2006-06-08 20:54:08 GMT	Michael Olson <mwolson@gnu.org>	patch-55
+
+    Summary:
+      Update NEWS.
+    Revision:
+      planner--main--1.0--patch-55
+
+    * NEWS: Update.
+
+    modified files:
+     NEWS
+
+
+2006-06-08 20:26:57 GMT	Michael Olson <mwolson@gnu.org>	patch-54
+
+    Summary:
+      Move Debian stuff to its own branch.
+    Revision:
+      planner--main--1.0--patch-54
+
+
+    removed files:
+     debian/.arch-ids/=id debian/.arch-ids/NEWS.id
+     debian/.arch-ids/README.Debian.id
+     debian/.arch-ids/changelog.id debian/.arch-ids/compat.id
+     debian/.arch-ids/control.id debian/.arch-ids/copyright.id
+     debian/.arch-ids/emacsen-install.id
+     debian/.arch-ids/emacsen-remove.id
+     debian/.arch-ids/emacsen-startup.id
+     debian/.arch-ids/planner-el.docs.id
+     debian/.arch-ids/planner-el.info.id debian/.arch-ids/rules.id
+     debian/NEWS debian/README.Debian debian/changelog
+     debian/compat debian/control debian/copyright
+     debian/emacsen-install debian/emacsen-remove
+     debian/emacsen-startup debian/planner-el.docs
+     debian/planner-el.info debian/rules
+
+    removed directories:
+     debian debian/.arch-ids
+
+
+2006-06-05 15:52:57 GMT	Michael Olson <mwolson@gnu.org>	patch-53
+
+    Summary:
+      Make Planner's keymap inherit from Muse's keymap.
+    Revision:
+      planner--main--1.0--patch-53
+
+    * planner.el (planner-mode-map): Apply patch from Adrian Aichner that
+      inherits the keymap from Muse, rather than copying it.  We fall back to
+      copying it if the proper functionality does not exist in the user's
+      version of Emacs.
+
+    modified files:
+     AUTHORS planner.el
+
+
+2006-06-01 13:54:24 GMT	Michael Olson <mwolson@gnu.org>	patch-52
+
+    Summary:
+      Add explanation for timeclock.el error.
+    Revision:
+      planner--main--1.0--patch-52
+
+    * contrib/timeclock.el: Add an explanation of why we error out if the
+      person is not using XEmacs.
+    
+    * debian/emacsen-startup: Put Planner's contrib directory at the end of
+      the load-path.
+
+    modified files:
+     ChangeLog ChangeLog.2005 Makefile.defs contrib/timeclock.el
+     debian/changelog debian/emacsen-startup
+
+
 2006-05-30 21:14:09 GMT	Michael Olson <mwolson@gnu.org>	patch-51
 
     Summary:

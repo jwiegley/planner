@@ -386,14 +386,14 @@ This may be text or a filename."
   :group 'planner-publish)
 
 (defcustom planner-html-inner-header ""
-  "Extra header section that can be embedded w/in existing
-`planner-html-header'.  This may be text or a filename."
+  "Extra header section that can be embedded within
+`planner-html-header' and `planner-xhtml-header'."
   :type 'string
   :group 'planner-publish)
 
 (defcustom planner-html-inner-footer ""
-  "Extra footer section that can be embedded w/in existing
-`planner-html-footer'.  This may be text or a filename."
+  "Extra footer section that can be embedded within
+`planner-html-footer' and `planner-xhtml-footer'."
   :type 'string
   :group 'planner-publish)
 

@@ -147,6 +147,7 @@ More about Notes
 
 Publishing
 
+* Publishing Planner pages::    planner-publish.el
 * Publishing Calendars::        planner-calendar.el
 * Authz Access Restriction::    planner-authz.el
 * RSS Publication::             Sharing notes with planner-rss.el
@@ -215,6 +216,7 @@ Tracking Research and Resources
 Tracking Development
 
 * Log Edit::                    Changelogs: planner-log-edit.el
+* PSVN::                        svn changesets: planner-psvn.el
 * XTLA::                        TLA changesets: planner-xtla.el
 * Gnats::                       Gnats: The GNU bug reporting system
 
@@ -3393,6 +3395,7 @@ course, publishing is completely optional.
 Here are some more features related to publishing:
 
 @menu
+* Publishing Planner pages::    planner-publish.el
 * Publishing Calendars::        planner-calendar.el
 * Authz Access Restriction::    planner-authz.el
 * RSS Publication::             Sharing notes with planner-rss.el
@@ -3400,7 +3403,109 @@ Here are some more features related to publishing:
 * RDF Publication::             planner-rdf.el
 @end menu
 
-@node Publishing Calendars, Authz Access Restriction, Publishing, Publishing
+
+@node Publishing Planner pages, Publishing Calendars, Publishing, Publishing
+@comment  node-name,  next,  previous,  up
+@subsection Publishing Planner pages
+@cindex publishing
+@cindex @file{planner-publish.el}, using
+
+The task of publishing Planner pages is handled by
+@file{planner-publish.el}.  It is loaded by default when Planner is
+loaded.  To publish an entire Planner project, set up
+@code{muse-project-alist} (@pxref{Creating Your Planner}) and hit
+@kbd{C-c C-p}.  To publish an individual page, hit @kbd{C-c C-t}.
+
+Publishing works by providing Muse with the settings and environment for
+Planner publishing.
+
+@subheading Styles provided
+
+The following publishing styles are available.
+
+@table @code
+
+@cindex publishing styles, planner-html
+@item planner-html
+Publish Planner pages to HTML.
+
+@cindex publishing styles, planner-xhtml
+@item planner-xhtml
+Publish Planner pages to XHTML.
+
+@cindex publishing styles, planner-xml
+@item planner-xml
+Publish Planner pages to XML.
+
+@end table
+
+@subheading Options provided
+
+The following options may be customized to enhance your publishing
+experience.
+
+@table @code
+
+@item planner-publish-markup-regexps
+List of markup rules for publishing Planner pages.
+
+@item planner-publish-markup-functions
+Specify which function to use for publishing different kinds of markup.
+
+@item planner-publish-markup-tags
+A list of custom HTML-like tags to recognize when publishing.
+
+@item planner-xml-markup-strings
+Strings that are inserted to publish XML markup.
+
+@item planner-xml-header
+Header used when publishing Planner XML files.
+This may be text or a filename.
+
+@item planner-xml-footer
+Footer used when publishing Planner XML files.
+This may be text or a filename.
+
+@item planner-html-markup-strings
+Strings that are inserted to publish HTML markup.
+
+@item planner-html-style-sheet
+CSS stylesheet elements used in Planner HTML and XHTML files.
+This can also be one or more @samp{<link>} tags.
+
+@item planner-html-header
+Header used when publishing Planner HTML files.
+This may be text or a filename.
+
+@item planner-html-footer
+Footer used when publishing Planner HTML files.
+This may be text or a filename.
+
+@item planner-xhtml-header
+Header used when publishing Planner XHTML files.
+This may be text or a filename.
+
+@item planner-xhtml-footer
+Footer used when publishing Planner XHTML files.
+This may be text or a filename.
+
+@item planner-html-inner-header
+Extra header section that can be embedded within
+@code{planner-html-header} and @code{planner-xhtml-header}.
+
+@item planner-html-inner-footer
+Extra header section that can be embedded within
+@code{planner-html-footer} and @code{planner-xhtml-footer}.
+
+@item planner-publish-prepare-regexps
+List of markup rules to apply before publishing a page with Planner.
+
+@item planner-publish-finalize-regexps
+List of markup rules to apply after publishing a page with Planner.
+
+@end table
+
+@node Publishing Calendars, Authz Access Restriction, Publishing Planner pages, Publishing
 @comment  node-name,  next,  previous,  up
 @subsection Publishing Calendars
 @cindex calendar, publishing
@@ -5162,11 +5267,12 @@ system.
 
 @menu
 * Log Edit::                    Changelogs: planner-log-edit.el
+* PSVN::                        svn changesets: planner-psvn.el
 * XTLA::                        TLA changesets: planner-xtla.el
 * Gnats::                       Gnats: The GNU bug reporting system
 @end menu
 
-@node Log Edit, XTLA, Tracking Development, Tracking Development
+@node Log Edit, PSVN, Tracking Development, Tracking Development
 @comment  node-name,  next,  previous,  up
 @subsection Log Edit
 @cindex cvs, using Planner with
@@ -5198,7 +5304,26 @@ note.
 
 @file{planner-log-edit.el} does not define any interactive functions.
 
-@node XTLA, Gnats, Log Edit, Tracking Development
+@node PSVN, XTLA, Log Edit, Tracking Development
+@comment  node-name,  next,  previous,  up
+@subsection PSVN
+@cindex PSVN
+@cindex @file{planner-psvn.el}, using
+
+This file allows you to refer to your svn changesets easily from within
+a Planner page.  You can load the module with @code{(require
+'planner-psvn)}.
+
+PSVN URLs are of the form
+@samp{psvn://http://my.svn-repos.at/svn/project1/trunk@@39}
+
+Additionally there is functionality to generate a note for your commits
+via subversion: just set
+@var{planner-psvn-log-edit-notice-commit-function} to t.
+
+@file{planner-psvn.el} does not define any interactive functions.
+
+@node XTLA, Gnats, PSVN, Tracking Development
 @comment  node-name,  next,  previous,  up
 @subsection XTLA
 @cindex XTLA
