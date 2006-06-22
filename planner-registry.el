@@ -47,7 +47,8 @@
 ;; (require 'planner-registry)
 ;; (planner-registry-initialize)
 ;;
-;; You MUST put it after your planner config have been loaded.
+;; You MUST put it after the place where where Planner has been loaded
+;; in your configuration file.
 ;;
 ;; If you want the registry to be updated each time you save a Planner
 ;; file, add this:

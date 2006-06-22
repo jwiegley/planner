@@ -136,6 +136,7 @@ Task Reports and Overviews
 * Accomplishments::             
 * Task Overviews::              
 * <tasks> tag::                 
+* planner-registry::            Keep track of annotations
 * planner-zoom::                View and navigate tasks by time period
 
 More about Notes
@@ -2642,7 +2643,8 @@ presentations of your tasks.
 * Accomplishments::             
 * Task Overviews::              
 * <tasks> tag::             
-* planner-zoom::                View and navigate tasks by time period    
+* planner-registry::            Keep track of annotations
+* planner-zoom::                View and navigate tasks by time period
 @end menu
 
 @node Accomplishments, Task Overviews, Task Reports and Overviews, Task Reports and Overviews
@@ -2800,7 +2802,7 @@ pages.
 @key{TAB}, @kbd{SHIFT-TAB} and @key{RET} navigate links in the usual
 fashion.
 
-@node <tasks> tag, planner-zoom, Task Overviews, Task Reports and Overviews
+@node <tasks> tag, planner-registry, Task Overviews, Task Reports and Overviews
 @subsubsection <tasks> tag
 @cindex <tasks> tag
 @cindex task reports
@@ -2828,7 +2830,86 @@ All tasks
 
 Warning: this function can be slow, as it checks all the day pages!
 
-@node planner-zoom, ,<tasks> tag, Task Reports and Overviews
+@node planner-registry, planner-zoom ,<tasks> tag, Task Reports and Overviews
+@comment  node-name,  next,  previous,  up
+@section planner-registry
+@cindex planner-registry
+
+The @file{planner-registry} module provides a way to keep track of all
+the URLs in your projects, and to list them depending on the current
+buffer.  The URLs are defined in @code{muse-url-protocols} module from
+Muse.
+
+If a URL has been created by @code{planner-create-task-from-buffer},
+going to that buffer and calling @code{planner-registry-show} will show
+you where Planner put the URL.
+
+@subheading Getting started
+
+To begin using @file{planner-registry}, add the following to your
+Planner configuration file.
+
+@example
+(require 'planner-registry)
+(planner-registry-initialize)
+@end example
+
+You must put it after the place where Planner has been loaded in your
+configuration file.
+
+If you want the registry to be updated each time you save a Planner
+file, add the following to your Planner configuration.
+
+@example
+(planner-registry-insinuate)
+@end example
+
+If you don't want to update the registry each time a file is written,
+you can do it manually with @code{planner-registry-update}: it will
+update the registry for saved Planner/Muse buffers only.
+
+@file{planner-registry} does not define any keybindings by default.  Its
+most useful interactive function is @code{planner-registry-show}.
+
+@subheading Example usage
+
+Say for example that you created a task from an e-mail.  Go to that
+e-mail and call @code{planner-registry-show}: it will open a new buffer
+displaying the files (in a muse links format) where a link to this
+e-mail has been added.
+
+@subheading Options
+
+@file{planner-registry} defines the following options.
+
+@defopt planner-registry-file
+The file where @file{planner-registry} stores its URL registry.
+@end defopt
+
+@defopt planner-registry-min-keyword-size
+The minimum size for keywords.
+@end defopt
+
+@defopt planner-registry-max-keyword-size
+The maximum size for keywords.
+@end defopt
+
+@defopt planner-registry-max-number-of-keywords
+The maximum number of keywords.
+@end defopt
+
+@defopt planner-registry-ignore-keywords
+A list of keywords to ignore.
+@end defopt
+
+@defopt planner-registry-show-level
+Level used by the @code{planner-registry-show} function.
+0 means that this function shows only exact matches.
+1 means that this function also shows descriptive matches.
+2 (or more) means that this function also shows fuzzy matches.
+@end defopt
+
+@node planner-zoom, , planner-registry, Task Reports and Overviews
 @comment  node-name,  next,  previous,  up
 @section planner-zoom
 @cindex planner-zoom
