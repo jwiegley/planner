@@ -4229,7 +4229,7 @@ Headline: Go to the next headline of the same depth."
 (setq planner-loaded t)
 
 ;; Insinuate with allout mode
-(add-to-list 'allout-mode-leaders '(planner-mode . "."))
+(add-hook 'allout-mode-leaders '(planner-mode . "."))
 
 (provide 'planner)
 
