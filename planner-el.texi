@@ -102,9 +102,9 @@ More about Planner
 * More about Notes::            
 * Making Files Pretty::         
 * Annotations::                 
-* Interactive Lisp::            
-* Publishing::                  
-* Experimental Functions::      
+* Interactive Lisp::            planner-lisp.el
+* Publishing::                  planner-publish.el
+* Experimental Functions::      planner-experimental.el
 
 More about Tasks
 
@@ -116,10 +116,10 @@ Creating New Tasks
 
 * Creating a Task::             
 * Task Priorities::             
-* Task IDs::                    
-* Cyclic Tasks::                
+* Task IDs::                    planner-id.el
+* Cyclic Tasks::                planner-cyclic.el
 * Task Detail::                 
-* Deadlines::                   
+* Deadlines::                   planner-deadline.el
 
 Organizing Your Tasks
 
@@ -128,13 +128,14 @@ Organizing Your Tasks
 * Modifying Tasks::             
 * Carrying Over Unfinished Tasks::  
 * Task Numbering::              
-* Task Ranks::                  
-* Grouping Tasks::              
+* Task Ranks::                  planner-rank.el
+* Grouping Tasks::              planner-trunk.el
 
 Task Reports and Overviews
 
-* Accomplishments::             
-* Task Overviews::              
+* Accomplishments::             planner-accomplishments.el
+* Status Reports::              planner-report.el
+* Task Overviews::              planner-tasks-overview.el
 * <tasks> tag::                 
 * planner-registry::            Keep track of annotations
 * planner-zoom::                View and navigate tasks by time period
@@ -144,7 +145,7 @@ More about Notes
 * Using Allout Mode::           Quickly navigating your notes
 * <notes>::                     Note headlines
 * <past-notes>::                Index of past notes
-* Note Indices::                
+* Note Indices::                planner-notes-index.el
 
 Publishing
 
@@ -181,7 +182,7 @@ E-mail
 
 Scheduling and Time
 
-* Diary::                       Using the Emacs diary
+* Diary::                       Using the Emacs diary: planner-diary.el
 * Appointments::                Appointments in plan pages: planner-appt.el
 * Timeclock::                   Time tracking: planner-timeclock.el
 * schedule.el::                 Project completion: planner-schedule.el
@@ -1438,9 +1439,9 @@ wonderful ideas about planning in Emacs!
 * More about Notes::            
 * Making Files Pretty::         
 * Annotations::                 
-* Interactive Lisp::            
-* Publishing::                  
-* Experimental Functions::      
+* Interactive Lisp::            planner-lisp.el
+* Publishing::                  planner-publish.el
+* Experimental Functions::      planner-experimental.el
 @end menu
 
 @node Navigation, More about Tasks, More about Planner, More about Planner
@@ -1575,10 +1576,10 @@ in a way that fits with your system.
 @menu
 * Creating a Task::             
 * Task Priorities::             
-* Task IDs::                    
-* Cyclic Tasks::                
+* Task IDs::                    planner-id.el
+* Cyclic Tasks::                planner-cyclic.el
 * Task Detail::                 
-* Deadlines::                   
+* Deadlines::                   planner-deadline.el
 @end menu
 
 @node Creating a Task, Task Priorities, Creating New Tasks, Creating New Tasks
@@ -2066,8 +2067,8 @@ complete a task, see the section in
 * Modifying Tasks::             
 * Carrying Over Unfinished Tasks::  
 * Task Numbering::              
-* Task Ranks::                  
-* Grouping Tasks::              
+* Task Ranks::                  planner-rank.el
+* Grouping Tasks::              planner-trunk.el
 @end menu
 
 @node Multiple Projects, Viewing Tasks, Organizing Your Tasks, Organizing Your Tasks
@@ -2640,14 +2641,15 @@ Planner provides a number of different ways to generate different
 presentations of your tasks.
 
 @menu
-* Accomplishments::             
-* Task Overviews::              
+* Accomplishments::             planner-accomplishments.el
+* Status Reports::              planner-report.el
+* Task Overviews::              planner-tasks-overview.el
 * <tasks> tag::             
 * planner-registry::            Keep track of annotations
 * planner-zoom::                View and navigate tasks by time period
 @end menu
 
-@node Accomplishments, Task Overviews, Task Reports and Overviews, Task Reports and Overviews
+@node Accomplishments, Status Reports, Task Reports and Overviews, Task Reports and Overviews
 @comment  node-name,  next,  previous,  up
 @subsubsection Generating Daily Accomplishment Reports
 @cindex reports, accomplishment
@@ -2728,7 +2730,93 @@ on this page.
 Display a buffer with the current page's accomplishment report.
 @end defun
 
-@node Task Overviews, <tasks> tag, Accomplishments, Task Reports and Overviews
+@node Status Reports, Task Overviews, Accomplishments, Task Reports and Overviews
+@comment  node-name,  next,  previous,  up
+@subsubsection Status Reports
+@cindex status reports
+@cindex reports, status
+@cindex @file{planner-report.el}, using
+
+@file{planner-report.el} creates a status report for a given timespan.
+The report itself is just another Planner page in your planner
+directory.  Once generated, it contains tasks and notes culled from
+active project pages.  Tasks are only shown if they are incomplete or
+were completed within the timespan.  Notes are shown if they were
+created during the timespan.  Tasks and notes are grouped together under
+a heading for their corresponding project.
+
+The idea is you have one of these status reports generated periodically
+(say, every couple of weeks).  Perhaps you use cron to run them
+automatically and then mail you a reminder that they've been done.  Then
+you can edit the page, adding verbiage where it is needed and removing
+irrelevant items.  This editing process is as easy as editing any other
+Planner page.  Finally, you can publish the page along with the rest of
+your planner using @kbd{M-x muse-project-publish}.
+
+If you use planner-authz.el, you can tell planner-report.el only to
+consult project pages that a given list of users
+(@var{planner-report-authz}) can access when generating the report.  For
+example, if you're preparing a status report for your boss, add yourself
+and him to @var{planner-report-authz}.  The resulting status report will
+only contain information the two of you are supposed to have access to,
+and the report itself will be similarly restricted.
+
+@subheading Getting started
+
+Add the following to your .emacs file:
+
+@example
+(require 'planner-report)
+@end example
+
+Then you can use the following command to generate a status report:
+
+@example
+M-x planner-report-generate
+@end example
+
+You will be prompted for a beginning and ending date, and then the
+status report will be generated.  You can then edit it to your liking
+and publish it just like you would the rest of your planner.
+
+@subheading Options
+
+@defopt planner-report-authz
+List of users a status report should be restricted to.
+When status reports are generated, only planner pages accessible
+by these users will be consulted, and the resulting status report
+will be similarly restricted.
+@end defopt
+
+@defopt planner-report-pretty-print-plan-pages
+If non-nil, pretty print plan pages.
+If nil, leave page names as-is.
+This requires that @file{muse-wiki.el} be loaded to work properly.
+@end defopt
+
+@defopt planner-report-remove-task-numbers
+Remove task numbers when generating status reports.
+@end defopt
+
+@defopt planner-report-replace-note-numbers
+If non-nil, a string with which to replace note numbers when
+generating status reports.
+@end defopt
+
+@defopt planner-report-unfinished-offset
+If non-nil, the offset in days from the current date of
+unfinished tasks to include in the status report.  If nil,
+include all unfinished tasks.
+@end defopt
+
+@subheading Functions
+
+@defun planner-report-generate begin end
+Generate a status report spanning a period from @var{begin} to @var{end}.
+@var{begin} and @var{end} are in the format YYYY.MM.DD.
+@end defun
+
+@node Task Overviews, <tasks> tag, Status Reports, Task Reports and Overviews
 @comment  node-name,  next,  previous,  up
 @subsubsection Seeing an Overview of Tasks
 @cindex tasks, overview of
@@ -3110,7 +3198,7 @@ manipulating, and navigating your notes efficiently.
 * Using Allout Mode::           Quickly navigating your notes
 * <notes>::                     Note headlines
 * <past-notes>::                Index of past notes
-* Note Indices::                
+* Note Indices::                planner-notes-index.el
 @end menu
 
 @node Using Allout Mode, <notes>, More about Notes, More about Notes
@@ -4206,7 +4294,7 @@ Rmail, Emacs}.
 @section Scheduling and Time
 
 @menu
-* Diary::                       Using the Emacs diary
+* Diary::                       Using the Emacs diary: planner-diary.el
 * Appointments::                Appointments in plan pages: planner-appt.el
 * Timeclock::                   Time tracking: planner-timeclock.el
 * schedule.el::                 Project completion: planner-schedule.el
