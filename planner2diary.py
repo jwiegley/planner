@@ -1,4 +1,4 @@
-#!/usr/bin/python2.2
+#!/usr/bin/python
 
 # Copyright (C) 2001 Free Software Foundation, Inc.
 

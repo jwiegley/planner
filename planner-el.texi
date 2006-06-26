@@ -173,7 +173,7 @@ Managing Your Information
 
 E-mail
 
-* Unix mail::                   Unix mailboxes: planner-unix-mail.el              
+* Unix mail::                   Unix mailboxes: planner-unix-mail.el
 * Gnus::                        Gnus mail and news reader: planner-gnus.el
 * VM::                          VM mail reader: planner-vm.el
 * Wanderlust::                  Wanderlust mail reader: planner-wl.el
@@ -4394,6 +4394,12 @@ Calendar integration, add this to your @file{.emacs} (or @file{_emacs}):
 
 If @code{planner-diary-create-section-flag} is non-nil, sections are
 always inserted if necessary.
+
+@cindex planner2diary.py, using
+If you want to import Planner entries into your Diary file, the
+@file{planner2diary.py} script will accomplish this for you.  To use it,
+execute @code{planner2diary.py} on the command line, specifying your
+planner directory as the first and only argument.
 
 @subheading Options
 
