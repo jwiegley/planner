@@ -48,14 +48,15 @@ test: $(ELC)
 	$(EMACS) -q $(SITEFLAG) -batch -l ./scripts/planner-build.el \
 		-f planner-elint-files planner-*.el
 
-distclean: realclean
-	-rm -f debian/dirs debian/files
+distclean:
+	-rm -f $(MANUAL).info $(MANUAL).html debian/dirs debian/files
 	-rm -fr ../$(PROJECT)-$(VERSION)
 
-dist: distclean
+dist: autoloads distclean
 	tla inventory -sB | tar -cf - --no-recursion -T- | \
 	  (mkdir -p ../$(PROJECT)-$(VERSION); cd ../$(PROJECT)-$(VERSION) && \
 	  tar xf -)
+	cp planner-autoloads.el ../$(PROJECT)-$(VERSION)
 	rm -fr ../$(PROJECT)-$(VERSION)/debian ../$(PROJECT)-$(VERSION)/test
 
 release: dist
