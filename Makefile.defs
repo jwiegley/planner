@@ -18,7 +18,7 @@ INSTALLINFO = install-info --info-dir=$(INFODIR)
 # Useful only for the maintainer
 PROJECT    = planner
 DEBNAME    = planner-el
-VERSION    = 3.40.arch.50
+VERSION    = 3.41
 MANUAL     = planner-el
-LASTUPLOAD = 3.40.arch.41-1
+LASTUPLOAD = 3.40.arch.50
 BUILDOPTS  =

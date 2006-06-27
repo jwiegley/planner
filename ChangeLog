@@ -1,3 +1,98 @@
+2006-06-26 23:26:25 GMT	Michael Olson <mwolson@gnu.org>	patch-52
+
+    Summary:
+      Document planner2diary.py.
+    Revision:
+      planner-el--devel--0--patch-52
+
+    * planner-el.texi (Diary): Document planner2diary.py.  This completes the
+      documentation part of the release plans.
+    
+    * planner2diary.py: Require /usr/bin/python instead of
+      /usr/bin/python2.2.
+
+    modified files:
+     planner-el.texi planner2diary.py
+
+
+2006-06-26 23:18:05 GMT	Michael Olson <mwolson@gnu.org>	patch-51
+
+    Summary:
+      Document planner-report.el.
+    Revision:
+      planner-el--devel--0--patch-51
+
+    * planner-el.texi: Mention filenames in menus as much as possible.
+      (Status Reports): Document planner-report.el.
+
+    modified files:
+     planner-el.texi
+
+
+2006-06-23 13:54:58 GMT	Michael Olson <mwolson@gnu.org>	patch-50
+
+    Summary:
+      Fix bug in last patch.
+    Revision:
+      planner-el--devel--0--patch-50
+
+    * planner.el (allout-mode-leaders): Make this use `add-hook' rather than
+      `add-to-list' to avoid load errors.
+
+    modified files:
+     planner.el
+
+
+2006-06-23 04:08:22 GMT	Michael Olson <mwolson@gnu.org>	patch-49
+
+    Summary:
+      Make allout and Planner work better together by default.
+    Revision:
+      planner-el--devel--0--patch-49
+
+    * planner.el: Make allout mode recognize our special note syntax.  Thanks
+      to Bill White and Steven Lumos for the code snippet and research.
+
+    modified files:
+     planner.el
+
+
+2006-06-22 03:29:38 GMT	Michael Olson <mwolson@gnu.org>	patch-48
+
+    Summary:
+      Document planner-registry.el.
+    Revision:
+      planner-el--devel--0--patch-48
+
+    * planner-el.texi (planner-registry): Document the planner-registry.el
+      file.
+    
+    * planner-registry.el: Clarify directions in header.
+
+    modified files:
+     planner-el.texi planner-registry.el
+
+
+2006-06-20 18:10:46 GMT	Michael Olson <mwolson@gnu.org>	patch-47
+
+    Summary:
+      Document through planner-publish.el.
+    Revision:
+      planner-el--devel--0--patch-47
+
+    * ChangeLog: Update.
+    
+    * planner-el.texi (Publishing Planner pages): New section that documents
+      planner-publish.el.
+      (PSVN): New section that documents planner-psvn.el.
+    
+    * planner-publish.el (planner-html-inner-header):
+      (planner-html-inner-footer): Docfix.
+
+    modified files:
+     ChangeLog planner-el.texi planner-publish.el
+
+
 2006-06-18 03:20:47 GMT	John Sullivan <john@wjsullivan.net>	patch-46
 
     Summary:

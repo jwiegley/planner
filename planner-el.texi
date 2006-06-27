@@ -12,7 +12,7 @@
 @syncodeindex fn cp
 
 @copying
-This manual is for Planner version 3.40.
+This manual is for Planner version 3.41.
 
 Copyright @copyright{} 2001, 2004, 2005, 2006 Free Software Foundation, Inc.@*
 Parts copyright @copyright{} 2005 Jim Ottaway@*
@@ -1029,7 +1029,7 @@ fine-grained access control.)
 I think the greatest feature of Planner, though, is its user
 community. Because Planner can be easily modified, we can experiment
 with a lot of new ideas quickly, and we can tailor Planner to fit our
-needs. I love checking my @samp{emacs-wiki-discuss} mail and finding
+needs. I love checking my @samp{planner-el-discuss} mail and finding
 out how people have tweaked Planner or would like to tweak Planner,
 and I've learned a lot by exchanging reflections on organizing one's
 life.
@@ -1084,7 +1084,7 @@ stored in @samp{~/Plans} (@code{planner-directory}).
 Let us start by creating a task labelled
 
 @example
-Join http://lists.nongnu.org/mailman/listinfo/emacs-wiki-discuss
+Join http://mail.gna.org/listinfo/planner-el-discuss/
 @end example
 
 From anywhere (even this info buffer!), call @kbd{M-x
@@ -1113,14 +1113,14 @@ You have created your first task. View today's page with
 @kbd{M-x planner-goto-today}. You will see a line of the form
 
 @example
-#B  _ Join http://lists.nongnu.org/mailman/listinfo/emacs-wiki-discuss (TaskPool)
+#B  _ Join http://mail.gna.org/listinfo/planner-el-discuss/ (TaskPool)
 @end example
 
 If you created the task from this page, then there will be an additional
 annotation:
 
 @example
-#B  _ Join http://lists.nongnu.org/mailman/listinfo/emacs-wiki-discuss : Tasks (TaskPool)
+#B  _ Join http://mail.gna.org/listinfo/planner-el-discuss/ : Tasks (TaskPool)
 @end example
 
 The URL, @samp{TaskPool} and @samp{Getting Started} are
@@ -1337,7 +1337,7 @@ and open, allowing you to adapt it to your preferences.
 ----------------------------------------------------------------------
 * Tasks
 
-#B  _ Join http://lists.nongnu.org/mailman/listinfo/emacs-wiki-discuss (TaskPool)
+#B  _ Join http://mail.gna.org/listinfo/planner-el-discuss/ (TaskPool)
 #B  _ Browse through the Planner info manual (TaskPool)
 #B  _ Add (plan) to the end of my ~/.emacs
 #B  X Learn how to schedule a task (TaskPool)

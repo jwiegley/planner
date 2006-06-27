@@ -21,7 +21,7 @@
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner.el
-;; Version: 3.40
+;; Version: 3.41
 ;; Keywords: hypermedia
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Maintainer: Michael Olson <mwolson@gnu.org>
@@ -402,7 +402,7 @@
     (require 'overlay)))
 
 (defvar planner-loaded nil)
-(defvar planner-version "3.40"
+(defvar planner-version "3.41"
   "The version of Planner currently loaded.")
 
 ;; Compatibility hacks -- these will be removed in the future

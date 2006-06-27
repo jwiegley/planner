@@ -1,12 +1,13 @@
 Planner NEWS --- History of user-visible changes    -*- outline -*-
 
-* Changes in Planner 3.41 (unreleased)
+* Changes in Planner 3.41
 
 ** Bugfixes
 
 *** Make planner-visit-link more robust.
 *** Don't insert too many spaces around task number.
 *** Fix lock up with old delegated task mark.
+*** Make allout mode and Planner work better together by default.
 *** planner-el.texi: Many updates and clarifications were added.
 *** planner-appt: Fix highlighting in plan pages.
 *** planner-authz: Work with latest changes in planner-publish.
