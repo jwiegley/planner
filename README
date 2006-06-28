@@ -69,6 +69,13 @@ You will also need to have Emacs Muse installed.  See
 http://www.plannerlove.com/pmwiki/pmwiki.php?n=Main.DownloadingPlanner
 for current information on which release of Muse to get,
 
+If Muse is not present in the `~/elisp/muse' directory on your system,
+you will have to change the line that mention Muse in
+`scripts/planner-build.el' to something like the following, replacing
+PATH with the path to Muse.
+
+(add-to-list 'load-path "PATH/lisp")
+
 If you want to use the `xemacs' binary to perform the compilation, you
 would need to edit `Makefile.defs' in the top-level directory as
 follows.  You can put either a full path to an Emacs or XEmacs binary

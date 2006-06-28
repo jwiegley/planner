@@ -3,20 +3,17 @@
 ;; If you want Planner to find all of these programs when
 ;; byte-compiling Planner, make sure to edit these paths to match your
 ;; configuration.
-;;
-;; If this is left alone, the Planner core files will still be
-;; byte-compiled, but the extensions will not.  The extensions will
-;; still be installed, though, so don't worry too much about this.
-(add-to-list 'load-path "~/proj/emacs/muse/mwolson/lisp")
-(add-to-list 'load-path "~/proj/emacs/bbdb/lisp")
-(add-to-list 'load-path "~/proj/emacs/erc/arch")
-(add-to-list 'load-path "/path/to/gnats")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/gnus/lisp")
-(add-to-list 'load-path "/path/to/psvn")
-(add-to-list 'load-path "/path/to/vm")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
-(add-to-list 'load-path "/path/to/wl")
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/xtla")
+
+(add-to-list 'load-path "~/elisp/muse/lisp")
+(add-to-list 'load-path "~/elisp/bbdb/lisp")
+(add-to-list 'load-path "~/elisp/erc")
+(add-to-list 'load-path "~/elisp/gnats")
+(add-to-list 'load-path "~/elisp/gnus/lisp")
+(add-to-list 'load-path "~/elisp/psvn")
+(add-to-list 'load-path "~/elisp/vm")
+(add-to-list 'load-path "~/elisp/w3m")
+(add-to-list 'load-path "~/elisp/wl")
+(add-to-list 'load-path "~/elisp/xtla")
 
 (defun planner-elint-files ()
   (require 'elint)
