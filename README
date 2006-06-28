@@ -65,6 +65,10 @@ A working copy of Emacs or XEmacs is needed in order to compile
 Planner.  By default, the program that is installed with the name
 `emacs' will be used.
 
+You will also need to have Emacs Muse installed.  See
+http://www.plannerlove.com/pmwiki/pmwiki.php?n=Main.DownloadingPlanner
+for current information on which release of Muse to get,
+
 If you want to use the `xemacs' binary to perform the compilation, you
 would need to edit `Makefile.defs' in the top-level directory as
 follows.  You can put either a full path to an Emacs or XEmacs binary
