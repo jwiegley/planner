@@ -5,6 +5,7 @@
 ;; configuration.
 
 (add-to-list 'load-path "~/elisp/muse/lisp")
+(add-to-list 'load-path "~/elisp/remember")
 (add-to-list 'load-path "~/elisp/bbdb/lisp")
 (add-to-list 'load-path "~/elisp/erc")
 (add-to-list 'load-path "~/elisp/gnats")
