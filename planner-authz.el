@@ -59,10 +59,14 @@
 
 ;; If your pages have a section with diary entries maintained by
 ;; planner-appt.el (or by any other means), you can control access to
-;; these entries.  First, customize sectionalize-markup-tagname to map
-;; your diary section to a tag called "diary", for example:
+;; these entries.  First, customize `planner-section-tagnames' to map
+;; your diary section ("* Schedule", in this example) to a tag called
+;; "diary-section", for example:
 
-;;   (add-to-list 'sectionalize-markup-tagname '("* Schedule" . "diary"))
+;;   (add-to-list 'planner-section-tagnames '("Schedule" . "diary-section"))
+
+;; If the name of your diary section is "* Diary", you will not need
+;; to customize `planner-section-tagnames' by default.
 
 ;; Then make sure the diary entries you want restricted contain a
 ;; corresponding plan page name in parentheses, for example:
@@ -299,7 +303,7 @@ For more on the structure of this list, see `muse-publish-markup-regexps'."
 
 (defcustom planner-authz-markup-tags
   '(("authz"   t t planner-authz-tag)
-    ("diary"   t t planner-authz-diary-tag)
+    ("diary-section" t t planner-authz-diary-section-tag)
     ("note"    t t planner-authz-note-tag)
     ("task"    t t planner-authz-task-tag))
   "A list of tag specifications for authorization markup."
@@ -574,7 +578,7 @@ unauthorized users."
       (goto-char end)
       (planner-insert-markup (muse-markup-text 'planner-authz-end)))))
 
-(defun planner-authz-diary-tag (beg end attrs)
+(defun planner-authz-diary-section-tag (beg end attrs)
   "Restrict entries in a diary section."
   (save-excursion
     (save-restriction

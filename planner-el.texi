@@ -3789,6 +3789,38 @@ line. For example:
 #authz ajk sacha
 @end example
 
+@subheading Getting started
+
+Add the following to your .emacs file to cause @kbd{M-x
+muse-project-publish} to automatically use planner-authz features.
+
+@example
+(require 'planner-authz)
+@end example
+
+@subheading Diary markup
+
+If your pages have a section with diary entries maintained by
+planner-appt.el (or by any other means), you can control access to these
+entries.  First, customize @code{planner-section-tagnames} to map your
+diary section ("* Schedule", in this example) to a tag called
+"diary-section".  An example follows.
+
+@example
+(add-to-list 'planner-section-tagnames '("Schedule" . "diary-section"))
+@end example
+
+If the name of your diary section is "* Diary", you will not need to
+customize @code{planner-section-tagnames} by default.
+
+Then make sure the diary entries you want restricted contain a
+corresponding plan page name in parentheses, as in the following
+example.
+
+@example
+10:00 10:30 Meeting with boss (WorkStuff)
+@end example
+
 @subheading Options
 
 @defopt planner-authz-project-default
