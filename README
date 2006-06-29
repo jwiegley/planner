@@ -70,7 +70,7 @@ http://www.plannerlove.com/pmwiki/pmwiki.php?n=Main.DownloadingPlanner
 for current information on which release of Muse to get,
 
 If Muse is not present in the `~/elisp/muse' directory on your system,
-you will have to change the line that mention Muse in
+you will have to change the line that mentions Muse in
 `scripts/planner-build.el' to something like the following, replacing
 PATH with the path to Muse.
 
