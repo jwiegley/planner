@@ -551,6 +551,12 @@ of each section."
           (link     (cdr (assoc "link" attrs)))
           (plan     (cdr (assoc "plan" attrs)))
           (date     (cdr (assoc "date" attrs))))
+      (goto-char end)
+      (let ((near-end (point)))
+        (when link
+          (insert " (" (planner-make-link link) ")"))
+        (planner-insert-markup (muse-markup-text 'planner-end-task))
+        (muse-publish-mark-read-only beg near-end))
       (goto-char beg)
       (planner-insert-markup
        (muse-markup-text 'planner-begin-task
@@ -558,11 +564,7 @@ of each section."
                          priority
                          (concat priority number " "
                                  (planner-publish-task-status-collapse status)
-                                 " ")))
-      (goto-char end)
-      (when link
-        (insert " (" (planner-make-link link) ")"))
-      (planner-insert-markup (muse-markup-text 'planner-end-task)))))
+                                 " "))))))
 
 (defun planner-publish-notes-section-tag (beg end)
   "Replace the region BEG to END with the notes for this page."
