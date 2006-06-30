@@ -447,7 +447,6 @@ See `muse-publish-markup-regexps' for details on the syntax used."
     (narrow-to-region
      (planner-line-beginning-position)
      (planner-line-end-position))
-    (muse-publish-escape-specials (point-min) (point-max))
     (let ((info (planner-current-task-info)))
       (delete-region (point-min) (point-max))
       (forward-line 1)
@@ -460,9 +459,10 @@ See `muse-publish-markup-regexps' for details on the syntax used."
                     (planner-task-status info)) "")
                (or (planner-task-link-text info) "")
                (or (planner-task-plan info) "")
-               (or (planner-task-date info) ""))
-       (planner-task-description info)  ; mark this area read only
-       "</task>"))))
+               (or (planner-task-date info) "")))
+      ;; mark this area read only for safety's sake
+      (planner-insert-markup (planner-task-description info))
+      (insert "</task>"))))
 
 (defun planner-publish-markup-note ()
   "Replace note with XML representation of note data.  Borrowed
@@ -483,8 +483,9 @@ heavily from Sacha's personal configs."
                       (or (planner-note-link info) "")
                       (or (planner-note-link-text info) ""))
               "<title level=\"3\">" (planner-note-title info) "</title>\n"
-              "<content>\n" (planner-note-body info) "\n\n</content>\n"
-              "</note>\n"))))
+              "<content>\n")
+      (planner-insert-markup (planner-note-body info))
+      (insert "\n\n</content>\n</note>\n"))))
 
 
 ;;;_ + Tags
@@ -551,12 +552,12 @@ of each section."
           (link     (cdr (assoc "link" attrs)))
           (plan     (cdr (assoc "plan" attrs)))
           (date     (cdr (assoc "date" attrs))))
+      (remove-text-properties beg end
+                              '(read-only nil rear-nonsticky nil))
       (goto-char end)
-      (let ((near-end (point)))
-        (when link
-          (insert " (" (planner-make-link link) ")"))
-        (planner-insert-markup (muse-markup-text 'planner-end-task))
-        (muse-publish-mark-read-only beg near-end))
+      (when link
+        (insert " (" (planner-make-link link) ")"))
+      (planner-insert-markup (muse-markup-text 'planner-end-task))
       (goto-char beg)
       (planner-insert-markup
        (muse-markup-text 'planner-begin-task
@@ -630,7 +631,8 @@ DIRECTORY and START."
           (timestamp  (or (cdr (assoc "timestamp" attrs)) ""))
           (link       (or (cdr (assoc "link" attrs)) ""))
           (categories (or (cdr (assoc "categories" attrs)) "")))
-
+      (remove-text-properties beg end
+                              '(read-only nil rear-nonsticky nil))
       (goto-char beg)
       (planner-insert-markup (muse-markup-text 'planner-begin-note
                                                anchor
