@@ -582,15 +582,6 @@ are two additional steps you can take to make using it easier and more
 efficient. These steps are optional.
 
 @itemize
-
-@cindex @file{remember.el}
-@cindex @file{remember-planner.el}
-@item You can install @file{remember.el} and @file{remember-planner.el}
-so that you can create Planner notes from anywhere. See the
-documentation at
-@uref{http://sacha.free.net.ph/notebook/doc/dev/remember/} for more
-information.
-
 @cindex installing the info file
 @cindex @file{planner-el.texi}, installing
 @cindex @file{planner-el.info}, installing
@@ -1242,15 +1233,19 @@ different activities.
 @node Notes, Hyperlinks, Schedule, Getting Started
 @comment  node-name,  next,  previous,  up
 @section Notes
+@cindex @file{remember.el}
+@cindex @file{remember-planner.el}
+@cindex notes
 
-You can put anything you want in this section, or remove it from your
+By default, your Planner pages will have a Notes section. You can put
+anything you want in this section, or remove it from your
 @code{planner-day-page-template} entirely.
 
 You may be interested in @file{remember-planner.el}, part of the
 Remember package. @code{remember-planner.el} makes it easy to create
 notes from anywhere in Emacs, and it uses the same hyperlink-sensing
-code that Planner uses. Notes added by remember-planner.el look like
-this:
+code that Planner uses. Notes added by @code{remember-planner.el} look
+like this:
 
 @example
 .#1 Headline 00:00
@@ -3132,16 +3127,6 @@ window.
 @node More about Notes, Making Files Pretty, More about Tasks, More about Planner
 @section More about Notes
 @cindex notes, more about
-You can put anything in this section. Notes added by
-@file{remember-planner.el} look like this:
-
-@example
-.#1 Headline
-Body
-@end example
-
-and are outlined at the @code{H3} level. If you want to take notes
-conveniently, check out @file{remember-planner.el}.
 
 Planner by default organizes the notes on a planner page so that
 the most recent note is first. Each note is numbered, with the oldest
