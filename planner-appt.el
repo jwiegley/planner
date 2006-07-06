@@ -1288,12 +1288,11 @@ handling is in advice to `planner-create-task-from-info'."
 		  planner-appt-schedule-appt-regexp bound t)
 	    (setq line (planner-match-string-no-properties 0)
 		  time (planner-match-string-no-properties 1)
-		  text (planner-appt-format-description
-			(planner-match-string-no-properties 3))
+		  text (save-match-data
+			 (planner-appt-format-description
+			  (planner-match-string-no-properties 3)))
 		  task-item-p
 		  (planner-appt-task-schedule-item-p (match-string 0)))
-;;                   (text-property-any (match-beginning 0) (match-end 0)
-;;                                      'appt-task t))
 	    (unless (or task-item-p
 			(planner-appt-earlier-than-now-p time))
 	      (appt-add time text)
