@@ -1,3 +1,154 @@
+2006-07-06 09:31:30 GMT	Jim Ottaway <j.ottaway@lse.ac.uk>	patch-65
+
+    Summary:
+      planner-appt: fix match-string bug
+    Revision:
+      planner-el--devel--0--patch-65
+
+    * planner-appt.el (planner-appt-add-appts-from-schedule): wrap
+      planner-appt-format-description in save-match-data.  Fixes a bug where
+      the match data was lost [only seems to happen for Emacs <= 21.3.1].
+
+    modified files:
+     planner-appt.el
+
+
+2006-06-30 06:47:42 GMT	John Sullivan <john@wjsullivan.net>	patch-64
+
+    Summary:
+      Remove redundant parts about remember, and add missing index entries.
+    Revision:
+      planner-el--devel--0--patch-64
+
+
+    modified files:
+     planner-el.texi
+
+
+2006-06-30 03:31:22 GMT	Michael Olson <mwolson@gnu.org>	patch-63
+
+    Summary:
+      Really fix double-escaping issue and protect task/note content.
+    Revision:
+      planner-el--devel--0--patch-63
+
+    * planner-publish.el (planner-publish-markup-task): Remove bad patch.
+      Protect the task description from closing tags.
+      (planner-publish-markup-note): Protect the note content from closing
+      tags.
+      (planner-publish-task-tag): Remove bad patch.  Remove read-only
+      properties from task description so that it gets interpreted by Muse.
+      (planner-publish-note-tag): Remove read-only properties.
+
+    modified files:
+     planner-publish.el
+
+
+2006-06-29 05:36:17 GMT	Michael Olson <mwolson@gnu.org>	patch-62
+
+    Summary:
+      planner-authz: Update documentation.
+    Revision:
+      planner-el--devel--0--patch-62
+
+    * planner-authz.el: Update directions in header.
+      (planner-authz-markup-tags): Use "diary-section" instead of "diary".
+      (planner-authz-diary-section-tag): Rename from
+      `planner-authz-diary-tag'.
+    
+    * planner-el.texi (Authz Access Restriction): Add Getting started and
+      Diary markup sections.
+
+    modified files:
+     planner-authz.el planner-el.texi
+
+
+2006-06-29 03:30:57 GMT	Michael Olson <mwolson@gnu.org>	patch-61
+
+    Summary:
+      planner-publish: Fix double-escaping of task descriptions.
+    Revision:
+      planner-el--devel--0--patch-61
+
+    * planner-publish.el (planner-publish-task-tag): Fix double-escaping bug.
+
+    modified files:
+     planner-publish.el
+
+
+2006-06-29 03:03:58 GMT	Michael Olson <mwolson@gnu.org>	patch-60
+
+    Summary:
+      Quick grammar fix in README.
+    Revision:
+      planner-el--devel--0--patch-60
+
+    * README: Grammar fix.
+    
+
+    modified files:
+     README
+
+
+2006-06-28 21:03:18 GMT	Michael Olson <mwolson@gnu.org>	patch-59
+
+    Summary:
+      Add load-path example for Remember.
+    Revision:
+      planner-el--devel--0--patch-59
+
+    * scripts/planner-build.el: Add a load-path example for Remember.
+
+    modified files:
+     scripts/planner-build.el
+
+
+2006-06-28 20:49:58 GMT	Michael Olson <mwolson@gnu.org>	patch-58
+
+    Summary:
+      Explain a prerequisite for compilation.
+    Revision:
+      planner-el--devel--0--patch-58
+
+    * scripts/planner-build.el: Use a more standard default path for each of
+      the extensions.
+    
+    * planner-el.texi (Advanced Installation): Mention
+      scripts/planner-build.el.
+    
+    * README: Ditto.
+
+    modified files:
+     README planner-el.texi scripts/planner-build.el
+
+
+2006-06-28 01:48:09 GMT	Michael Olson <mwolson@gnu.org>	patch-57
+
+    Summary:
+      Mention Emacs Muse in README.
+    Revision:
+      planner-el--devel--0--patch-57
+
+    * README: Mention that Emacs Muse must be installed before compiling.
+    
+
+    modified files:
+     README
+
+
+2006-06-27 04:26:04 GMT	Michael Olson <mwolson@gnu.org>	patch-56
+
+    Summary:
+      Include autoloads file in the distribution.
+    Revision:
+      planner-el--devel--0--patch-56
+
+    * Makefile (distclean, dist): Include autoloads file in the distribution.
+
+    modified files:
+     Makefile
+
+
 2006-06-27 03:56:26 GMT	Michael Olson <mwolson@gnu.org>	patch-54
 
     Summary:
