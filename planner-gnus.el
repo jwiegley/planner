@@ -71,7 +71,7 @@ Adds special planner keybindings to the variable
 `gnus-summary-article-map'. From a summary or article buffer, you
 can type C-c C-t to call planner-create-task-from-buffer."
   (eval-after-load 'gnus-sum
-    `(define-key gnus-summary-article-map ,(kbd "C-c C-t")
+    `(define-key gnus-summary-mode-map ,(kbd "C-c C-t")
        'planner-create-task-from-buffer))
   (eval-after-load 'gnus
     `(define-key gnus-article-mode-map ,(kbd "C-c C-t")
