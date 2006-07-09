@@ -364,7 +364,7 @@ Download and unpack either
 @end example
 @end enumerate
 
-@subsubsection Updating Your Version
+@subheading Updating Your Version
 
 Download a new version and extract it over the old directory. Don't
 forget to delete any byte-compiled files (@file{*.elc}) in the
@@ -414,7 +414,7 @@ Then add the following lines to your @code{~/.emacs}:
 You can also browse the Arch repository on the web at
 @url{http://www.mwolson.org/cgi-bin/archzoom/archzoom.cgi/mwolson@@gnu.org--2006/planner}.
 
-@subsubsection Updating Your Version
+@subheading Updating Your Version
 @cindex Arch, updating from
 
 To stay up-to-date using Arch, here are some commands that might be
@@ -465,7 +465,7 @@ apt-get install muse-el
 apt-get install planner-el
 @end example
 
-@subsubsection Updating Your Version
+@subheading Updating Your Version
 @cindex Debian package, updating
 
 If you installed Planner from Debian, do @kbd{apt-get update; apt-get
