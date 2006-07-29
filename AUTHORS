@@ -7,10 +7,15 @@ documentation to Planner.
 John Wiegley: Original author
               (assigned past and future changes for Emacs)
 
-Michael Olson: Current maintainer
+John Sullivan: Current maintainer
+               Author of:
+                - planner-el.texi
+               (assigned past and future changes)
+
+Michael Olson: Previous maintainer (2005-11-01 to 2006-06-27)
                (assigned past and future changes for Emacs)
 
-Sacha Chua: Previous maintainer from 2004-01-01 to 2005-10
+Sacha Chua: Previous maintainer (2004-01-01 to 2005-10-31)
             Author of:
              - planner-accomplishments.el
              - planner-cyclic.el
@@ -227,12 +232,6 @@ David D. Smith: Contributor:
                  - planner-publish.el
                  - planner-rss.el (15+ lines changed)
                  - planner.el (15+ lines changed)
-
-John Sullivan: Author of:
-                - planner-el.texi
-               Contributor:
-                - planner-w3m.el
-               (assigned past and future changes)
 
 Yvonne Thomson: Author of:
                  - planner-wl.el

@@ -251,7 +251,7 @@ Sample Configuration Files
 @chapter Preface
 
 This document describes Planner, which was written by John Wiegley and
-is now maintained by Michael Olson (@pxref{Acknowledgements}).
+is now maintained by John Sullivan (@pxref{Acknowledgements}).
 
 This document is a work in progress, and your contribution will be
 greatly appreciated. Please e-mail comments and suggestions to the
@@ -261,9 +261,8 @@ e-mail, include the word @samp{Planner}.
 This documentation is available in eye-pleasing formats including PDF
 and HTML at @url{http://www.mwolson.org/static/doc/}.
 
-Documentation author: John Sullivan @email{john@@wjsullivan.net}
-
-Maintainer: Michael Olson @email{mwolson@@gnu.org}
+Documentation author and maintainer: John Sullivan
+@email{john@@wjsullivan.net}
 
 @*
 John Sullivan (johnsu01)@*
@@ -412,7 +411,7 @@ Then add the following lines to your @code{~/.emacs}:
 @end example
 
 You can also browse the Arch repository on the web at
-@url{http://www.mwolson.org/cgi-bin/archzoom/archzoom.cgi/mwolson@@gnu.org--2006/planner}.
+@url{http://www.mwolson.org/cgi-bin/archzoom/archzoom.cgi/mwolson@gnu.org--2006-planner-el}.
 
 @subheading Updating Your Version
 @cindex Arch, updating from
@@ -6348,8 +6347,8 @@ is also available via Gmane with the identifier
 
 @end table
 
-You can also contact the maintainer of Planner, Michael Olson, at
-@email{mwolson@@gnu.org}, but it is better to use the other options.
+You can also contact the maintainer of Planner, John Sullivan, at
+@email{john@@wjsullivan.net}, but it is better to use the other options.
 
 You can explore the relevant sections of the EmacsWiki.org:
 
@@ -6384,6 +6383,11 @@ Sullivan at @email{johnsu01@@yahoo.com}.
 @cindex maintainers
 
 @itemize
+@item 2006
+
+John Sullivan volunteered to maintain Planner, and Michael Olson passed
+the maintainership on to him with the release of Planner 3.41.
+
 @item 2005
 
 Michael Olson, Sacha Chua, and several others from the Planner community
