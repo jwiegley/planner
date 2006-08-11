@@ -214,7 +214,8 @@ If ARROWS is non-nil, include prev/next month arrows."
 
 (defun planner-calendar-published-file-href (page &optional name nop)
   "Return an href anchor string to the published PAGE if PAGE exists."
-  (if (and (planner-page-file page)
+  (if (and (stringp page)
+	   (planner-page-file page)
 	   (not (planner-private-p (planner-page-file page))))
       (planner-link-href page (or name page))
     (or name page)))

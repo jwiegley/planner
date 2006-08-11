@@ -1,3 +1,8 @@
+2006-08-11  Michael Olson  <mwolson@gnu.org>
+
+	* planner-calendar.el (planner-calendar-published-file-href): Fix
+	potential error when the calendar for next month is empty.
+
 2006-08-08  Michael Olson  <mwolson@gnu.org>
 
 	* ChangeLog.1: Rename from ChangeLog.2004 to comply with standards
