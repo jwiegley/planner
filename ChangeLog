@@ -1,0 +1,15 @@
+2006-08-08  Michael Olson  <mwolson@gnu.org>
+
+	* ChangeLog.1: Rename from ChangeLog.2004 to comply with standards
+	in the Emacs source tree.
+
+	* ChangeLog.2: Rename from ChangeLog.2005 to comply with standards
+	in the Emacs source tree.
+
+	* ChangeLog.3: New file created from the old ChangeLog.
+
+See ChangeLog.3 for earlier changes.
+
+;; Local Variables:
+;; coding: utf-8
+;; End:
