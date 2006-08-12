@@ -1,4 +1,5 @@
-.PHONY: all autoloads lisp doc clean realclean distclean fullclean install test dist release debbuild debrevision debrelease
+.PHONY: all autoloads lisp doc clean realclean distclean fullclean install
+.PHONY: test dist release debbuild debrevision debrelease
 .PRECIOUS: %.elc
 
 include Makefile.defs

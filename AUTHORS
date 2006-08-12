@@ -269,4 +269,9 @@ Contributed software
 
 This is a listing of authors of software in the `contrib' directory.
 
-John Wiegley: schedule.el, timeclock.el
+Adrian Aichner: Contributor:
+                 - timeclock.el (15+ lines changed)
+
+John Wiegley: Author:
+               - schedule.el
+               - timeclock.el

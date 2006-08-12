@@ -1,3 +1,15 @@
+2006-08-12  Michael Olson  <mwolson@gnu.org>
+
+	* Makefile (.PHONY): Split long line.
+
+	* AUTHORS: Bookkeeping.
+
+	* contrib/schedule.el: Update header.
+
+	* contrib/timeclock.el: Install Adrian's changes from 2006-08-01.
+	Note that this version of the file is not distributed with GNU
+	Emacs, but with Planner instead.
+
 2006-08-11  Michael Olson  <mwolson@gnu.org>
 
 	* planner-calendar.el (planner-calendar-published-file-href): Fix
@@ -12,6 +24,19 @@
 	in the Emacs source tree.
 
 	* ChangeLog.3: New file created from the old ChangeLog.
+
+2006-08-01  Adrian Aichner  <adrian@xemacs.org>
+
+	* timeclock.el: Keep timeclock-file buffer around, so that an
+	encrypted timeclock-file does not have to be opened on each
+	clocking operation (requiring entry of encryption key).
+	* timeclock.el (timeclock-get-timeclock-file-buffer): New.
+	* timeclock.el (timeclock-log): Don't kill timeclock-file buffer.
+	* timeclock.el (timeclock-log-data): Use
+	`timeclock-get-timeclock-file-buffer', which avoids reading
+	timeclock-file, if it's already in a live buffer.
+	* timeclock.el (timeclock-find-discrep): Ditto.
+	* timeclock.el (timeclock-visit-timelog): Ditto.
 
 See ChangeLog.3 for earlier changes.
 
