@@ -48,6 +48,8 @@
 
 ;; Trent Buck overhauled the code for Planner-Muse.
 
+;; Marko Schütz provided a bugfix.
+
 ;;; CODE
 
 (require 'planner-timeclock)
@@ -185,14 +187,14 @@ If PROJ-NAME is nil, return `timeclock-project-alist'."
   (let ((projects)
         (entry-list (timeclock-project-alist)))
     ;; Looping on entries. Each entry is in the form (PROJECT (TASKS
-    ;; DATA)). We keep only entries for witch PROJECT-NAME matches
+    ;; DATA)). We keep only entries for which PROJECT-NAME matches
     ;; PROJECT.
     (if (not proj-name)
         entry-list
       (while entry-list
         (let* ((proj (car entry-list))
                (proj-entry-name (car proj)))
-          (if (and proj-name
+          (if (and proj-name proj-entry-name
                    (string-match (concat "^\\[\\[" proj-name "\\]\\]")
                                  proj-entry-name))
               (if projects

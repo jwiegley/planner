@@ -1,3 +1,9 @@
+2006-08-18  Marko Schütz  <schutz_m@usp.ac.fj>
+
+	* planner-timeclock-summary-proj.el
+	(planner-timeclock-proj-entries): Fix bug that occurred when a
+	timeclock entry had no project name.
+
 2006-08-12  Michael Olson  <mwolson@gnu.org>
 
 	* Makefile (.PHONY): Split long line.
