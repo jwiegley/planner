@@ -2069,7 +2069,7 @@ complete a task, see the section in
 @comment  node-name,  next,  previous,  up
 @subsubsection Associating Tasks with Multiple Projects
 @cindex multiple projects
-@cindex planner-multi.el, using
+@cindex @file{planner-multi.el}, using
 
 You can use @file{planner-multi.el} to associate a task with more than
 one project. That way, you can easily keep GTD-style context lists as
@@ -2915,7 +2915,7 @@ Warning: this function can be slow, as it checks all the day pages!
 @node planner-registry, planner-zoom ,<tasks> tag, Task Reports and Overviews
 @comment  node-name,  next,  previous,  up
 @section planner-registry
-@cindex planner-registry
+@cindex @file{planner-registry.el}, using
 
 The @file{planner-registry} module provides a way to keep track of all
 the URLs in your projects, and to list them depending on the current
@@ -2994,7 +2994,7 @@ Level used by the @code{planner-registry-show} function.
 @node planner-zoom, , planner-registry, Task Reports and Overviews
 @comment  node-name,  next,  previous,  up
 @section planner-zoom
-@cindex planner-zoom
+@cindex @file{planner-zoom.el}, using
 @cindex view, weekly
 @cindex view, quarterly
 @cindex view, monthly
@@ -3894,6 +3894,7 @@ to all matching RSS feeds specified by
 
 @node iCal Task Publication, RDF Publication, RSS Publication, Publishing
 @comment  node-name,  next,  previous,  up
+@cindex @file{planner-ical.el}, using
 @subsection iCal Publication
 
 iCal is an Internet Engineering Task Force (IETF) standard for
@@ -4134,6 +4135,7 @@ will be able to jump straight to that message.
 @node Unix mail, Gnus, E-mail, E-mail
 @comment  node-name,  next,  previous,  up
 @subsection Unix mail
+@cindex @file{planner-unix-mail.el}, using
 @cindex mbox, using Planner with
 @cindex Unix mail, using Planner with
 @cindex mail client, using Planner with
@@ -4166,6 +4168,7 @@ create any new keybindings.
 @subsection Gnus
 @cindex Gnus, using Planner with
 @cindex mail client, using Planner with, Gnus
+@cindex @file{planner-gnus.el}, using
 
 To use this module, make sure that it is in your load path and put
 this in your @file{.emacs} (or @file{_emacs}):
@@ -4202,6 +4205,7 @@ gnus}.
 @subsection VM
 @cindex VM, using Planner with
 @cindex mail client, using Planner with, VM
+@cindex @file{planner-vm.el}, using
 
 To use this module, make sure that @file{planner-vm.el} is in your load
 path and add this to your @file{.emacs} (or @file{_emacs}):
@@ -4231,6 +4235,7 @@ keybindings.
 @subsection Wanderlust
 @cindex Wanderlust, using Planner with
 @cindex mail client, using Planner with, Wanderlust
+@cindex @file{planner-wl.el}, using
 
 To use this module, make sure that @file{planner-wl.el} is in your
 load path and add this to your @file{.emacs} (or @file{_emacs}):
@@ -4260,6 +4265,7 @@ This binds @kbd{F} to @command{planner-create-task-from-buffer}.
 @subsection MH-E
 @cindex MH-E, using Planner with
 @cindex mail client, using Planner with, MH-E
+@cindex @file{planner-mhe.el}, using
 
 To use this module, make sure that @file{planner-mhe.el} is in your
 load path and add this to your @file{.emacs} (or @file{_emacs}):
@@ -4279,6 +4285,7 @@ the correct annotation.
 @subsection Rmail
 @cindex Rmail, using Planner with
 @cindex mail client, using Planner with, Rmail
+@cindex @file{planner-rmail.el}, using
 
 To use this module, make sure that @file{planner-rmail.el} is in your
 load path and add this to your @file{.emacs} (or @file{_emacs}):
@@ -5467,7 +5474,7 @@ system.
 @comment  node-name,  next,  previous,  up
 @subsection Log Edit
 @cindex cvs, using Planner with
-@cindex @file{planner-log-edit}, using
+@cindex @file{planner-log-edit.el}, using
 @cindex version control, using Planner with
 
 This module allows you to automatically record CVS (and VC) commits
@@ -6372,7 +6379,7 @@ questions.
 There is an Orkut community called PlannerMode.
 
 For issues relating to this documentation, please contact John
-Sullivan at @email{johnsu01@@yahoo.com}.
+Sullivan at @email{john@@wjsullivan.net}.
 
 @node Acknowledgements, GNU General Public License, Getting Help, Top
 @comment  node-name,  next,  previous,  up
