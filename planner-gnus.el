@@ -215,9 +215,12 @@ Raise this if you have problems browsing gnus URLs.")
               (when (cadr (split-string group ":")) ;; group contains a :
                 (setq group (concat (car (split-string group ":")) ":"
                                     reg-group)))))))
-      (condition-case err
-          (gnus-fetch-group group planner-gnus-group-threshold)
-        (error (gnus-fetch-group group)))
+      ;; Don't automatically select an article, as that might mark
+      ;; unread articles as read.
+      (let ((gnus-auto-select-first nil))
+        (condition-case err
+            (gnus-fetch-group group planner-gnus-group-threshold)
+          (error (gnus-fetch-group group))))
       (mapcar
        (lambda (article-id)
          (gnus-summary-goto-article article-id nil t))

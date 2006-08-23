@@ -107,7 +107,7 @@ Travis B. Hartwell: Contributor
                     (assigned past and future changes)
 
 Magnus Henoch: Contributor:
-                - planner-gnus.el (4 lines changed)
+                - planner-gnus.el (5 lines changed)
 
 Yann Hodique: Contributor:
                - planner-bbdb.el (6 lines changed)
@@ -222,6 +222,9 @@ Stefan Reichör: Author of:
                  - planner.el (15+ lines changed)
                 (assigned past and future changes)
 
+Marko Schütz: Contributor:
+               - planner-timeclock-summary-proj.el (1 line changed)
+
 Dale P. Smith: Contributor:
                 - planner-gnus.el (2 lines changed)
                 - planner-publish.el (15+ lines changed)
@@ -275,3 +278,7 @@ Adrian Aichner: Contributor:
 John Wiegley: Author:
                - schedule.el
                - timeclock.el
+
+;; Local Variables:
+;; coding: utf-8
+;; End:
