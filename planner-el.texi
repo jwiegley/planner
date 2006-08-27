@@ -1242,19 +1242,23 @@ anything you want in this section, or remove it from your
 @code{planner-day-page-template} entirely.
 
 You may be interested in @file{remember-planner.el}, part of the
-Remember package. @code{remember-planner.el} makes it easy to create
-notes from anywhere in Emacs, and it uses the same hyperlink-sensing
-code that Planner uses. Notes added by @code{remember-planner.el} look
-like this:
+Remember package (see @inforef{Top, remember-el, remember-el} and
+@uref{https://gna.org/projects/remember-el/}).
+@code{remember-planner.el} makes it easy to create notes from anywhere
+in Emacs, and it uses the same context-sensing code that Planner uses.
+Notes added by @code{remember-planner.el} look like this:
 
 @example
 .#1 Headline 00:00
 Body
+
+[[context hyperlink]]
 @end example
 
 and are outlined at the H2 level in published HTML.
 
-If you include the following in your @file{~/.emacs}:
+You can easily create context-aware notes if you include the following
+in your @file{~/.emacs}:
 
 @example
 (require 'remember-planner)
@@ -1262,26 +1266,29 @@ If you include the following in your @file{~/.emacs}:
 (setq remember-annotation-functions planner-annotation-functions)
 @end example
 
-you can easily create context-aware notes. @kbd{M-x remember} will
-create a dedicated buffer for you to fill in your note. If Planner
-recognizes the buffer as one with context then it will include a
-hyperlink at the bottom. The first line is used as a title, so make it
-short and meaningful. The rest of the text will be used as the body of
-the note. Try it now by creating a note, perhaps about things you'd
-like to remember from this tutorial.
+Then @kbd{M-x remember} will open a dedicated buffer for you to write
+your note. If Planner recognizes your current buffer as one with
+context then it will include a hyperlink at the bottom of the note.
+The first line of the note is used as a title, so make it short and
+meaningful. The rest of the text will be used as the body. Try it now
+by creating a note, perhaps about things you'd like to remember from
+this tutorial.
 
 Typing @kbd{C-c C-c} after composing will prompt for a plan page to
-put this on, with auto-completion. By default, notes will go on
-today's page only. If you specify a plan page, the note will go on
-today's page and on the plan page. Let's try specifying
-@samp{TaskPool} for the note.
+put the note on, with auto-completion. If you don't enter a page, the
+note will just be saved on today's page. If you do specify a plan
+page, the note will go on both today's page and on the specified page.
+Let's try specifying @samp{TaskPool} for the note.
 
 If you look at today's page, you'll find a timestamped note that links
 to @samp{TaskPool}. Likewise, @samp{TaskPool} contains a note that
-links to today's page. Because the text is copied, changes in one will
-not be automatically reflected in the other. To update the linked page
-after editing a note, use @kbd{M-x planner-update-note}. To change the
-plan page of a note, use @kbd{planner-replan-note}.
+links to today's page. To change the plan page of a note, use
+@kbd{planner-replan-note}.
+
+If you decide to edit the note on one of these pages after it has been
+saved, be aware that your changes will not be automatically reflected
+on the linked page. To update the linked page after editing a note,
+use @kbd{M-x planner-update-note}.
 
 @node Hyperlinks, Example Page, Notes, Getting Started
 @section Hyperlinks
