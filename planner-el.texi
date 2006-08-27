@@ -525,8 +525,9 @@ source files for your planner will reside. This is the directory where
 you will actually visit files and edit them.  These files must have a
 ``.muse'' extension.
 
-The second directory (@file{~/public_html/Plans}) is the directory where
-your planner files will be published by Muse as XHTML.
+The second directory (@file{~/public_html/Plans}) is the directory
+where your planner files will be published by Muse as XHTML
+(@pxref{Publishing}).
 
 After you have added this code, make sure to either evaluate it or
 restart Emacs.
@@ -3519,30 +3520,17 @@ keybindings.
 
 @node Publishing, Experimental Functions, Interactive Lisp, More about Planner
 @section Publishing
+@cindex publishing
 
-You can publish your planner files to HTML and put them on a normal
-web server--no special server support required. This gives you an easy
-way to keep other people up to date on your tasks, keep a web log, or
-simply organize information.
-
-Publish your planner wiki with @kbd{C-c C-p}
-(@code{muse-project-publish}). You can publish individual files with
-@kbd{C-c C-t} (@code{muse-publish-this-file}). To automatically publish
-files when you save them, add the following code to your
-@file{~/.emacs}:
-
-@example
-(eval-after-load "muse-mode"
-  (add-hook 'after-save-hook
-            #'(lambda ()
-                (when (planner-derived-mode-p 'muse-mode)
-                  (muse-project-publish nil)))
-            nil t))
-@end example
+You can publish your planner files to a variety of different formats.
+For example, you can publish your planner in HTML and put it on a
+normal web server. No special server support is required. This gives
+you an easy way to keep other people up to date on your tasks, keep a
+web log, or simply organize information.
 
 Published files are stored in the path specified by
-@code{muse-project-alist} for your Planner project.  Just copy the
-contents of this directory to your webserver, and you're all set! Of
+@code{muse-project-alist} for your Planner project. Just copy the
+contents of this directory to your web server, and you're all set! Of
 course, publishing is completely optional.
 
 Here are some more features related to publishing:
@@ -3556,21 +3544,41 @@ Here are some more features related to publishing:
 * RDF Publication::             planner-rdf.el
 @end menu
 
-
 @node Publishing Planner pages, Publishing Calendars, Publishing, Publishing
 @comment  node-name,  next,  previous,  up
 @subsection Publishing Planner pages
 @cindex publishing
 @cindex @file{planner-publish.el}, using
 
-The task of publishing Planner pages is handled by
-@file{planner-publish.el}.  It is loaded by default when Planner is
-loaded.  To publish an entire Planner project, set up
-@code{muse-project-alist} (@pxref{Creating Your Planner}) and hit
-@kbd{C-c C-p}.  To publish an individual page, hit @kbd{C-c C-t}.
-
 Publishing works by providing Muse with the settings and environment for
 Planner publishing.
+
+First, make sure that you have set up a proper
+@code{muse-project-alist} (@pxref{Creating Your Planner}).
+
+Second, add:
+
+@example
+(require 'planner-publish)
+@end example
+
+to your @file{.emacs} (or @file{_emacs}).
+
+To publish your entire Planner project, hit @kbd{C-c C-p}
+(@code{muse-project-publish}). To publish just the current buffer, hit
+@kbd{C-c C-t} (@code{muse-publish-this-file}).
+
+To automatically publish files when you save them, add the following
+code to your @file{~/.emacs} (or @file{_emacs}):
+
+@example
+(eval-after-load "muse-mode"
+  (add-hook 'after-save-hook
+            #'(lambda ()
+                (when (planner-derived-mode-p 'muse-mode)
+                  (muse-project-publish nil)))
+            nil t))
+@end example
 
 @subheading Styles provided
 
