@@ -4004,7 +4004,7 @@ Return nil if not found."
   "Display all tasks that match the STATUS regular expression on all day pages.
 If PAGES is:
   t: check all pages
-  nil: check all plan pages
+  nil: check all day pages
   regexp: search all pages whose filenames match the regexp
   list of page names: limit to those pages
   alist of page/filename: limit to those pages
