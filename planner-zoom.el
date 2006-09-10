@@ -229,7 +229,7 @@ So,
 
 (defun planner-zoom-iup (name other-window)
   "Move to the next higher level in the hierarchy."
-  (interactive (list (buffer-name)
+  (interactive (list (planner-page-name)
                      current-prefix-arg))
   (when other-window (other-window 1))
   (planner-find-file (planner-zoom-up name))
@@ -240,7 +240,7 @@ So,
 If the current date is within the higher-level time range, zoom
 to the lower level time range that also contains today.
 Otherwise, just go to the first lower-level time range."
-  (interactive (list (buffer-name)
+  (interactive (list (planner-page-name)
                      current-prefix-arg))
   (when other-window (other-window 1))
   (planner-find-file (planner-zoom-down name))
@@ -251,7 +251,7 @@ Otherwise, just go to the first lower-level time range."
 hierarchy.  With a numeric prefix arg, move by that number of
 time ranges.  With a non-numeric prefix arg, show the desired
 page in the other window."
-  (interactive (list (buffer-name)
+  (interactive (list (planner-page-name)
                      (if (numberp current-prefix-arg)
                          current-prefix-arg
                        1)
@@ -265,7 +265,7 @@ page in the other window."
 hierarchy.  With a numeric prefix arg, move by that number of
 time ranges.  With a non-numeric prefix arg, show the desired
 page in the other window."
-  (interactive (list (buffer-name)
+  (interactive (list (planner-page-name)
                      (if (numberp current-prefix-arg)
                          current-prefix-arg
                        1)

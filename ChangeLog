@@ -1,3 +1,11 @@
+2006-09-10  Michael Olson  <mwolson@gnu.org>
+
+	* planner-zoom.el (planner-zoom-iup, planner-zoom-idown)
+	(planner-zoom-inext, planner-zoom-iprev): Use planner-page-name
+	instead of buffer-name.  This fixes a match-string error, and
+	makes things work when you have muse-file-extension set to
+	something.
+
 2006-09-04  John Sullivan  <john@wjsullivan.net>
 
 	* planner.el (planner-list-tasks-with-status): Fix doc string.
