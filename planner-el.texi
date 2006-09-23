@@ -395,7 +395,7 @@ tla register-archive http://arch.gna.org/planner-el/archive-2006
 tla get mwolson@@gnu.org--2006/muse--main--1.0 muse
 
 # Download planner module into the planner/ subdirectory
-tla get mwolson@@gnu.org--2006-planner-el/planner-el--devel--1.0 planner
+tla get mwolson@@gnu.org--2006-planner-el/planner-el--devel--0 planner
 @end example
 
 Then add the following lines to your @code{~/.emacs}:
