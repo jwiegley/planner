@@ -1,3 +1,9 @@
+2006-09-26  Michael Olson  <mwolson@gnu.org>
+
+	* planner.el (planner-setup-highlighting): Don't quote
+	beginning-of-line.  This should fix a bug that was noticed in
+	recent Emacs 22 builds.
+
 2006-09-23  John Sullivan  <john@wjsullivan.net>
 
 	* planner-el.texi (Installing from Arch): Fix arch revision

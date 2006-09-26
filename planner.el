@@ -1072,10 +1072,10 @@ does to the diary buffer."
   (set (make-local-variable 'font-lock-unfontify-region-function)
        'planner-unhighlight-region)
   (set (make-local-variable 'font-lock-defaults)
-       `(nil t nil nil 'beginning-of-line
-             (font-lock-fontify-region-function . muse-colors-region)
-             (font-lock-unfontify-region-function
-              . planner-unhighlight-region))))
+       `(nil t nil nil beginning-of-line
+         (font-lock-fontify-region-function . muse-colors-region)
+         (font-lock-unfontify-region-function
+          . planner-unhighlight-region))))
 
 (defun planner-muse-handle-date-link (&optional string)
   "If STRING or point has a date, match and return it."
