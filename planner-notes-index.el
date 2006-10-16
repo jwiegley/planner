@@ -1,6 +1,6 @@
 ;;; planner-notes-index.el --- Note indexing support for the Emacs planner
 
-;; Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2005, 2006 Free Software Foundation, Inc.
 
 ;;; Commentary:
 
@@ -332,13 +332,16 @@ The current year is included."
 
 ;;;_* Initialization
 
-(add-to-list 'planner-markup-tags
-             '("planner-notes-index" nil t nil
-               planner-notes-index-tag))
-(add-to-list 'planner-markup-tags
-             '("planner-notes-index-month-table" nil t nil
-               planner-notes-index-month-table-tag))
-(planner-update-wiki-project)
+(add-hook 'muse-publish-markup-tags
+          (if (featurep 'muse-nestable-tags)
+              '("planner-notes-index" nil t nil planner-notes-index-tag)
+            '("planner-notes-index" nil t planner-notes-index-tag)))
+(add-hook 'muse-publish-markup-tags
+          (if (featurep 'muse-nestable-tags)
+              '("planner-notes-index-month-table" nil t nil
+                planner-notes-index-month-table-tag)
+            '("planner-notes-index-month-table" nil t
+              planner-notes-index-month-table-tag)))
 
 (provide 'planner-notes-index)
 

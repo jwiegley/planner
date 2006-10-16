@@ -302,15 +302,21 @@ For more on the structure of this list, see `muse-publish-markup-regexps'."
   :type '(alist :key-type symbol :value-type function))
 
 (defcustom planner-authz-markup-tags
-  '(("authz"   t t planner-authz-tag)
-    ("diary-section" t t planner-authz-diary-section-tag)
-    ("note"    t t planner-authz-note-tag)
-    ("task"    t t planner-authz-task-tag))
+  (if (featurep 'muse-nested-tags)
+      '(("authz"   t t nil planner-authz-tag)
+        ("diary-section" t t nil planner-authz-diary-section-tag)
+        ("note"    t t nil planner-authz-note-tag)
+        ("task"    t t nil planner-authz-task-tag))
+    '(("authz"   t t planner-authz-tag)
+      ("diary-section" t t planner-authz-diary-section-tag)
+      ("note"    t t planner-authz-note-tag)
+      ("task"    t t planner-authz-task-tag)))
   "A list of tag specifications for authorization markup."
   :group 'planner-authz
   :type '(repeat (list (string :tag "Markup tag")
                        (boolean :tag "Expect closing tag" :value t)
                        (boolean :tag "Parse attributes" :value nil)
+                       (boolean :tag "Nestable" :value nil)
                        function)))
 
 (defcustom planner-authz-mason-markup-strings

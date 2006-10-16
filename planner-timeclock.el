@@ -1,6 +1,6 @@
 ;;; planner-timeclock.el --- Timeclock integration for the Emacs Planner
 
-;; Copyright (C) 2001, 2004, 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2001, 2004, 2005, 2006 Free Software Foundation, Inc.
 ;; Parts copyright (C) 2005 Peter K. Lee
 
 ;; Author: John Wiegley <johnw@gnu.org>
@@ -140,23 +140,36 @@
       (kill-buffer (current-buffer)))))
 
 ;;;###autoload
-(defun planner-timeclock-report-tag (beg end highlight-p)
-  "Replace the region BEG to END with a timeclock report.
-If HIGHLIGHT-P is non-nil, the output is also displayed."
+(defun planner-colors-timeclock-report-tag (beg end)
+  "Replace the region BEG to END with a timeclock report, colorizing
+the result."
   (require 'timeclock)
-  (if highlight-p
-      (add-text-properties
-       beg end (list 'display
-                     (with-temp-buffer
-                       (timeclock-generate-report muse-publishing-p)
-                       (buffer-string))))
-    (delete-region beg end)
-    (timeclock-generate-report muse-publishing-p)
-    (add-text-properties beg (point) '(read-only t))))
+  (add-text-properties
+   beg end (list 'display
+                 (with-temp-buffer
+                   (timeclock-generate-report muse-publishing-p)
+                   (buffer-string)))))
 
-(add-to-list 'planner-markup-tags
-             '("timeclock-report" nil nil t planner-timeclock-report-tag))
-(planner-option-customized 'planner-markup-tags planner-markup-tags)
+(defun planner-publish-timeclock-report-tag (beg end)
+  "Replace the region BEG to END with a timeclock report."
+  (require 'timeclock)
+  (delete-region beg end)
+  (timeclock-generate-report muse-publishing-p)
+  (add-text-properties beg (point) '(read-only t)))
+
+(add-hook 'muse-colors-markup-tags
+          (if (featurep 'muse-nested-tags)
+              '("timeclock-report" nil nil nil
+                planner-colors-timeclock-report-tag)
+            '("timeclock-report" nil nil
+              planner-colors-timeclock-report-tag)))
+
+(add-hook 'muse-publish-markup-tags
+          (if (featurep 'muse-nested-tags)
+              '("timeclock-report" nil nil nil
+                planner-publish-timeclock-report-tag)
+            '("timeclock-report" nil nil
+              planner-publish-timeclock-report-tag)))
 
 (defun planner-timeclock-task-plan (info)
   "Return the first plan page associated with INFO."

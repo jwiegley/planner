@@ -1,3 +1,23 @@
+2006-10-16  Michael Olson  <mwolson@gnu.org>
+
+	* planner-authz.el (planner-authz-markup-tags): Adapt for nested
+	tag support.
+
+	* planner-notes-index.el: Use add-hook instead of add-to-list, in
+	case muse-publish has not been loaded yet.  Use
+	muse-publish-markup-tags instead of planner-markup-tags.
+
+	* planner-publish.el (planner-publish-markup-tags): Adapt for
+	nested tag support.  Make the <nested-section> tag nestable.
+
+	* planner-timeclock.el: Use add-hook instead of add-to-list, in
+	case muse-publish has not been loaded yet.  Use
+	muse-publish-markup-tags and muse-colors-markup-tags instead of
+	planner-markup-tags.
+	(planner-colors-timeclock-report-tag)
+	(planner-publish-timeclock-report-tag): New functions created from
+	planner-timeclock-report-tag.
+
 2006-09-26  Michael Olson  <mwolson@gnu.org>
 
 	* planner.el (planner-setup-highlighting): Don't quote
