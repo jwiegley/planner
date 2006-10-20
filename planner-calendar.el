@@ -376,9 +376,13 @@ support POSIX \"ln\"."
 
 (eval-after-load "planner-publish"
   '(progn
-     (add-to-list 'planner-publish-markup-tags
-		  '("calendar" nil t planner-publish-calendar-tag)
-		  t)
+     (if (featurep 'muse-nested-lists)
+	 (add-to-list 'planner-publish-markup-tags
+		      '("calendar" nil t nil planner-publish-calendar-tag)
+		      t)
+       (add-to-list 'planner-publish-markup-tags
+		    '("calendar" nil t planner-publish-calendar-tag)
+		    t))
      (add-to-list 'planner-publish-finalize-regexps
 		  '(200 "<\\(calendar\\)\\(\\s-+[^<>\n]+[^</>\n]\\)?\\(/\\)?>"
 			0 muse-publish-markup-tag))))

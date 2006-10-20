@@ -1,3 +1,8 @@
+2006-10-20  Michael Olson  <mwolson@gnu.org>
+
+	* planner-calendar.el: Adapt for nested tag support.  Thanks to
+	Charles philip Chan for noticing.
+
 2006-10-16  Michael Olson  <mwolson@gnu.org>
 
 	* planner-authz.el (planner-authz-markup-tags): Adapt for nested
