@@ -376,7 +376,7 @@ support POSIX \"ln\"."
 
 (eval-after-load "planner-publish"
   '(progn
-     (if (featurep 'muse-nested-lists)
+     (if (featurep 'muse-nested-tags)
 	 (add-to-list 'planner-publish-markup-tags
 		      '("calendar" nil t nil planner-publish-calendar-tag)
 		      t)
