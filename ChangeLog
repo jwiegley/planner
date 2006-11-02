@@ -3,6 +3,17 @@
 	* planner-calendar.el: Adapt for nested tag support.  Thanks to
 	Charles philip Chan for noticing.
 
+2006-10-16  Adrian Aichner  <adrian@xemacs.org>
+
+	* timeclock.el: Typo fixes.
+	* timeclock.el (timeclock-history): New.
+	* timeclock.el (timeclock-use-history): New.
+	* timeclock.el (timeclock-log): Honor timeclock-use-history.
+	* timeclock.el (timeclock-read-moment): Provide error on
+	unexpected data in timeclock-file, going unnoticed until now.
+	* timeclock.el (timeclock-find-discrep): Report line number of
+	discrepancy to ease manual fixing.
+
 2006-10-16  Michael Olson  <mwolson@gnu.org>
 
 	* planner-authz.el (planner-authz-markup-tags): Adapt for nested
