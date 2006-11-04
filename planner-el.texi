@@ -5523,19 +5523,33 @@ note.
 @subsection PSVN
 @cindex PSVN
 @cindex @file{planner-psvn.el}, using
+@cindex Subversion, integration with
 
-This file allows you to refer to your svn changesets easily from within
-a Planner page.  You can load the module with @code{(require
-'planner-psvn)}.
+This module enables you to refer to your Subversion (svn) changesets
+easily from within a Planner page, and to have your svn commits recorded
+automatically as notes in your planner.
 
-PSVN URLs are of the form
+You must also have @file{psvn.el}, which is often packaged with
+Subversion in GNU/Linux distributions.
+
+You can then load the module by adding @code{(require 'planner-psvn)} to
+your @file{~/.emacs}.
+
+Once the module is loaded, Planner will pick up annotation information
+from any psvn *svn-log-view* buffer. If you create a task or note while
+in such a buffer, that task will have a hyperlink you can follow to
+return to the changeset later.
+
+These hyperlinks are of the form
 @samp{psvn://http://my.svn-repos.at/svn/project1/trunk@@39}
 
-Additionally there is functionality to generate a note for your commits
-via subversion: just set
-@var{planner-psvn-log-edit-notice-commit-function} to t.
+Additionally, you can have notes for your commits automatically
+generated. Set @var{planner-psvn-log-edit-notice-commit-function} to t
+to enable this.
 
-@file{planner-psvn.el} does not define any interactive functions.
+By default, these commit notes will include a list of the files
+modified. If you would prefer to have this list not included, set
+@var{planner-psvn-log-edit-include-files-flag} to nil.
 
 @node XTLA, Gnats, PSVN, Tracking Development
 @comment  node-name,  next,  previous,  up
