@@ -1,6 +1,7 @@
 2006-11-04  John Sullivan  <john@wjsullivan.net>
 
 	* planner-el.texi (PSVN): Document all options and dependencies.
+	(Hyperlinks): Reference Muse hyperlink syntax.
 
 	* planner.el (planner-search-notes-internal): Provide a full path
 	to the search results. Thanks to Michael Randall for reporting the

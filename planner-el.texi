@@ -1319,6 +1319,13 @@ the link display name.
 You can then paste it into any Planner buffer by using @kbd{M-x yank}
 or the keyboard shortcut.
 
+Alternatively, you can create hyperlinks by typing them directly, using
+the syntax defined by Muse. Anything inside double square brackets will
+be treated as a link. For example, if you type @samp{[[GroceryList]]} in
+a Planner buffer, you will end up with a link to a page called
+@samp{GroceryList}. @inforef{Implicit Links, Bare URLs WikiNames and
+InterWiki links, muse}, for more information about Muse syntax.
+
 Hyperlinks are a powerful feature of Planner. You can use them to
 hyperlink to mail, news, Web pages, and even IRC connections. See the
 section on @ref{Managing Your Information} to find out how to enable
@@ -1675,8 +1682,8 @@ You don't have to use @command{planner-create-task-from-buffer} to
 create tasks. You can also create new tasks manually by typing them
 directly on your day or project page in the format Planner expects. You
 can even still create hyperlinks by using Muse formatting as you
-manually type the new task. Keep in mind also that tasks do not have to
-be linked to any other page.
+manually type the new task (@pxref{Hyperlinks}). Keep in mind also that
+tasks do not have to be linked to any other page.
 
 For convenience, @command{planner-create-task-from-buffer} is bound to
 @kbd{C-c C-t} in Planner buffers.  You can bind
