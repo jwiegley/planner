@@ -1,5 +1,11 @@
 2006-11-04  John Sullivan  <john@wjsullivan.net>
 
+	* planner.el (planner-search-notes-internal): Provide a full path
+	to the search results. Thanks to Michael Randall for reporting the
+	bug.
+	(planner-search-notes): Adjust display for new results return
+	format.
+
 	* planner-mhe.el: Remove unnecessary require. 
 
 2006-10-20  Michael Olson  <mwolson@gnu.org>

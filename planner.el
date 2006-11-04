@@ -2782,7 +2782,8 @@ INCLUDE-BODY is non-nil, return the body text, else return nil."
             (when (save-excursion
                     (save-match-data (re-search-backward regexp start t)))
               (add-to-list 'page-results
-                           (list (concat page anchor)
+                           (list (concat filename anchor)
+                                 (concat page anchor)
                                  title
                                  (if include-body
                                      (buffer-substring-no-properties
@@ -2795,7 +2796,8 @@ INCLUDE-BODY is non-nil, return the body text, else return nil."
             (goto-char (point-max))
             (when (save-excursion (re-search-backward regexp start t))
               (add-to-list 'page-results
-                           (list (concat page anchor)
+                           (list (concat filename anchor)
+                                 (concat page anchor)
                                  title
                                  (if include-body
                                      (buffer-substring-no-properties
@@ -4101,11 +4103,11 @@ or after LIMIT. If INCLUDE-BODY is non-nil, return the body as well."
              (if include-body
                  (lambda (item)
                    (insert "** "
-                           (planner-make-link (elt item 0)) "\t"
-                           (elt item 2) "\n\n"))
+                           (planner-make-link (elt item 0) (elt item 1)) "\t"
+                           (elt item 3) "\n\n"))
                (lambda (item)
-                 (insert (planner-make-link (elt item 0)) "\t"
-                         (cadr item) "\n")))
+                 (insert (planner-make-link (elt item 0) (elt item 1)) "\t"
+                         (elt item 2) "\n")))
              results)
             (planner-mode)
             (goto-char (point-min))
