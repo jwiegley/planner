@@ -1,3 +1,7 @@
+2006-11-04  John Sullivan  <john@wjsullivan.net>
+
+	* planner-mhe.el: Remove unnecessary require. 
+
 2006-10-20  Michael Olson  <mwolson@gnu.org>
 
 	* planner-calendar.el: Adapt for nested tag support.  Thanks to

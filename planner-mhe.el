@@ -1,12 +1,12 @@
 ;;; planner-mhe.el --- MH-E integration for the Emacs Planner
 
-;; Copyright (C) 2004, 2005 Christophe Garion
+;; Copyright (C) 2004, 2005, 2006 Christophe Garion
 ;; Parts copyright (C) 2004, 2005 Free Software Foundation, Inc.
 
 ;; Author: Christophe Garion <garion@supaero.fr>
 ;; Author: Sandra Jean Chua <sacha@free.net.ph>
 ;; Created: <2004-08-09 17:16:57 tof planner-mhe.el>
-;; Time-stamp: <12/04/2005 19:26:58 Yann Hodique>
+;; Time-stamp: <2006-09-28 15:05:05 tof planner-mhe.el>
 ;; Keywords: planner, mh-e
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
@@ -44,7 +44,6 @@
 
 (require 'planner)
 (require 'mh-e)
-(require 'mh-index)
 
 (defun planner-mhe-get-message-folder-from-index ()
   "Returns the name of the message folder in a index folder
