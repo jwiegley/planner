@@ -1,3 +1,11 @@
+2006-11-29  Michael Olson  <mwolson@gnu.org>
+
+	* planner-publish.el (planner-publish-note-tag): Don't call
+	planner-replace-regexp-in-string if either the text or the regexp
+	are empty strings.  This should fix a bug with note publishing
+	that XEmacs users were experiencing.  Thanks to Cumhur Erkut for
+	the report.
+
 2006-11-04  John Sullivan  <john@wjsullivan.net>
 
 	* planner-el.texi (PSVN): Document all options and dependencies.

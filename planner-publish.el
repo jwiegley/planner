@@ -656,8 +656,9 @@ DIRECTORY and START."
       (insert link)
       (planner-insert-markup (muse-markup-text 'planner-end-note-link))
       ;; remove link item from categories to avoid duplicates
-      (setq categories (planner-replace-regexp-in-string (regexp-quote link)
-                                                         categories "" t t))
+      (unless (or (string= link "") (string= categories ""))
+        (setq categories (planner-replace-regexp-in-string
+                          (regexp-quote link) "" categories t t)))
       (planner-insert-markup (muse-markup-text 'planner-begin-note-categories))
       (insert categories)
       (planner-insert-markup (muse-markup-text 'planner-end-note-categories))
