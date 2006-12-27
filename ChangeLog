@@ -1,3 +1,10 @@
+2006-12-26  Michael Olson  <mwolson@gnu.org>
+
+	* planner-publish.el: Associate finalize function with
+	:before-end, rather than :after.  That way, if Planner files are
+	included in another file by means of Muse's new <include> tag,
+	these transforms will still be applied.
+
 2006-11-29  Michael Olson  <mwolson@gnu.org>
 
 	* planner-publish.el (planner-publish-note-tag): Don't call
