@@ -5037,13 +5037,13 @@ list.
 @cindex timeclock, using Planner with
 
 This module allows you to clock in and clock out of your projects
-(@pxref{Time Intervals, , , Emacs, GNU Emacs Manual}). You can also
-generate reports with the @code{<timeclock-report>} tag. You may want
-to read the @ref{Keeping Track of Time} page to see how you can use
+(@pxref{Time Intervals, , , Emacs, GNU Emacs Manual}) You can also
+generate reports with the @code{<timeclock-report>} tag. You may want to
+read the @xref{Keeping Track of Time} page to see how you can use
 planner-timeclock to produce detailed reports.
 
-@file{timeclock.el} is part of GNU Emacs.  If you are using XEmacs,
-please use the version of @file{timeclock.el} the comes with Planner in
+@file{timeclock.el} is part of GNU Emacs. If you are using XEmacs,
+please use the version of @file{timeclock.el} that comes with Planner in
 the @file{contrib} directory.
 
 With @file{planner-timeclock.el} loaded,

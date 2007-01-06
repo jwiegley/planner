@@ -44,7 +44,6 @@
 
 (require 'planner)
 (require 'timeclock)
-(require 'planner-schedule)
 (require 'easymenu)
 (require 'advice)
 
