@@ -1,3 +1,10 @@
+2007-01-07  John Sullivan  <john@wjsullivan.net>
+
+	* Remove erroneously committed ChangeLog entries.
+
+	* planner.el (planner-visit-link): We weren't passing the
+	other-window argument to muse. Thanks to Wanrong Lin for noticing.
+
 2007-01-05  John Sullivan  <john@wjsullivan.net>
 
 	* planner-timeclock.el (planner-schedule): Remove unnecessary
@@ -21,15 +28,6 @@
 	the report.
 
 2006-11-04  John Sullivan  <john@wjsullivan.net>
-
-	* planner.el (planner-extract-tasks): Moving toward using a plist
-	for this. Attach file info to the tasks so as to handle multiple
-	planner directories.
-
-	* planner-tasks-overview.el (planner-tasks-overview): Switch to
-	using standard task extraction function.
-	(planner-tasks-overview-insert): Rework to fit with standard task
-	extraction return value. Improve formatting.
 
 	* planner-el.texi (PSVN): Document all options and dependencies.
 	(Hyperlinks): Reference Muse hyperlink syntax.

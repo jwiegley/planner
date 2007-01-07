@@ -1175,7 +1175,7 @@ instead of a string."
 REFRESH-BUFFER is an optional buffer to refresh on saving the visited page.
 This makes the bad link face in the linking buffer go away."
   (if (string-match muse-url-regexp link)
-      (muse-browse-url link)
+      (muse-browse-url link other-window)
     (setq link (planner-link-target link))
     (let ((tag (planner-link-anchor link))
           base-buffer)
