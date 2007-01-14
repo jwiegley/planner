@@ -1,12 +1,12 @@
 ;;; planner-gnus.el --- Gnus integration for the Emacs Planner
 
 ;; Copyright (C) 2001, 2003, 2004, 2005,
-;;   2006 Free Software Founation, Inc.
+;;   2006 Free Software Foundation, Inc.
 ;; Parts copyright (C) 2004 Mario Domgörgen (kanaldrache AT gmx.de)
 
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Keywords: planner, gnus
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.emacswiki.org/cgi-bin/wiki/PlannerMode
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 
@@ -219,7 +219,7 @@ Raise this if you have problems browsing gnus URLs.")
       ;; unread articles as read.
       (let ((gnus-auto-select-first nil))
         (condition-case err
-            (gnus-fetch-group group planner-gnus-group-threshold)
+            (gnus-fetch-group group planner-gnus-group-threshold t group)
           (error (gnus-fetch-group group))))
       (mapcar
        (lambda (article-id)

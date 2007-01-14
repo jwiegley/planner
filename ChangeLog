@@ -1,3 +1,9 @@
+2007-01-14  John Sullivan  <john@wjsullivan.net>
+
+	* planner-gnus.el: Fix typo and change URL.
+	(planner-gnus-browse-url): Make it work in NoGnus and Gnus 5.11,
+	as suggested by Leo.
+
 2007-01-14  Michael Olson  <mwolson@gnu.org>
 
 	* planner-el.texi (Installing from a Source Archive): Mention
