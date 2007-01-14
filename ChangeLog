@@ -22,6 +22,7 @@
 	complain.
 	(Getting Help): Change URL to the emacswiki.org one.  So long,
 	plannerlove.  Thanks to Hadron Quark for pointing all this out.
+	(Tasks): Clarify wording of `C-c C-c' explanation.
 
 2007-01-07  John Sullivan  <john@wjsullivan.net>
 

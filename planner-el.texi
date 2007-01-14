@@ -1227,8 +1227,9 @@ the task and call @kbd{M-x planner-update-task}
 Reschedule many tasks: Mark a region and use @kbd{M-x
 planner-copy-or-move-region}
 @item
-Change the plan of a task: @kbd{M-x planner-replan-task}, or @kbd{C-c
-C-c} (@code{planner-copy-or-move-task}) with a plan page
+Change the plan of a task: @kbd{M-x planner-replan-task}, or do
+@kbd{C-c C-c} (@code{planner-copy-or-move-task}) and type in a
+plan page rather than a date
 @item Delete a task: @kbd{M-x planner-delete-task}
 @item
 Reorder tasks: @key{M-p} (@code{planner-raise-task}) and @key{M-n}
