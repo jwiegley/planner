@@ -6,6 +6,10 @@
 
 2007-01-14  Michael Olson  <mwolson@gnu.org>
 
+	* planner.el: Make sure various planner-annotation functions show
+	up in the customize interface for `planner-annotation-functions'.
+	Thanks to Hadron Quark for the report.
+
 	* planner-el.texi (Installing from a Source Archive): Mention
 	creating an ~/elisp directory.  Also mention how to get Muse and
 	Remember.  Mention running "make clean".

@@ -1650,6 +1650,8 @@ When called with a prefix argument, prompt for the link display name."
       (setq link (planner-make-link link link-name t)))
     (message "Copied '%s' to the kill-ring." link)
     (kill-new link)))
+(custom-add-option 'planner-annotation-functions
+                   'planner-annotation-as-kill)
 
 (defun planner-annotation-from-planner-note ()
   "Return a link to the current page.
@@ -1665,6 +1667,8 @@ Call when the point is on the first line of the note."
          (concat (planner-page-name)
                  (planner-match-string-no-properties 1))
          t)))))
+(custom-add-option 'planner-annotation-functions
+                   'planner-annotation-from-planner-note)
 
 (defun planner-annotation-from-planner ()
   "Return a wiki link to the current wiki page.
@@ -1675,6 +1679,8 @@ Date pages are not linked."
      ((string-match planner-date-regexp (planner-page-name))
       "") ; None for date pages
      (t (planner-make-link (planner-page-name) nil t)))))
+(custom-add-option 'planner-annotation-functions
+                   'planner-annotation-from-planner)
 
 (defun planner-annotation-from-wiki ()
   "Return the interwiki link to the current wiki page."
@@ -1682,6 +1688,8 @@ Date pages are not linked."
              muse-current-project
              (muse-page-name))
     (concat "[[" (car muse-current-project) "#" (muse-page-name) "]]")))
+(custom-add-option 'planner-annotation-functions
+                   'planner-annotation-from-wiki)
 
 (defun planner-annotation-from-dired ()
   "Return the `default-directory' of the current Dired buffer."
@@ -1694,6 +1702,8 @@ Date pages are not linked."
     (planner-make-link (file-relative-name buffer-file-name
                                            (planner-directory))
                        nil t)))
+(custom-add-option 'planner-annotation-functions
+                   'planner-annotation-from-dired)
 
 (defcustom planner-annotation-use-relative-file nil
   "If t, use relative file links always.
@@ -1734,6 +1744,8 @@ stripped from the link description."
      (when planner-annotation-strip-directory
        (file-name-nondirectory buffer-file-name))
      t)))
+(custom-add-option 'planner-annotation-functions
+                   'planner-annotation-from-file)
 
 ;;;###autoload
 (defun planner-annotation-from-file-with-position ()
