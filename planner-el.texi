@@ -342,7 +342,9 @@ install it from a source archive, Arch repository, or Debian package.
 
 You can install Planner from the source archive packaged and
 distributed directly by the maintainer. This archive is provided in
-both @file{.tar.gz} and @file{.zip} format.
+both @file{.tar.gz} and @file{.zip} format.  If you don't know where to
+extract these archives, create a @file{~/elisp} directory, and extract
+them there.
 
 @enumerate
 @item
@@ -350,7 +352,19 @@ Download and unpack either
 @url{http://www.mwolson.org/static/dist/planner-latest.tar.gz} or
 @url{http://www.mwolson.org/static/dist/planner-latest.zip}.
 
+@item
+Likewise for
+@url{http://www.mwolson.org/static/dist/muse-latest.tar.gz} or
+@url{http://www.mwolson.org/static/dist/muse-latest.zip}.
+
+@item
+Likewise for
+@url{http://www.mwolson.org/static/dist/remember-latest.tar.gz} or
+@url{http://www.mwolson.org/static/dist/remember-latest.zip}.
+
 @item Edit your @file{~/.emacs} (@file{_emacs} on Microsoft Windows).
+
+Replace @file{/path/to} with wherever you extracted the files.
 
 @example
 ;; Add the directories to your load path
@@ -367,7 +381,8 @@ Download and unpack either
 
 Download a new version and extract it over the old directory. Don't
 forget to delete any byte-compiled files (@file{*.elc}) in the
-directories so that the new code will be used.
+directories (which can be accomplished by running ``make clean'') so
+that the new code will be used.
 
 @node Installing from Arch, Installing from Debian, Installing from a Source Archive, Getting the Files
 @comment node-name,  next,  previous,  up
@@ -386,16 +401,23 @@ files.
 
 @example
 # Register the Muse archive
-tla register-archive http://www.mwolson.org/archives/2006
+tla register-archive -f http://www.mwolson.org/archives/2006
 
 # Register the Planner archive
-tla register-archive http://arch.gna.org/planner-el/archive-2006
+tla register-archive -f http://arch.gna.org/planner-el/archive-2006
 
-# Get the Muse archive
+# Register the Remember archive
+tla register-archive -f http://arch.gna.org/remember-el/archive
+
+# Get Muse
 tla get mwolson@@gnu.org--2006/muse--main--1.0 muse
 
 # Download planner module into the planner/ subdirectory
 tla get mwolson@@gnu.org--2006-planner-el/planner-el--devel--0 planner
+
+# Get Remember
+tla get remember-el@@arch.gna.org/remember--main--0 remember
+
 @end example
 
 Then add the following lines to your @code{~/.emacs}:
@@ -410,7 +432,7 @@ Then add the following lines to your @code{~/.emacs}:
 (require 'planner)
 @end example
 
-You can also browse the Arch repository on the web at
+You can also browse Planner's Arch repository on the web at
 @url{http://www.mwolson.org/cgi-bin/archzoom/archzoom.cgi/mwolson@@gnu.org--2006-planner-el}.
 
 @subheading Updating Your Version
@@ -432,9 +454,9 @@ tla missing --summary
 To update to the latest version:
 
 @example
-cd muse; tla replay
-cd ../planner; tla replay
-cd ../remember; tla replay
+cd muse; tla update
+cd ../planner; tla update
+cd ../remember; tla update
 @end example
 
 Don't forget to delete any byte-compiled files (@file{*.elc}) in the
@@ -462,6 +484,15 @@ Then, do the following steps as root:
 apt-get update
 apt-get install muse-el
 apt-get install planner-el
+apt-get install remember-el
+@end example
+
+If you get some warning about the key not being trusted, you can either
+ignore it or do the following.
+
+@example
+gpg --keyserver pgpkeys.mit.edu --recv-key f3a8d319
+gpg -a --export f3a8d319 | sudo apt-key add -
 @end example
 
 @subheading Updating Your Version
@@ -5039,8 +5070,9 @@ list.
 This module allows you to clock in and clock out of your projects
 (@pxref{Time Intervals, , , Emacs, GNU Emacs Manual}) You can also
 generate reports with the @code{<timeclock-report>} tag. You may want to
-read the @xref{Keeping Track of Time} page to see how you can use
-planner-timeclock to produce detailed reports.
+read the ``Keeping Track of Time'' page to see how you can use
+planner-timeclock to produce detailed reports;
+@xref{Keeping Track of Time}.
 
 @file{timeclock.el} is part of GNU Emacs. If you are using XEmacs,
 please use the version of @file{timeclock.el} that comes with Planner in
@@ -6351,8 +6383,9 @@ After you have read this guide, if you still have questions about
 Planner, or if you have bugs to report, there are several places
 you can go.
 
-Planner has an official website at @url{http://www.plannerlove.com/}.
-It is a collaborative wiki.
+Planner has an official website at
+@url{http://www.emacswiki.org/cgi-bin/wiki/PlannerMode}.  It is a
+collaborative wiki.
 
 Bugs may be reported using the Planner Bug-Tracker at
 @url{http://gna.org/bugs/?group=planner-el}.

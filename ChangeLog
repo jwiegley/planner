@@ -1,3 +1,18 @@
+2007-01-14  Michael Olson  <mwolson@gnu.org>
+
+	* planner-el.texi (Installing from a Source Archive): Mention
+	creating an ~/elisp directory.  Also mention how to get Muse and
+	Remember.  Mention running "make clean".
+	(Installing from Arch): Document Remember archive usage.  Use "tla
+	update", not "tla replay".
+	(Installing from Debian): Mention remember-el.  Since I get asked
+	this so frequently, mention how to make the warning message go
+	away -- it's not an error!
+	(Timeclock): Shift xref to end of sentence so makeinfo doesn't
+	complain.
+	(Getting Help): Change URL to the emacswiki.org one.  So long,
+	plannerlove.  Thanks to Hadron Quark for pointing all this out.
+
 2007-01-07  John Sullivan  <john@wjsullivan.net>
 
 	* Remove erroneously committed ChangeLog entries.
