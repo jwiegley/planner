@@ -1,7 +1,3 @@
-2007-01-24  John Sullivan  <john@wjsullivan.net>
-
-	* planner-el.texi (Diary): Attach function name to keybinding.
-
 2007-01-14  John Sullivan  <john@wjsullivan.net>
 
 	* planner-gnus.el: Fix typo and change URL.

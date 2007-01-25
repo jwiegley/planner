@@ -4609,7 +4609,8 @@ from @code{calendar-move-hook}.
 @itemize
 
 @item
-@kbd{C-c C-e} updates the diary sections.
+@kbd{C-c C-e} updates the diary sections by calling
+@code{planner-diary-insert-all-diaries-maybe}.
 
 @end itemize
 

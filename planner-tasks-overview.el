@@ -89,7 +89,8 @@
   (with-current-buffer (get-buffer-create planner-tasks-overview-buffer)
     (planner-tasks-overview-mode)
     (setq planner-tasks-overview-data
-          (planner-extract-tasks (planner-get-day-pages start end)))
+          (planner-tasks-overview-extract-all-tasks
+           (planner-get-day-pages start end)))
     (setq truncate-lines t)
     (set (make-local-variable 'truncate-partial-width-windows) t)
     (planner-tasks-overview-sort-by-date)
@@ -167,30 +168,30 @@ DATA is a list of (priority status date plan description)."
        (lambda (item)
          (let ((text
                 (format "%10s | %s | %s %s | %s\n"
-                        (if (plist-get item :file
+                        (if (elt item 2)
                             (planner-make-link
-                             (plist-get item :file)
+                             (elt item 2)
                              (format "%-10.10s"
-                                     (if (string= last-date (elt item 0))
-                                         " \""
-                                       (elt item 0))))
-                          (format "%-10.10s" "(none)"))
-                        (if (elt item 5)
+                                     (if (string= last-date (elt item 2))
+                                         "__________"
+                                       (elt item 2))))
+                          (format "%-10.10s" "nil"))
+                        (if (elt item 3)
                             (planner-make-link
-                             (elt item 5)
+                             (elt item 3)
                              (format "%-20.20s"
-                                     (if (string= last-plan (elt item 5))
-                                         " \""
-                                       (elt item 5))))
-                          (format "%-20.20s" " (none)"))
-                        (elt item 3)
+                                     (if (string= last-plan (elt item 3))
+                                         "____________________"
+                                       (elt item 3))))
+                          (format "%-20.20s" "nil"))
+                        (elt item 0)
                         (elt item 1)
                         (elt item 4))))
            (add-text-properties 0 (length text) (list 'info item)
                                 text)
            (insert text))
-         (setq last-date (elt item 0))
-         (setq last-plan (elt item 5)))
+         (setq last-date (elt item 2))
+         (setq last-plan (elt item 3)))
        planner-tasks-overview-data)
       (planner-mode)
       (goto-char (point-min))
@@ -202,9 +203,8 @@ DATA is a list of (priority status date plan description)."
     (with-temp-buffer
       (cd (planner-directory))
       ;; The following line greps only the days limited by START and END.
-      (planner-extract-tasks file-list)
-      ;; (apply 'call-process "grep" nil t nil "-H" "-e" "^#[A-C][0-9]*"
-      ;;        (mapcar 'cdr file-list))
+      (apply 'call-process "grep" nil t nil "-H" "-e" "^#[A-C][0-9]*"
+             (mapcar 'cdr file-list))
       (goto-char (point-min))
       (while (not (eobp))
         (when (looking-at "^\\([^:\n]+\\):\\(.+\\)")
