@@ -4458,6 +4458,11 @@ of the two approaches.
 update---it inserts the diary section for the day, even if the day is in
 the past or if there is no @samp{Diary} section in the buffer.
 
+These diary sections are only intended for display. Editing them will
+not affect your diary file. If you want to add entries to your diary,
+you should use the usual Emacs diary and calendar methods for doing
+that, or call @code{planner-diary-add-entry}.
+
 If you want to use the Cal-Desk package, simply follow the instructions
 in @file{cal-desk.el}.  If you get the Cal-Desk layout from the Calendar
 buffer, you get it in the day plan buffer, too.

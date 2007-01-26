@@ -1,3 +1,8 @@
+2007-01-26  John Sullivan  <john@wjsullivan.net>
+
+	* planner-el.texi (Diary): Clarify that editing the diary section
+	on a planner page does not affect the diary file.
+
 2007-01-24  John Sullivan  <john@wjsullivan.net>
 
 	* planner-el.texi (Diary): Attach function name to keybinding
