@@ -1974,9 +1974,11 @@ Another way to have a task not be connected to a particular date is to
 do @kbd{C-c C-c} (@code{planner-copy-or-move-task}) and specify
 @samp{nil} when asked for the date.
 
-If you would like to see a list of all of your unfinished tasks, do
-@kbd{M-x planner-list-unfinished-tasks}. This function only checks
-day plan pages, not project pages.
+If you would like to see a list of all of your unfinished scheduled
+tasks, do @kbd{M-x planner-list-unfinished-tasks}.  It is only intended
+to give you an overview.  Any editing you want to do, like marking tasks
+complete or editing their description, still needs to be done on one of
+the tasks' ``real'' planner pages.
 
 @node Deadlines,  , Task Detail, Creating New Tasks
 @comment  node-name,  next,  previous,  up
