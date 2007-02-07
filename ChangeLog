@@ -1,6 +1,8 @@
 2007-02-06  John Sullivan  <john@wjsullivan.net>
 
 	* planner-el.texi (Task Detail): Clarification, see #8366.
+	(Diary): We only bind a key in one of the two diary integration
+	methods. Closes #8359.
 
 2007-01-26  John Sullivan  <john@wjsullivan.net>
 

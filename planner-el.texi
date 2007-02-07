@@ -4431,6 +4431,10 @@ include a @samp{* Diary}:
  "* Tasks\n\n\n* Schedule\n\n\n* Diary\n\n\n* Notes")
 @end example
 
+@kbd{C-c C-e} updates the diary sections.  @kbd{C-u C-c C-e} forces an
+update---it inserts the diary section for the day, even if the day is in
+the past or if there is no @samp{Diary} section in the buffer.
+
 @item
 (GNU EMACS ONLY) You can put the following line of Lisp code in your
 day plan pages to display your diary entries:
@@ -4455,10 +4459,6 @@ Lisp code and not your diary entries.
 If you want to see your diary entries for more than just one day, set
 @code{planner-diary-number-of-days} accordingly.  This works for either
 of the two approaches.
-
-@kbd{C-c C-e} updates the diary sections.  @kbd{C-u C-c C-e} forces an
-update---it inserts the diary section for the day, even if the day is in
-the past or if there is no @samp{Diary} section in the buffer.
 
 These diary sections are only intended for display. Editing them will
 not affect your diary file. If you want to add entries to your diary,
