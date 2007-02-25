@@ -119,7 +119,7 @@
 ;;
 ;; version 0.7 Major rewrite.  New diary types (cal-desk, appointments, privat,
 ;; public diaries).  Add diary entries from planner pages.
-::
+;;
 ;; version 0.6 minor changes
 ;;
 ;; version 0.5 appointment integration (thanks to Bastien Guerry)
