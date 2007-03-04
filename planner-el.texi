@@ -312,6 +312,9 @@ Planner depends on Muse. Information for downloading and installing
 Muse can be found at
 @url{http://www.mwolson.org/static/doc/muse.html}.
 
+Planner and Muse are intended to work with version 21 or later of Emacs
+and XEmacs.
+
 Make sure that you use the latest Muse release.  Development code might
 prove unstable.
 
