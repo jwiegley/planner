@@ -1,3 +1,8 @@
+2007-04-03  Michael Olson  <mwolson@gnu.org>
+
+	* planner-el.texi (Preface): Use John's on-line documentation for
+	Planner, rather than mine.
+
 2007-04-02  John Sullivan  <john@wjsullivan.net>
 
 	* planner-el.texi (Planning based on the Franklin-Covey Approach):

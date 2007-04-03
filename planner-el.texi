@@ -259,7 +259,7 @@ mailing list (@pxref{Getting Help}). In the subject line of your
 e-mail, include the word @samp{Planner}.
 
 This documentation is available in eye-pleasing formats including PDF
-and HTML at @url{http://www.mwolson.org/static/doc/}.
+and HTML at @url{http://wjsullivan.net/static/doc/planner/}.
 
 Documentation author and maintainer: John Sullivan
 @email{john@@wjsullivan.net}
