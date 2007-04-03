@@ -700,10 +700,10 @@ check out @ref{Sample Configuration Files}.
 @section Planning Based on the Franklin-Covey Approach
 @cindex philosophy of planning
 
-This is a slightly edited and updated version of an essay by John
+(This is an edited and updated version of an essay originally by John
 Wiegley. Read it if you want to get some insights into one way of
-planning. You can skip this if you want to go straight to planning
-your day.
+planning. You can skip this if you want to go straight to planning your
+day.)
 
 What is planning?  It can be a nebulous thing to define.  In its
 essence, however, it is very simple: it's how we achieve our dreams.
@@ -749,7 +749,7 @@ your plan is merely a well-crafted wish.
 
 Fifth is just to do the work, and be patient.  All good plans take a
 great deal of time, and *cannot* happen immediately.  The groundwork
-must be laid for each step, or else it will rest on an unsecure
+must be laid for each step, or else it will rest on an insecure
 foundation.  If you follow your plan doggedly, applying some time to
 it each day or week, it @emph{will} happen.  Remember the story of the
 tortoise and the hare.  I've even written a short essay on the
@@ -761,11 +761,7 @@ information, since they allow you to change things without erasing
 or rewriting.  And since all plans change quite a bit during their
 implementation, a planning program can be very helpful.
 
-Start by adding the following to your @file{.emacs} (or @file{_emacs}):
-
-@example
-(load "planner")
-@end example
+Start by installing Planner and Muse (@pxref{Installation}).
 
 Now, conceive your idea.  I can't believe there's nothing you want
 from life.  More peace, time to enjoy the world, an end to war?
@@ -773,10 +769,10 @@ Everyone wants something.  Search deeply, and you will find
 countless unhoped wishes lurking therein.  Choose one for now, and
 think on it for a while.
 
-Then open a file (using @kbd{C-x C-f}) within the directory named by
-@code{planner-directory}.  Emacs will automatically recognize this file
-as a planner file.  Name the file after your plan, such as
-@file{BetterHealth}.
+Then open a file (using @kbd{C-x C-f}) within the directory you named in
+your @code{muse-project-alist}. Make sure the file has a @file{.muse}
+extension so that Emacs will automatically recognize it as a planner
+file. Name the file after your plan, such as @file{BetterHealth.muse}.
 
 Choose an idea you really want to accomplish.  Struggle to
 differentiate between the things you want because others want them,
@@ -832,13 +828,20 @@ important, because they let you know you're making progress.  I
 recommend having a big party with friends every time you achieve a
 milestone.  A typical plan might have between three and ten.
 
-Between the milestones are the bigger pieces of your plan.  Name
-these pieces using MixedCase words, and you'll notice that Emacs
-colors and underlines them for you.  Like, FindGoodGym.  Hit return
-on this highlighted word, and you'll find yourself in another,
-blank file.  In this file, start drafting your sub-plan, just as
-you did with the larger plan.  You should find it easier now, since
-the scope is smaller.
+Between the milestones are the bigger pieces of your plan. You might
+find it convenient to name these pieces using MixedCase words. Try
+adding these lines to your @file{.emacs} or @file{_emacs} file.
+
+@example
+(require 'muse-wiki)
+(setq muse-wiki-allow-nonexistent-wikiword t)
+@end example
+
+You'll notice that Emacs colors and underlines them for you. Like,
+FindGoodGym. Hit return on this highlighted word, and you'll find
+yourself in another, blank file. In this file, start drafting your
+sub-plan, just as you did with the larger plan. You should find it
+easier now, since the scope is smaller.
 
 As you break down further, you'll notice simple little things that
 need to get done.  These are your tasks.  Every plan is a
@@ -904,12 +907,12 @@ jump you to this page from anywhere:
 @end example
 
 As you look at your task sheet each day, the first thing to do is to
-``clock in'' to one of them.  This isn't necessary, and is only
-helpful if you're around your computer a lot.  But by typing @kbd{C-c
-C-i} (assuming you have my @file{timeclock.el} on your load-path), it
-will log the time you spend working on your sub-plan (@pxref{Time
-Intervals, , , Emacs, GNU Emacs Manual}).  This is helpful for viewing
-your progress.  Type @kbd{C-c C-o} to clock out.
+``clock in'' to one of them. This isn't necessary, and is only helpful
+if you're around your computer a lot. But by typing @kbd{C-c C-i}
+(assuming you have @file{timeclock.el} on your load-path), it will log
+the time you spend working on your sub-plan (@pxref{Time Intervals, , ,
+Emacs, GNU Emacs Manual}). This is helpful for viewing your progress.
+Type @kbd{C-c C-o} to clock out.
 
 @kbd{C-M-p} and @kbd{C-M-n} will move a task up and down in priority.
 Priority is represented by a letter A through C.  'A' tasks mean they
