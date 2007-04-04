@@ -4311,8 +4311,6 @@ Then, when you call @kbd{M-x planner-create-task-from-buffer} from
 Wanderlust summary or message buffers, the task will be created with
 the correct annotation.
 
-@file{planner-wl} does not define any interactive functions.
-
 @subheading Keys
 
 To add keybindings to Wanderlust, call:
@@ -4321,7 +4319,7 @@ To add keybindings to Wanderlust, call:
 (planner-wl-insinuate)
 @end example
 
-This binds @kbd{F} to @command{planner-create-task-from-buffer}.
+This binds @kbd{C-c C-t} to @command{planner-create-task-from-buffer}.
 
 @node MH-E, Rmail, Wanderlust, E-mail
 @comment  node-name,  next,  previous,  up
