@@ -1,3 +1,10 @@
+2007-04-08  Michael Olson  <mwolson@gnu.org>
+
+	* planner*.el: Replace plannerlove website with maintainer's
+	website.  Closes #8847.
+
+	* README: Mention maintainer's Planner page.  Remove plannerlove.
+
 2007-04-03  John Sullivan  <john@wjsullivan.net>
 
 	* planner-el.texi (Wanderlust): Update keybinding.
@@ -6,10 +13,10 @@
 	C-t, closes #8361.
 
 2007-04-03  Michael Olson  <mwolson@gnu.org>
- 
- 	* planner-el.texi (Preface): Use John's on-line documentation for
- 	Planner, rather than mine.
- 
+
+	* planner-el.texi (Preface): Use John's on-line documentation for
+	Planner, rather than mine.
+
 2007-04-02  John Sullivan  <john@wjsullivan.net>
 
 	* planner-el.texi (Planning based on the Franklin-Covey Approach):

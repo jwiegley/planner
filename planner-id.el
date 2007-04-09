@@ -3,7 +3,7 @@
 ;; Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
 
 ;; Author: Sacha Chua <sacha@free.net.ph>
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 

@@ -26,7 +26,7 @@
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Maintainer: Michael Olson <mwolson@gnu.org>
 ;; Description: Use Emacs for life planning
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 ;; Bugs: https://gna.org/bugs/?group=planner-el
 ;; Compatibility: Emacs20, Emacs21, Emacs22, XEmacs21
 

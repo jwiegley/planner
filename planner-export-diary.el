@@ -8,7 +8,7 @@
 ;; Keywords: hypermedia
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Description: Use Emacs for life planning
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 ;; Compatibility: Emacs20, Emacs21, XEmacs21
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.

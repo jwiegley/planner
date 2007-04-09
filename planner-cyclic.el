@@ -6,7 +6,7 @@
 ;; Filename: planner-cyclic.el
 ;; Author: Sacha Chua <sacha@free.net.ph>
 ;; Description: Provide cyclic task support
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 ;; Compatibility: Emacs21, XEmacs21
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.

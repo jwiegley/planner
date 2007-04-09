@@ -4,7 +4,7 @@
 
 ;; Author: Jeremy Cowgar (jeremy AT cowgar DOT com)
 ;; Keywords: planner, gnats
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 ;; URL: http://www.gnu.org/software/gnats/
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.

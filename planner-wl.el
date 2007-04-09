@@ -5,7 +5,7 @@
 
 ;; Author: Yvonne Thomson (yvonne AT thewatch DOT net)
 ;; Keywords: planner, wanderlust, wl
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 

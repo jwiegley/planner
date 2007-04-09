@@ -7,7 +7,7 @@
 ;; Keywords: hypermedia
 ;; Author: Sandra Jean Chua (Sacha) <sacha@free.net.ph>
 ;; Description: Produce accomplishment reports for planner.el
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 ;; Compatibility: Emacs20, Emacs21, XEmacs21
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.

@@ -8,7 +8,7 @@
 
 ;; Author: Sandra Jean Chua <sacha@free.net.ph>
 ;; Filename: planner-notes-index.el
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 

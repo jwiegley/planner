@@ -66,7 +66,7 @@ Planner.  By default, the program that is installed with the name
 `emacs' will be used.
 
 You will also need to have Emacs Muse installed.  See
-http://www.plannerlove.com/pmwiki/pmwiki.php?n=Main.DownloadingPlanner
+http://emacswiki.org/cgi-bin/wiki/PlannerModeQuickStart
 for current information on which release of Muse to get,
 
 If Muse is not present in the `~/elisp/muse' directory on your system,
@@ -149,12 +149,15 @@ This manual is also available online in several forms.
 Further Documentation
 =====================
 
-Planner has an official website at http://www.plannerlove.com/.  It is
-a collaborative wiki.
+The maintainer of Planner has a webpage for it at
+http://www.wjsullivan.net/PlannerMode.html.
 
 Bugs may be reported using the Planner Bug-Tracker at
 https://gna.org/bugs/?group=planner-el.
 
+Planner has a collaborative wiki at
+http://emacswiki.org/cgi-bin/wiki/PlannerMode.
+
 A mailing list for Planner and some related software exists; consult
-http://www.plannerlove.com/pmwiki/pmwiki.php?n=Main.Community for
-details on joining it or viewing its contents.
+https://gna.org/mail/?group=planner-el for details on joining it or
+viewing its contents.

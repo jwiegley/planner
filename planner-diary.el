@@ -12,7 +12,7 @@
 ;; Author: Thomas Gehrlein <Thomas.Gehrlein@t-online.de>
 ;; Maintainer: Thomas Gehrlein <Thomas.Gehrlein@t-online.de>
 ;; Description: Integrate the Emacs Planner with Calendar and Diary
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 ;; Compatibility: Emacs20, Emacs21, XEmacs21
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.

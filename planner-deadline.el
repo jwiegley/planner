@@ -4,7 +4,7 @@
 ;; Parts copyright (C) 2004, 2005 Dryice Dong Liu <dryice AT liu.com.cn>
 
 ;; Author: Sandra Jean Chua (Sacha) <sacha AT free.net.ph>
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 

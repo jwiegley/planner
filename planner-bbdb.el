@@ -5,7 +5,7 @@
 
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Keywords: planner, gnus
-;; URL: http://www.plannerlove.com/
+;; URL: http://www.wjsullivan.net/PlannerMode.html
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 
