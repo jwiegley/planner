@@ -1,5 +1,10 @@
 2007-05-07  Michael Olson  <mwolson@gnu.org>
 
+	* README: Mention that there are multiple mailing lists.
+
+	* planner-el.texi (Getting Help): Add entry for the new log
+	messages list.
+
 	* planner-publish.el: Fix bug in publishing of calendars.  The
 	finalization was happening before the header and footer were
 	inserted, which was incorrect.

@@ -6426,8 +6426,17 @@ using the subscription form at
 list is also available via Gmane with the identifier
 @samp{gmane.emacs.planner.general}.
 
+@item planner-el-logs
+Log messages for commits made to Planner.
+
+You can join this mailing list (@email{planner-el-logs@@gna.org}) using
+the subscription form at
+@url{http://mail.gna.org/listinfo/planner-el-logs/}.  This mailing list
+is also available via Gmane with the identifier
+@samp{gmane.emacs.planner.scm}.
+
 @item planner-el-cvs
-Log messages for changes committed to Planner.
+Generated bug reports for Planner.
 
 You can join this mailing list (@email{planner-el-cvs@@gna.org}) using
 the subscription form at
