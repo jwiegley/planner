@@ -741,7 +741,7 @@ DIRECTORY and START."
                      :tags      'planner-publish-markup-tags
                      :strings   'planner-xml-markup-strings
                      :before    'planner-publish-prepare-buffer
-                     :before-end 'planner-publish-finalize-buffer
+                     :after     'planner-publish-finalize-buffer
                      :header    'planner-xml-header
                      :footer    'planner-xml-footer)
   (muse-derive-style "planner-html" "html"
@@ -750,7 +750,7 @@ DIRECTORY and START."
                      :tags      'planner-publish-markup-tags
                      :strings   'planner-html-markup-strings
                      :before    'planner-publish-prepare-buffer
-                     :before-end 'planner-publish-finalize-buffer
+                     :after     'planner-publish-finalize-buffer
                      :header    'planner-html-header
                      :footer    'planner-html-footer)
   (muse-derive-style "planner-xhtml" "xhtml"
@@ -759,7 +759,7 @@ DIRECTORY and START."
                      :tags      'planner-publish-markup-tags
                      :strings   'planner-html-markup-strings
                      :before    'planner-publish-prepare-buffer
-                     :before-end 'planner-publish-finalize-buffer
+                     :after     'planner-publish-finalize-buffer
                      :header    'planner-xhtml-header
                      :footer    'planner-xhtml-footer))
 

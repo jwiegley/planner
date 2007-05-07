@@ -1,3 +1,13 @@
+2007-05-07  Michael Olson  <mwolson@gnu.org>
+
+	* planner-publish.el: Fix bug in publishing of calendars.  The
+	finalization was happening before the header and footer were
+	inserted, which was incorrect.
+
+2007-04-09  Michael Olson  <mwolson@gnu.org>
+
+	* README: Use new link to online documentation.
+
 2007-04-08  Michael Olson  <mwolson@gnu.org>
 
 	* planner*.el: Replace plannerlove website with maintainer's
