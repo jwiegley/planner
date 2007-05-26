@@ -436,7 +436,7 @@ Then add the following lines to your @code{~/.emacs}:
 @end example
 
 You can also browse Planner's Arch repository on the web at
-@url{http://www.mwolson.org/cgi-bin/archzoom/archzoom.cgi/mwolson@@gnu.org--2006-planner-el}.
+@url{http://archzoom.mwolson.org/cgi-bin/archzoom.cgi/mwolson@@gnu.org--2006-planner-el}.
 
 @subheading Updating Your Version
 @cindex Arch, updating from

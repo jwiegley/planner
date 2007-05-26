@@ -1,3 +1,7 @@
+2007-05-26  Michael Olson  <mwolson@gnu.org>
+
+	* planner-el.texi (Installing from Arch): Update Archzoom URL.
+
 2007-05-07  Michael Olson  <mwolson@gnu.org>
 
 	* README: Mention that there are multiple mailing lists.
