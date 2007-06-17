@@ -89,7 +89,7 @@ For more on the structure of this list, see `muse-publish-markup-regexps'."
                         integer
                         (choice string function symbol))
                   function))
-  :group 'muse-html)
+  :group 'planner-publish)
 
 (defcustom planner-publish-markup-functions
   '((task . planner-publish-markup-task)

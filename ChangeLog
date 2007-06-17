@@ -1,3 +1,8 @@
+2007-06-17  Michael Olson  <mwolson@gnu.org>
+
+	* planner-publish.el (planner-publish-markup-regexps): Use group
+	of planner-publish, rather than muse-html.
+
 2007-05-26  Michael Olson  <mwolson@gnu.org>
 
 	* planner-el.texi (Installing from Arch): Update Archzoom URL.
