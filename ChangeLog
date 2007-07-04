@@ -1,3 +1,7 @@
+2007-07-03  Michael Olson  <mwolson@gnu.org>
+
+	* Makefile: Update debian package-building rules.
+
 2007-06-17  Michael Olson  <mwolson@gnu.org>
 
 	* planner-publish.el (planner-publish-markup-regexps): Use group
