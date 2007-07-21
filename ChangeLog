@@ -1,3 +1,18 @@
+2007-07-21  Michael Olson  <mwolson@gnu.org>
+
+	* README: Mention that Muse 3.03 or later is needed.
+
+	* planner-authz.el, planner-timeclock.el, planner-calendar.el,
+	planner-publish.el: Remove support for old markup-tag syntax, now
+	that Muse 3.03 is released.
+
+	* planner-publish.el: Error out when loading if we have Muse less
+	than 3.03.  Also, remove `unless' wrapper around uses of
+	muse-derive-style.
+
+	* planner-el.texi: Replace "www.mwolson.org" with "mwolson.org"
+	for brevity.
+
 2007-07-03  Michael Olson  <mwolson@gnu.org>
 
 	* Makefile: Update debian package-building rules.

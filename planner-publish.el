@@ -71,6 +71,10 @@
 (require 'muse-html) ;;; allow derive style from "html" and "xhtml"
 (require 'muse-xml)  ;;; allow derive style from "xml"
 
+(unless (featurep 'muse-nested-tags)
+  (error (concat "Your version of Muse is too old.  Please upgrade to"
+                 " at least Muse 3.03.")))
+
 (defgroup planner-publish nil
   "Options controlling the behavior of PLANNER publishing.
 See `planner-publish' for more information."
@@ -101,27 +105,16 @@ For more on the structure of this list, see
   :group 'planner-publish)
 
 (defcustom planner-publish-markup-tags
-  (if (featurep 'muse-nested-tags)
-      '(("nested-section" t nil t planner-publish-nested-section-tag)
-        ("title" t t nil planner-publish-title-tag)
-        ("content" t nil nil planner-publish-content-tag)
-        ("diary-section" t nil nil planner-publish-diary-section-tag)
-        ("tasks-section" t nil nil planner-publish-tasks-section-tag)
-        ("notes-section" t nil nil planner-publish-notes-section-tag)
-        ("notes"   nil nil nil planner-publish-notes-tag)
-        ("past-notes" nil t nil planner-publish-past-notes-tag)
-        ("task"    t t nil planner-publish-task-tag)
-        ("note"    t t nil planner-publish-note-tag))
-    '(("nested-section" t nil planner-publish-nested-section-tag)
-      ("title" t t planner-publish-title-tag)
-      ("content" t nil planner-publish-content-tag)
-      ("diary-section" t nil planner-publish-diary-section-tag)
-      ("tasks-section" t nil planner-publish-tasks-section-tag)
-      ("notes-section" t nil planner-publish-notes-section-tag)
-      ("notes"   nil nil planner-publish-notes-tag)
-      ("past-notes" nil t planner-publish-past-notes-tag)
-      ("task"    t t   planner-publish-task-tag)
-      ("note"    t t   planner-publish-note-tag)))
+  '(("nested-section" t nil t planner-publish-nested-section-tag)
+    ("title" t t nil planner-publish-title-tag)
+    ("content" t nil nil planner-publish-content-tag)
+    ("diary-section" t nil nil planner-publish-diary-section-tag)
+    ("tasks-section" t nil nil planner-publish-tasks-section-tag)
+    ("notes-section" t nil nil planner-publish-notes-section-tag)
+    ("notes"   nil nil nil planner-publish-notes-tag)
+    ("past-notes" nil t nil planner-publish-past-notes-tag)
+    ("task"    t t nil planner-publish-task-tag)
+    ("note"    t t nil planner-publish-note-tag))
   "A list of tag specifications, for specially marking up PLANNER.
 See `muse-publish-markup-tags' for more information."
   :type '(repeat (list (string :tag "Markup tag")
@@ -734,34 +727,35 @@ DIRECTORY and START."
 
 ;;;_ + Planner Style Definitions
 
-(unless (assoc "planner-xml" muse-publishing-styles)
-  (muse-derive-style "planner-xml" "xml"
-                     :regexps   'planner-publish-markup-regexps
-                     :functions 'planner-publish-markup-functions
-                     :tags      'planner-publish-markup-tags
-                     :strings   'planner-xml-markup-strings
-                     :before    'planner-publish-prepare-buffer
-                     :after     'planner-publish-finalize-buffer
-                     :header    'planner-xml-header
-                     :footer    'planner-xml-footer)
-  (muse-derive-style "planner-html" "html"
-                     :regexps   'planner-publish-markup-regexps
-                     :functions 'planner-publish-markup-functions
-                     :tags      'planner-publish-markup-tags
-                     :strings   'planner-html-markup-strings
-                     :before    'planner-publish-prepare-buffer
-                     :after     'planner-publish-finalize-buffer
-                     :header    'planner-html-header
-                     :footer    'planner-html-footer)
-  (muse-derive-style "planner-xhtml" "xhtml"
-                     :regexps   'planner-publish-markup-regexps
-                     :functions 'planner-publish-markup-functions
-                     :tags      'planner-publish-markup-tags
-                     :strings   'planner-html-markup-strings
-                     :before    'planner-publish-prepare-buffer
-                     :after     'planner-publish-finalize-buffer
-                     :header    'planner-xhtml-header
-                     :footer    'planner-xhtml-footer))
+(muse-derive-style "planner-xml" "xml"
+                   :regexps   'planner-publish-markup-regexps
+                   :functions 'planner-publish-markup-functions
+                   :tags      'planner-publish-markup-tags
+                   :strings   'planner-xml-markup-strings
+                   :before    'planner-publish-prepare-buffer
+                   :after     'planner-publish-finalize-buffer
+                   :header    'planner-xml-header
+                   :footer    'planner-xml-footer)
+
+(muse-derive-style "planner-html" "html"
+                   :regexps   'planner-publish-markup-regexps
+                   :functions 'planner-publish-markup-functions
+                   :tags      'planner-publish-markup-tags
+                   :strings   'planner-html-markup-strings
+                   :before    'planner-publish-prepare-buffer
+                   :after     'planner-publish-finalize-buffer
+                   :header    'planner-html-header
+                   :footer    'planner-html-footer)
+
+(muse-derive-style "planner-xhtml" "xhtml"
+                   :regexps   'planner-publish-markup-regexps
+                   :functions 'planner-publish-markup-functions
+                   :tags      'planner-publish-markup-tags
+                   :strings   'planner-html-markup-strings
+                   :before    'planner-publish-prepare-buffer
+                   :after     'planner-publish-finalize-buffer
+                   :header    'planner-xhtml-header
+                   :footer    'planner-xhtml-footer)
 
 (provide 'planner-publish)
 

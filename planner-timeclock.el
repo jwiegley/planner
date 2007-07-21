@@ -157,18 +157,12 @@ the result."
   (add-text-properties beg (point) '(read-only t)))
 
 (add-hook 'muse-colors-markup-tags
-          (if (featurep 'muse-nested-tags)
-              '("timeclock-report" nil nil nil
-                planner-colors-timeclock-report-tag)
-            '("timeclock-report" nil nil
-              planner-colors-timeclock-report-tag)))
+          '("timeclock-report" nil nil nil
+            planner-colors-timeclock-report-tag))
 
 (add-hook 'muse-publish-markup-tags
-          (if (featurep 'muse-nested-tags)
-              '("timeclock-report" nil nil nil
-                planner-publish-timeclock-report-tag)
-            '("timeclock-report" nil nil
-              planner-publish-timeclock-report-tag)))
+          '("timeclock-report" nil nil nil
+            planner-publish-timeclock-report-tag))
 
 (defun planner-timeclock-task-plan (info)
   "Return the first plan page associated with INFO."

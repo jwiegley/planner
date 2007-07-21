@@ -310,7 +310,7 @@ also the packages it depends on (@pxref{Installation}).
 
 Planner depends on Muse. Information for downloading and installing
 Muse can be found at
-@url{http://www.mwolson.org/static/doc/muse.html}.
+@url{http://mwolson.org/static/doc/muse.html}.
 
 Planner and Muse are intended to work with version 21 or later of Emacs
 and XEmacs.
@@ -352,18 +352,18 @@ them there.
 @enumerate
 @item
 Download and unpack either
-@url{http://www.mwolson.org/static/dist/planner-latest.tar.gz} or
-@url{http://www.mwolson.org/static/dist/planner-latest.zip}.
+@url{http://mwolson.org/static/dist/planner-latest.tar.gz} or
+@url{http://mwolson.org/static/dist/planner-latest.zip}.
 
 @item
 Likewise for
-@url{http://www.mwolson.org/static/dist/muse-latest.tar.gz} or
-@url{http://www.mwolson.org/static/dist/muse-latest.zip}.
+@url{http://mwolson.org/static/dist/muse-latest.tar.gz} or
+@url{http://mwolson.org/static/dist/muse-latest.zip}.
 
 @item
 Likewise for
-@url{http://www.mwolson.org/static/dist/remember-latest.tar.gz} or
-@url{http://www.mwolson.org/static/dist/remember-latest.zip}.
+@url{http://mwolson.org/static/dist/remember-latest.tar.gz} or
+@url{http://mwolson.org/static/dist/remember-latest.zip}.
 
 @item Edit your @file{~/.emacs} (@file{_emacs} on Microsoft Windows).
 
@@ -404,7 +404,7 @@ files.
 
 @example
 # Register the Muse archive
-tla register-archive -f http://www.mwolson.org/archives/2006
+tla register-archive -f http://mwolson.org/archives/2006
 
 # Register the Planner archive
 tla register-archive -f http://arch.gna.org/planner-el/archive-2006
@@ -478,7 +478,7 @@ If you wish to try experimental packages, add the following lines to
 your @file{/etc/apt/sources.list}
 
 @example
-deb http://www.mwolson.org/debian/ ./
+deb http://mwolson.org/debian/ ./
 @end example
 
 Then, do the following steps as root:
