@@ -6,9 +6,20 @@
 	planner-publish.el: Remove support for old markup-tag syntax, now
 	that Muse 3.03 is released.
 
+	* planner-calendar.el (planner-calendar-prev-month-href)
+	(planner-calendar-next-month-href): Don't escape specials specials
+	in the URL description.  This should fix a bug with "&laquo;" and
+	"&raquo;".
+
 	* planner-publish.el: Error out when loading if we have Muse less
 	than 3.03.  Also, remove `unless' wrapper around uses of
 	muse-derive-style.
+	(planner-publish-ignore-url-desc-specials): New variable that
+	determines whether to ignore specials in URL descriptions.
+	(planner-publish-decide-specials): New function that uses this
+	variable.
+	("planner-xml", "planner-xhtml", "planner-xhtml"): Set :specials
+	to planner-publish-decide-specials.
 
 	* planner-el.texi: Replace "www.mwolson.org" with "mwolson.org"
 	for brevity.

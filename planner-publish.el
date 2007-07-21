@@ -446,6 +446,16 @@ See `muse-publish-markup-regexps' for details on the syntax used."
 
 ;;;_ + Markup
 
+(defvar planner-publish-ignore-url-desc-specials nil
+  "If non-nil, do not escape specials in URL descriptions.")
+
+(defun planner-publish-decide-specials (context)
+  "Determine the specials to escape for Planner, depending on CONTEXT."
+  (if (and (eq context 'url-desc)
+           planner-publish-ignore-url-desc-specials)
+      nil
+    (muse-xml-decide-specials context)))
+
 (defun planner-publish-markup-task ()
   "Replace tasks with XML representation of task data."
   (save-restriction
@@ -731,6 +741,7 @@ DIRECTORY and START."
                    :regexps   'planner-publish-markup-regexps
                    :functions 'planner-publish-markup-functions
                    :tags      'planner-publish-markup-tags
+                   :specials  'planner-publish-decide-specials
                    :strings   'planner-xml-markup-strings
                    :before    'planner-publish-prepare-buffer
                    :after     'planner-publish-finalize-buffer
@@ -741,6 +752,7 @@ DIRECTORY and START."
                    :regexps   'planner-publish-markup-regexps
                    :functions 'planner-publish-markup-functions
                    :tags      'planner-publish-markup-tags
+                   :specials  'planner-publish-decide-specials
                    :strings   'planner-html-markup-strings
                    :before    'planner-publish-prepare-buffer
                    :after     'planner-publish-finalize-buffer
@@ -751,6 +763,7 @@ DIRECTORY and START."
                    :regexps   'planner-publish-markup-regexps
                    :functions 'planner-publish-markup-functions
                    :tags      'planner-publish-markup-tags
+                   :specials  'planner-publish-decide-specials
                    :strings   'planner-html-markup-strings
                    :before    'planner-publish-prepare-buffer
                    :after     'planner-publish-finalize-buffer

@@ -312,7 +312,8 @@ support POSIX \"ln\"."
 (defun planner-calendar-prev-month-href (month year name &optional nop max-days)
   "Return an href anchor string for the last day page in the previous month."
   (let ((prev-date (planner-calendar-prev-date (list month 1 year) max-days))
-	(muse-publish-desc-transforms nil))
+	(muse-publish-desc-transforms nil)
+	(planner-publish-ignore-url-desc-specials t))
     (planner-calendar-published-file-href
      (planner-calendar-date-to-filename prev-date) name nop)))
 
@@ -322,7 +323,8 @@ support POSIX \"ln\"."
 	 (planner-calendar-next-date
 	  (list month (calendar-last-day-of-month month year) year)
 	  max-days))
-	(muse-publish-desc-transforms nil))
+	(muse-publish-desc-transforms nil)
+	(planner-publish-ignore-url-desc-specials t))
     (planner-calendar-published-file-href
      (planner-calendar-date-to-filename next-date) name nop)))
 
