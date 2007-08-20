@@ -396,10 +396,12 @@
 (require 'font-lock)
 (require 'info)
 (require 'easymenu)
-(eval-when-compile
-  (when (featurep 'xemacs)
+(condition-case nil
     (require 'derived)
-    (require 'overlay)))
+  (error nil))
+(condition-case nil
+    (require 'overlay)
+  (error nil))
 
 (defvar planner-loaded nil)
 (defvar planner-version "3.41"

@@ -1,3 +1,9 @@
+2007-08-19  Michael Olson  <mwolson@gnu.org>
+
+	* planner.el: Remove use of eval-when-compile in require
+	statements, since it breaks compiled code.  Also, emacs21 needs to
+	require 'derived.
+
 2007-07-21  Michael Olson  <mwolson@gnu.org>
 
 	* README: Mention that Muse 3.03 or later is needed.
