@@ -547,6 +547,7 @@ of each section."
     (forward-line 1)
     (muse-publish-verse-tag (point) end)
     (goto-char end)
+    (insert "\n")
     (planner-insert-markup (muse-markup-text 'planner-end-diary-section))))
 
 (defun planner-publish-tasks-section-tag (beg end)

@@ -1,3 +1,8 @@
+2007-08-22  Michael Olson  <mwolson@gnu.org>
+
+	* planner-publish.el (planner-publish-diary-section-tag): Insert
+	newline so that we avoid a validation error.
+
 2007-08-19  Michael Olson  <mwolson@gnu.org>
 
 	* planner.el: Remove use of eval-when-compile in require
