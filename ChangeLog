@@ -1,5 +1,10 @@
 2007-08-29  John Sullivan  <john@wjsullivan.net>
 
+	* planner.el (planner-delete-task): Use it.
+
+	* planner.el (planner-delete-task-hook): New hook. Thanks to David
+	Vazquez for the suggestion.
+
 	* planner-el.texi (Annotations): Remove misleadingly incomplete
 	sentence describing default annotations.
 

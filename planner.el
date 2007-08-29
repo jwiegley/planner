@@ -3701,6 +3701,13 @@ This function is the most complex aspect of planner.el."
 
 ;;;_  + Deleting
 
+(defcustom planner-delete-task-hook nil
+  "Hook called after a task has been deleted.
+Argument is a task information list. If a function returns nil,
+no other functions will be processed."
+  :type 'hook
+  :group 'planner-tasks)
+
 (defun planner-delete-task ()
   "Deletes this task from the current page and the linked page."
   (interactive)
@@ -3722,7 +3729,9 @@ This function is the most complex aspect of planner.el."
           (delete-region (planner-line-beginning-position)
                          (min (point-max) (1+ (planner-line-end-position)))))
         (when planner-tasks-file-behavior
-          (planner-save-buffers live-buffers t))))))
+          (planner-save-buffers live-buffers t))
+        (run-hook-with-args-until-failure
+         'planner-delete-task-hook task-info)))))
 
 ;;;_  + Updating
 
