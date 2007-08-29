@@ -420,6 +420,14 @@
   (when planner-loaded
     (planner-update-wiki-project)))
 
+(defun planner-split-string (string &optional separators omit-nulls)
+  ;; OMIT-NULLS was added in Emacs 22. Remove this when we stop supporting
+  ;; anything before 22, and replace all uses with `split-string'.
+  (let ((res (split-string string separators)))
+    (if omit-nulls
+        (delete "" res)
+      res)))
+
 ;;;_* Options
 
 (defgroup planner nil

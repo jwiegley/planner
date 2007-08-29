@@ -1,5 +1,12 @@
 2007-08-29  John Sullivan  <john@wjsullivan.net>
 
+	* planner-registry.el (planner-registry-get-link-keywords): Use
+	it.
+	(planner-registry-get-keywords): Here too.
+
+	* planner.el (planner-split-string): Compatibility hack for
+	changes made in Emacs 22.
+
 	* planner.el (planner-delete-task): Use it.
 
 	* planner.el (planner-delete-task-hook): New hook. Thanks to David

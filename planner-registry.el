@@ -1,6 +1,6 @@
 ;;; planner-registry.el --- registry for Planner
 
-;; Copyright (C) 2005, 2006 Free Software Foundation, Inc.
+;; Copyright (C) 2005, 2006, 2007 Free Software Foundation, Inc.
 ;; Time-stamp: <2006-01-23 18:21:18 guerry>
 ;;
 ;; Author: Bastien Guerry <bzg@altern.org>
@@ -362,11 +362,11 @@ LEVEL is set interactively or  set to `planner-registry-show-level'."
 
 (defun planner-registry-get-link-keywords (link)
   "Make a list of keywords for LINK."
-  (setq link (car (split-string link "#" t))))
+  (setq link (car (planner-split-string link "#" t))))
 
 (defun planner-registry-get-keywords (desc)
   "Make a list of keywords for DESC."
-  (let ((kw (split-string desc "[ ./]+" t)))
+  (let ((kw (planner-split-string desc "[ ./]+" t)))
     (mapcar (lambda (wd) (setq kw (delete wd kw)))
 	    planner-registry-ignore-keywords)
     (setq kw
