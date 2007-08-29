@@ -1,3 +1,13 @@
+2007-08-29  John Sullivan  <john@wjsullivan.net>
+
+	* planner-el.texi (Annotations): Remove misleadingly incomplete
+	sentence describing default annotations.
+
+	* planner.el (planner-annotation-from-man): New. Closes #8197 and
+	#8196.
+	(planner-annotation-from-woman): New. Thanks to Valery V.
+	Vorotyntsev for getting both of these started.
+
 2007-08-22  Michael Olson  <mwolson@gnu.org>
 
 	* planner-publish.el (planner-publish-diary-section-tag): Insert

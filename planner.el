@@ -7,7 +7,7 @@
 ;;;_ + Package description
 
 ;; Copyright (C) 2001, 2003, 2004, 2005,
-;;   2006 Free Software Foundation, Inc.
+;;   2006, 2007 Free Software Foundation, Inc.
 ;; Parts copyright (C) 2004 David D. Smith (davidsmith AT acm DOT org)
 ;; Parts copyright (C) 2004 Yvonne Thomson (yvonne AT netbrains DOT com DOT au)
 ;; Parts copyright (C) 2004 Maciej Kalisak (mac AT cs DOT toronto DOT edu)
@@ -24,7 +24,7 @@
 ;; Version: 3.41
 ;; Keywords: hypermedia
 ;; Author: John Wiegley <johnw@gnu.org>
-;; Maintainer: Michael Olson <mwolson@gnu.org>
+;; Maintainer: John Sullivan <john@wjsullivan.net>
 ;; Description: Use Emacs for life planning
 ;; URL: http://www.wjsullivan.net/PlannerMode.html
 ;; Bugs: https://gna.org/bugs/?group=planner-el
@@ -469,6 +469,9 @@ don't want to be prompted for plans."
     planner-annotation-from-planner
     planner-annotation-from-wiki
     planner-annotation-from-dired
+    planner-annotation-from-info
+    planner-annotation-from-man
+    planner-annotation-from-woman
     planner-annotation-from-file-with-position)
   "Functions tried in order by `planner-create-task-from-buffer'.
 To change the behavior of `planner-create-task-from-buffer',
@@ -3139,8 +3142,37 @@ Suitable for use in `planner-annotation-functions'."
        Info-current-node)
      t)))
 
-(add-hook 'planner-annotation-functions 'planner-annotation-from-info)
 (custom-add-option 'planner-annotation-functions 'planner-annotation-from-info)
+
+;;;_  + Man
+
+(defun planner-annotation-from-man ()
+  "If called from a man page, return an annotation.
+Suitable for use in `planner-annotation-functions'."
+  (when (eq major-mode 'Man-mode)
+    ;; There may be a better way to get the name of the current Man page.
+    (let ((page (downcase (cadr (cdar Man-page-list)))))
+      (planner-make-link
+	 (concat "man://" page) 
+         (concat "Man: " page) t))))
+
+(custom-add-option 'planner-annotation-functions 'planner-annotation-from-man)
+
+;;;_ + WoMan
+
+(defun planner-annotation-from-woman ()
+  "If called from a woman page, return an annotation.
+Suitable for use in `planner-annotation-functions'."
+  (when (eq major-mode 'woman-mode)
+    ;; You'd think there'd be a better way to get the page name.
+    (let* ((buf (split-string (buffer-name)))
+           (page (substring (nth 2 buf) 0 -1))
+           (sec (nth 1 buf)))
+      (planner-make-link
+       (concat "woman://" page)
+       (concat "WoMan: " page "(" sec ")") t))))
+
+(custom-add-option 'planner-annotation-functions 'planner-annotation-from-woman)
 
 ;;;_ + Common mail functions
 

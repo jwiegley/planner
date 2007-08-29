@@ -3500,9 +3500,6 @@ and a link back to what made you create the task in the first place.
 The same happens with remembering notes, except that it ends up in the
 @samp{* Notes} section of your page instead.
 
-By default, @file{planner.el} can annotate tasks and notes based on
-the current filename.
-
 @subheading Options
 
 To change the behavior of annotations, customize the following options:
