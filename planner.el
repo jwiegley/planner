@@ -3267,7 +3267,7 @@ instead, except t means scan only yesterday."
                            planner-initial-page))))
 
 (defvar planner-goto-hook '(planner-seek-to-first)
-  "Functions called after a planner page is opened.")
+  "Functions called after a planner day page is opened.")
 
 ;;;###autoload
 (defun planner-goto (date &optional just-show)

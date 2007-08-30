@@ -1,3 +1,7 @@
+2007-08-30  John Sullivan  <john@wjsullivan.net>
+
+	* planner.el (planner-goto-hook): It's only run for day pages.
+
 2007-08-29  John Sullivan  <john@wjsullivan.net>
 
 	* planner-registry.el (planner-registry-get-link-keywords): Use
