@@ -941,7 +941,7 @@ page will be created if it does not already exist."
                           planner-project
                           command
                           directory))
-e
+
 (defalias 'planner-page-name 'muse-page-name)
 
 (defun planner-link-base (link)
