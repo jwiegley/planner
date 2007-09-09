@@ -1,6 +1,6 @@
 ;;; planner-tasks-overview.el --- Task summary for planner.el
 ;;
-;; Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2005, 2007 Free Software Foundation, Inc.
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-tasks-overview.el
@@ -70,7 +70,7 @@
     map)
   "Keymap for planner task overview buffers.")
 
-(define-derived-mode planner-tasks-overview-mode fundamental-mode "Overview"
+(define-derived-mode planner-tasks-overview-mode planner-mode "Overview"
   "Planner tasks overview.
 \\{planner-tasks-overview-mode-map}")
 
@@ -89,7 +89,7 @@
   (with-current-buffer (get-buffer-create planner-tasks-overview-buffer)
     (planner-tasks-overview-mode)
     (setq planner-tasks-overview-data
-          (planner-tasks-overview-extract-all-tasks
+          (planner-extract-tasks
            (planner-get-day-pages start end)))
     (setq truncate-lines t)
     (set (make-local-variable 'truncate-partial-width-windows) t)
@@ -124,23 +124,27 @@
   (interactive)
   (setq planner-tasks-overview-data
         (sort planner-tasks-overview-data
-              (lambda (a b) (string< (elt a field) (elt b field)))))
+              (lambda (a b) 
+                (cond 
+                 ((null (elt a field)) nil)
+                 ((null (elt b field)) t)
+                 ((string< (elt a field) (elt b field)))))))
   (planner-tasks-overview-insert))
 
 (defun planner-tasks-overview-sort-by-date ()
   "Sort by date."
   (interactive)
-  (planner-tasks-overview-sort-by-field 2))
+  (planner-tasks-overview-sort-by-field 8))
 
 (defun planner-tasks-overview-sort-by-plan ()
   "Sort by plan."
   (interactive)
-  (planner-tasks-overview-sort-by-field 3))
+  (planner-tasks-overview-sort-by-field 7))
 
 (defun planner-tasks-overview-sort-by-priority ()
   "Sort by plan."
   (interactive)
-  (planner-tasks-overview-sort-by-field 0))
+  (planner-tasks-overview-sort-by-field 1))
 
 (defun planner-tasks-overview-sort-by-status ()
   "Sort by status."
@@ -148,77 +152,55 @@
   (setq planner-tasks-overview-data
         (sort planner-tasks-overview-data
               (lambda (a b)
-                (if (string= (elt b 1)
-                             (elt a 1))
-                    (string< (elt a 0)
-                             (elt b 0))
-                  (member (elt b 1)
-                          (member (elt a 1)
+                (if (string= (elt b 3)
+                             (elt a 3))
+                    (string< (elt a 1)
+                             (elt b 1))
+                  (member (elt b 3)
+                          (member (elt a 3)
                                   '("_" "o" "D" "P" "X" "C")))))))
   (planner-tasks-overview-insert))
 
 (defun planner-tasks-overview-insert ()
-  "Insert the textual representation for `planner-tasks-overview-data'.
-DATA is a list of (priority status date plan description)."
+  "Insert the textual representation for `planner-tasks-overview-data'."
   (with-current-buffer (get-buffer-create "*planner tasks overview*")
+    (cd (planner-directory))
     (setq buffer-read-only nil)
     (erase-buffer)
     (let (last-date last-plan)
       (mapcar
        (lambda (item)
-         (let ((text
-                (format "%10s | %s | %s %s | %s\n"
-                        (if (elt item 2)
-                            (planner-make-link
-                             (elt item 2)
-                             (format "%-10.10s"
-                                     (if (string= last-date (elt item 2))
-                                         "__________"
-                                       (elt item 2))))
-                          (format "%-10.10s" "nil"))
-                        (if (elt item 3)
-                            (planner-make-link
-                             (elt item 3)
-                             (format "%-20.20s"
-                                     (if (string= last-plan (elt item 3))
-                                         "____________________"
-                                       (elt item 3))))
-                          (format "%-20.20s" "nil"))
-                        (elt item 0)
-                        (elt item 1)
-                        (elt item 4))))
+         (let* ((date (planner-task-date item))
+                (plan (planner-task-plan item))
+                (text
+                 (format "%10s | %s | %s %s | %s\n"
+                         (if date
+                             (planner-make-link 
+                              date
+                              (format "%-10.10s"
+                                      (if (string= last-date date)
+                                          "\"\"" 
+                                        date)))
+                           (format "%-10.10s" ""))
+                         (if plan
+                             (planner-make-link 
+                              plan
+                              (format "%-20.20s"
+                                      (if (string= last-plan plan)
+                                          "\"\""
+                                        plan)))
+                         (format "%-20.20s" ""))
+                         (planner-task-priority item)
+                         (planner-task-status item)
+                         (planner-task-description item))))
            (add-text-properties 0 (length text) (list 'info item)
                                 text)
-           (insert text))
-         (setq last-date (elt item 2))
-         (setq last-plan (elt item 3)))
+           (insert text)
+           (setq last-date date)
+           (setq last-plan plan)))
        planner-tasks-overview-data)
-      (planner-mode)
       (goto-char (point-min))
       (setq buffer-read-only t))))
-
-(defun planner-tasks-overview-extract-all-tasks (file-list)
-  "Return a list of all tasks on pages in FILE-LIST."
-  (let (results)
-    (with-temp-buffer
-      (cd (planner-directory))
-      ;; The following line greps only the days limited by START and END.
-      (apply 'call-process "grep" nil t nil "-H" "-e" "^#[A-C][0-9]*"
-             (mapcar 'cdr file-list))
-      (goto-char (point-min))
-      (while (not (eobp))
-        (when (looking-at "^\\([^:\n]+\\):\\(.+\\)")
-          (let ((info (planner-task-info-from-string
-                       (match-string 1) (match-string 2))))
-            (add-to-list
-             'results
-             (vector (planner-task-priority info)
-                     (planner-task-status info)
-                     (planner-task-date info)
-                     (planner-task-plan info)
-                     (planner-task-description info)))))
-        (forward-line))
-      results)))
 
 ;; Improvements: sort?
 ;;;###autoload

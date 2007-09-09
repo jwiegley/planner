@@ -1,5 +1,22 @@
 2007-09-09  John Sullivan  <john@wjsullivan.net>
 
+	* planner-tasks-overview.el (planner-tasks-overview): Use
+	planner-extract-tasks.
+	(planner-tasks-overview-insert): Expect list layout returned by
+	planner-extract-tasks, and use parsing functions. Improve display.
+	Set working directory so that links work. Don't switch to
+	planner-mode, stay in planner-tasks-overview-mode.
+	(planner-tasks-overview-extract-all-tasks): Deleted because it's
+	redundant; we use planner-extract-tasks for this.
+	(planner-tasks-overview-mode): Derive from planner-mode, not
+	fundamental-mode.
+	(planner-tasks-overview-sort-by-date): Fix field number.
+	(planner-tasks-overview-sort-by-plan): Fix field number.
+	(planner-tasks-overview-sort-by-priority): Fix field number.
+	(planner-tasks-overview-sort-by-field): Handle nil properly for
+	sorting.
+	(planner-tasks-overview-sort-by-status): Fix field numbers.
+
 	* planner.el: Standardize and update compatibility info across all
 	files.
 
