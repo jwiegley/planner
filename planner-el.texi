@@ -14,7 +14,7 @@
 @copying
 This manual is for Planner version 3.41.
 
-Copyright @copyright{} 2001, 2004, 2005, 2006 Free Software Foundation, Inc.@*
+Copyright @copyright{} 2001, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.@*
 Parts copyright @copyright{} 2005 Jim Ottaway@*
 Parts copyright @copyright{} 2005 Dryice Dong Liu
 
@@ -402,18 +402,22 @@ To get started with Planner using Arch, you'll need to run some initial
 commands to register your local copy of the archive and retrieve the
 files.
 
-@example
-# Register the Muse archive
-tla register-archive -f http://mwolson.org/archives/2006
+Note that Muse is now developed with git, so you will need to install
+that as well.  For Debian, that involves doing @kbd{apt-get install
+git-core}.
 
+@example
 # Register the Planner archive
 tla register-archive -f http://arch.gna.org/planner-el/archive-2006
 
 # Register the Remember archive
 tla register-archive -f http://arch.gna.org/remember-el/archive
 
-# Get Muse
-tla get mwolson@@gnu.org--2006/muse--main--1.0 muse
+# Download Muse
+git clone git://repo.or.cz/muse-el.git muse
+# If that didn't work (due to a restrictive firewall), then try the
+# following instead:
+# git clone http://repo.or.cz/r/muse-el.git muse
 
 # Download planner module into the planner/ subdirectory
 tla get mwolson@@gnu.org--2006-planner-el/planner-el--devel--0 planner
@@ -457,7 +461,7 @@ tla missing --summary
 To update to the latest version:
 
 @example
-cd muse; tla update
+cd muse; git pull
 cd ../planner; tla update
 cd ../remember; tla update
 @end example
