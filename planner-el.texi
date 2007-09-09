@@ -3254,16 +3254,20 @@ can, for example, hide the bodies of all the notes on a page so you can
 see just their headlines. You can also jump easily from headline to
 headline, skipping over the bodies in between.
 
-The commands for using Allout mode vary depending on which Emacs version
-you are using. In either case, type @kbd{M-x load-library @key{RET}
-allout @key{RET}} to start. If you are using CVS Emacs, type @kbd{M-x
-allout-mode @key{RET}}. If you are using an earlier version of Emacs,
-type @kbd{M-x outline-mode @key{RET}}.
+The commands for using Allout mode vary depending on which Emacs
+version you are using. In either case, type @kbd{M-x load-library
+@key{RET} allout @key{RET}} to start. If you are using Emacs 22 or
+later, type @kbd{M-x allout-mode @key{RET}}. If you are using an
+earlier version of Emacs, type @kbd{M-x outline-mode @key{RET}}.
 
-The exact commands then available to you differ depending on your Emacs
-version, but you can view the commands and their keybindings by typing
-@kbd{C-h m}. In CVS Emacs, they will start with @command{allout-}, while
-in previous versions, they will start with @command{outline-}.
+The exact commands then available to you differ depending on your
+Emacs version, but you can view the commands and their keybindings by
+typing @kbd{C-h m}. In Emacs 22 or later, they will start with
+@command{allout-}, while in previous versions, they will start with
+@command{outline-}.
+
+For more information about using Allout mode, see @kbd{C-h f
+allout-mode @key{RET}}.
 
 @node <notes>, <past-notes>, Using Allout Mode, More about Notes
 @subsection <notes>
