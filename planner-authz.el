@@ -10,7 +10,7 @@
 ;; Maintainer: Andrew J. Korty <ajk@iu.edu>
 ;; Description: Control access to portions of published planner pages
 ;; URL:
-;; Compatibility: Emacs21
+;; Compatibility: Emacs20, Emacs21, Emacs22, XEmacs21
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 

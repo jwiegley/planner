@@ -10,7 +10,7 @@
 ;; Keywords: hypermedia
 ;; Author: Gary V. Vaughan (gary AT gnu DOT org)
 ;; Description: Create a clickable calendar in published html
-;; Compatibility: Emacs21, XEmacs21
+;; Compatibility: Emacs20, Emacs21, Emacs22, XEmacs21
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 

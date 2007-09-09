@@ -8,7 +8,7 @@
 ;; Author: Sacha Chua <sacha@free.net.ph>
 ;; Description: Create tasks and notes based on IRC
 ;; URL: http://www.wjsullivan.net/PlannerMode.html
-;; Compatibility: Emacs20, Emacs21, XEmacs21
+;; Compatibility: Emacs20, Emacs21, Emacs22, XEmacs21
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 

@@ -11,7 +11,7 @@
 ;; Maintainer: Andrew J. Korty <ajk@iu.edu>
 ;; Description: Create a timely status report based on planner pages
 ;; URL: http://www.wjsullivan.net/PlannerMode.html
-;; Compatibility: Emacs21
+;; Compatibility: Emacs20, Emacs21, Emacs22, XEmacs21
 
 ;; This file is part of Planner.  It is not part of GNU Emacs.
 
