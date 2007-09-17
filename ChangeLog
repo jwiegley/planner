@@ -1,3 +1,10 @@
+2007-09-17  John Sullivan  <john@wjsullivan.net>
+
+	* planner-tasks-overview.el (planner-tasks-overview-show-summary),
+	(planner-tasks-overview-insert): Replace obsolete
+	`planner-directory'.
+
+
 2007-09-09  John Sullivan  <john@wjsullivan.net>
 
 	* planner-tasks-overview.el (planner-tasks-overview): Use

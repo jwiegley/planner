@@ -164,7 +164,7 @@
 (defun planner-tasks-overview-insert ()
   "Insert the textual representation for `planner-tasks-overview-data'."
   (with-current-buffer (get-buffer-create "*planner tasks overview*")
-    (cd (planner-directory))
+    (setq muse-current-project (muse-project planner-project))
     (setq buffer-read-only nil)
     (erase-buffer)
     (let (last-date last-plan)
@@ -253,7 +253,7 @@ display. planner-multi is required for multiple pages."
                       (/ (+ (elt row 1) (elt row 2) (elt row 3))
                          (* 0.01 total))))))
          (elt data 3))
-        (cd (planner-directory))
+        (setq muse-current-project (muse-project planner-project))
         (planner-mode)
         (switch-to-buffer (current-buffer))))))
 
