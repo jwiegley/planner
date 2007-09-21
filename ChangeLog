@@ -1,3 +1,8 @@
+2007-09-21  Michael Olson  <mwolson@gnu.org>
+
+	* planner.el (planner-annotation-as-kill): Fix error that occurred
+	when no annotation is found, and display a relevant message.
+
 2007-09-17  John Sullivan  <john@wjsullivan.net>
 
 	* planner-tasks-overview.el (planner-tasks-overview-show-summary),

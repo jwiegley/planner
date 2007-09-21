@@ -1659,10 +1659,12 @@ When called with a prefix argument, prompt for the link display name."
   (let* ((link (run-hook-with-args-until-success
                 'planner-annotation-functions))
          (link-name (if arg (read-string (format "Link name for %s: " link)))))
-    (unless (= 0 (length link-name))
+    (unless (or (not (stringp link-name)) (string= link-name ""))
       (setq link (planner-make-link link link-name t)))
-    (message "Copied '%s' to the kill-ring." link)
-    (kill-new link)))
+    (if (not (stringp link))
+        (message "No annotation can be made")
+      (message "Copied '%s' to the kill-ring" link)
+      (kill-new link))))
 (custom-add-option 'planner-annotation-functions
                    'planner-annotation-as-kill)
 
