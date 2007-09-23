@@ -1,3 +1,12 @@
+2007-09-23  John Sullivan  <john@wjsullivan.net>
+
+	* planner.el (planner-copy-or-move-region): Use convenience
+	functions instead of ELT and regexps. Don't include the task at
+	the beginning of the region if point is at the end of the line,
+	but do include it otherwise. Correct docstring to reflect actual
+	behavior.
+
+
 2007-09-21  Michael Olson  <mwolson@gnu.org>
 
 	* planner.el (planner-annotation-as-kill): Fix error that occurred

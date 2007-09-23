@@ -2061,10 +2061,11 @@ and LINK override TASK-INFO."
   "Move all tasks from BEG to END to DATE.
 If this is the original task, it copies it instead of moving.
 Most of the time, the original should be kept in a planning file,
-but this is not required.  `planner-copy-or-move-region' will
-copy or move all tasks from the line containing BEG to the line
-just before END.  If MUFFLE-ERRORS is non-nil, no errors will be
-reported."
+but this is not required. If BEG is at the end of a line, the
+first task moved will be the one on the following line. If END is
+at the beginning of a line, the last task moved will be the one
+on the previous line. If MUFFLE-ERRORS is non-nil, no errors will
+be reported."
   (interactive "r")
   (unless date (setq date
                      (let ((planner-expand-name-favor-future-p
@@ -2080,11 +2081,12 @@ reported."
                                    'close)
                         (buffer-list))))
     ;; Invoke planner-copy-or-move-task on each line in reverse
-    (let ((planner-tasks-file-behavior nil))
+    (let ((planner-tasks-file-behavior nil)
+          (task-info))
       (save-excursion
         (save-restriction
           (narrow-to-region
-           (and (goto-char start) (planner-line-beginning-position))
+           (and (goto-char (1+ start)) (planner-line-beginning-position))
            (and (goto-char (1- finish))
                 (min (point-max)
                      (1+ (planner-line-end-position)))))
@@ -2093,9 +2095,10 @@ reported."
           (goto-char (point-max))
           (while (not (bobp))
             (goto-char (planner-line-beginning-position))
-            ;; Non-completed or cancelled tasks only
-            (if (looking-at
-                 "^#?\\([A-C]\\)\\([0-9]*\\)\\s-+\\([^XC\n]\\)\\s-+\\(.+\\)")
+            (setq task-info (planner-current-task-info))
+            ;; Don't move completed or cancelled tasks
+            (if (and task-info 
+                     (not (member (planner-task-status task-info) '("C" "X"))))
                 (condition-case err
                     (when (planner-copy-or-move-task date)
                       (setq count (1+ count)))
@@ -2103,7 +2106,7 @@ reported."
                    (unless (or muffle-errors (not (interactive-p)))
                      (message
                       "Error with %s: %s"
-                      (elt (planner-current-task-info) 4) err)
+                      (planner-task-description (planner-current-task-info)) err)
                      (setq error-count (1+ error-count)))
                    (forward-line -1)
                    nil))
