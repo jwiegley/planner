@@ -2810,6 +2810,7 @@ INCLUDE-BODY is non-nil, return the body text, else return nil."
             ;; The text between start and (1- (match-beginning 0))
             ;; is the note body.
             (when (save-excursion
+                    (goto-char (planner-line-beginning-position))
                     (save-match-data (re-search-backward regexp start t)))
               (add-to-list 'page-results
                            (list (concat filename anchor)
@@ -2818,7 +2819,7 @@ INCLUDE-BODY is non-nil, return the body text, else return nil."
                                  (if include-body
                                      (buffer-substring-no-properties
                                       start
-                                      (point))))))
+                                      (planner-line-beginning-position))))))
             (setq start (match-beginning 2))
             (setq anchor (match-string 1))
             (setq title (match-string 2)))

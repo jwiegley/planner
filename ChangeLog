@@ -1,3 +1,9 @@
+2007-09-26  John Sullivan  <john@wjsullivan.net>
+
+	* planner.el (planner-search-notes-internal): Don't include the
+	title line of any following note in either the search or the
+	matched text. Closes #8973 and #7622.
+
 2007-09-23  John Sullivan  <john@wjsullivan.net>
 
 	* planner.el (planner-copy-or-move-region): Use convenience
