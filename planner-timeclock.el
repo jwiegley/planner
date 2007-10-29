@@ -110,7 +110,8 @@
       (while (re-search-forward
               (concat
                "^. [^ \n]+ [^ \n]+ "
-               "\\(" (regexp-quote (planner-timeclock-plan-string info)) "\\)"
+               ;; make project match optional (for tasks added manually).
+               "\\(" (regexp-quote (planner-timeclock-plan-string info)) "\\)?"
                (regexp-quote (planner-task-description info)) "$") nil t)
         (replace-match
          (save-match-data (planner-timeclock-plan-string nil (ad-get-arg 0)))

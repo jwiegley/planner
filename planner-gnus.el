@@ -83,10 +83,15 @@ can type C-c C-t to call planner-create-task-from-buffer."
   "Return the message-id of the current message."
   (save-excursion
     (if (equal major-mode 'gnus-summary-mode)
-        (mail-header-message-id (gnus-data-header
-                                 (assq (or article-number
-                                           (gnus-summary-article-number))
-                                       gnus-newsgroup-data)))
+        (let
+            ((mhmi
+              (mail-header-message-id (gnus-data-header
+                                       (assq (or article-number
+                                                 (gnus-summary-article-number))
+                                             gnus-newsgroup-data)))))
+          (if (nnheader-fake-message-id-p mhmi)
+              (number-to-string article-number)
+            mhmi))
       ;; Refer to the article buffer
       (save-excursion
         (goto-char (point-min))

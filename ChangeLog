@@ -1,3 +1,14 @@
+2007-10-29  Adrian Aichner  <adrian@xemacs.org>
+
+	* timeclock.el: Typo fix.
+
+	* planner-gnus.el (planner-gnus-get-message-id): Make gnuslog (see
+	http://www.emacswiki.org/cgi-bin/wiki/GnusLog) URLs useful in
+	context of current gnuslog-file.
+
+	* planner-timeclock.el (defadvice planner-replan-task): Make
+	project match optional (for tasks added manually).
+
 2007-09-26  John Sullivan  <john@wjsullivan.net>
 
 	* planner.el (planner-search-notes-internal): Don't include the

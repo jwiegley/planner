@@ -79,7 +79,7 @@
 
 ;; Version 2.7:
 ;;
-;; Include changes made on 2006-08-01 by Aidrian Aichner
+;; Include changes made on 2006-08-01 by Adrian Aichner
 ;; <adrian@xemacs.org> which make it easier to work with a
 ;; pgp-encrypted timeclock file.
 
