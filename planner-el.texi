@@ -640,11 +640,13 @@ for the new entry in the info @file{dir} file.
 @cindex byte compiling
 @item You can byte-compile @file{planner.el}, @file{Muse},
 @file{remember.el}, or any of the optional modules you frequently use,
-in order to improve the speed of their execution. Basically, all you
-need to do is change to the directory of each project in
-@file{scripts/planner-build.el} and run @command{make} from the command
-line. To read more detail about byte compilation, see
-@ref{Byte Compilation, , ,elisp, Emacs Lisp Reference Manual}.
+in order to improve the speed of their execution.  Basically, all you
+need to do is (1) change the directory for each project listed in
+@file{scripts/planner-build.el}, (2) copy @file{Makefile.defs.default}
+to @file{Makefile.defs} and edit it as needed, and (3) run
+@command{make} from the command line. To read more detail about byte
+compilation, see @ref{Byte Compilation, , ,elisp, Emacs Lisp Reference
+Manual}.
 
 @end itemize
 

@@ -77,12 +77,18 @@ PATH with the path to Muse.
 (add-to-list 'load-path "PATH/lisp")
 
 If you want to use the `xemacs' binary to perform the compilation, you
-would need to edit `Makefile.defs' in the top-level directory as
-follows.  You can put either a full path to an Emacs or XEmacs binary
-or just the command name, as long as it is in the PATH.
+must copy `Makefile.defs.default' to `Makefile.defs' in the top-level
+directory, and then edit `Makefile.defs' as follows.  You can put
+either a full path to an Emacs or XEmacs binary or just the command
+name, as long as it is in the PATH.  Depending on your setup, changes
+to the PREFIX, ELISPDIR, and/or INFODIR variables may also need to be
+made.
 
 EMACS    = xemacs
 SITEFLAG = -no-site-file
+# Edit the section as necessary
+install_info = install-info --section "XEmacs 21.4" $(1).info \
+        $(INFODIR)/dir || :
 
 In order for Planner to be byte-compiled properly, you will need to
 specify the paths to Muse and other external software programs in
@@ -98,11 +104,13 @@ Installation
 Planner may be installed into your file hierarchy by doing the
 following.
 
-Edit the `Makefile.defs' file so that ELISPDIR points to where you
-want the source and compiled Planner files to be installed and INFODIR
-indicates where to put the Planner manual.  Of course, you will want
-to edit EMACS and SITEFLAG as shown in the Compilation section if you
-are using XEmacs.
+Copy `Makefile.defs.default' to `Makefile.defs' in the top-level
+directory, if you haven't done so already.  Then edit the
+`Makefile.defs' file so that ELISPDIR points to where you want the
+source and compiled Muse files to be installed and INFODIR indicates
+where to put the Muse manual.  As mentioned earlier, you will want to
+edit EMACS and SITEFLAG as shown in the Compilation section if you are
+using XEmacs.
 
 If you are installing Planner on a Debian system, you might want to
 change the value of INSTALLINFO as specified in `Makefile.defs'.

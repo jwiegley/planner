@@ -1,8 +1,12 @@
 .PHONY: all autoloads lisp doc clean realclean distclean fullclean install
 .PHONY: test dist release debclean debprepare debbuild debinstall deb upload
+.PHONY: elpa info-only
 .PRECIOUS: %.elc
 
-include Makefile.defs
+DEFS = $(shell test -f Makefile.defs && echo Makefile.defs \
+	|| echo Makefile.defs.default)
+
+include $(DEFS)
 
 EL  = $(filter-out $(PROJECT)-autoloads.el,$(wildcard *.el))
 ELC = $(patsubst %.el,%.elc,$(EL))
@@ -30,6 +34,8 @@ $(PROJECT)-autoloads.el: $(EL)
 %.html: %.texi
 	makeinfo --html --no-split $<
 
+info-only: $(MANUAL).info
+
 doc: $(MANUAL).info $(MANUAL).html
 
 clean:
@@ -44,7 +50,7 @@ install: autoloads lisp $(MANUAL).info
 	    $(ELISPDIR)
 	[ -d $(INFODIR) ] || install -d $(INFODIR)
 	install -m 0644 $(MANUAL).info $(INFODIR)/$(MANUAL)
-	$(INSTALLINFO) $(INFODIR)/$(MANUAL)
+	$(call install_info,$(MANUAL))
 
 test: $(ELC)
 	$(EMACS) -q $(SITEFLAG) -batch -l ./scripts/$(PROJECT)-build.el \
@@ -55,11 +61,11 @@ distclean:
 	-rm -fr ../$(PROJECT)-$(VERSION)
 
 dist: autoloads distclean
-	tla inventory -sB | tar -cf - --no-recursion -T- | \
-	  (mkdir -p ../$(PROJECT)-$(VERSION); cd ../$(PROJECT)-$(VERSION) && \
-	  tar xf -)
-	cp $(PROJECT)-autoloads.el ../$(PROJECT)-$(VERSION)
-	rm -fr ../$(PROJECT)-$(VERSION)/debian ../$(PROJECT)-$(VERSION)/test
+	git archive --format=tar --prefix=$(PROJECT)-$(VERSION)/ HEAD | \
+	  (cd .. && tar xf -)
+	rm -f ../$(PROJECT)-$(VERSION)/.gitignore
+	rm -fr ../$(PROJECT)-$(VERSION)/test
+	cp $(PROJECT)-autoloads.el ../$(PROJECT)-$(VERSION)/lisp
 
 release: dist
 	(cd .. && tar -czf $(PROJECT)-$(VERSION).tar.gz \
@@ -78,10 +84,9 @@ debprepare:
 	mv ../$(PROJECT)-$(VERSION) ../$(DEBNAME)-$(VERSION)
 	(cd .. && tar -czf $(DEBNAME)_$(VERSION).orig.tar.gz \
 	    $(DEBNAME)-$(VERSION))
-	(cd debian && tla inventory -sB | tar -cf - --no-recursion -T- | \
-	  (mkdir -p ../../$(DEBNAME)-$(VERSION)/debian; \
-	    cd ../../$(DEBNAME)-$(VERSION)/debian && \
-	    tar xf -))
+	(cd debian && git archive --format=tar \
+	  --prefix=$(DEBNAME)-$(VERSION)/debian/ HEAD | \
+	  (cd ../.. && tar xf -))
 
 debbuild:
 	(cd ../$(DEBNAME)-$(VERSION) && \
@@ -104,3 +109,22 @@ upload: release
 	(cd .. && \
 	  scp $(PROJECT)-$(VERSION).zip* $(PROJECT)-$(VERSION).tar.gz* \
 	    mwolson@download.gna.org:/upload/planner-el)
+
+elpa: realclean info-only
+	rm -fR $(ELPADIR)/$(PROJECT)-$(VERSION)
+	rm -f $(ELPADIR)/$(PROJECT)-$(VERSION).tar
+	mkdir -p $(ELPADIR)/$(PROJECT)-$(VERSION)
+	cp *.el $(ELPADIR)/$(PROJECT)-$(VERSION)
+	cp contrib/*.el $(ELPADIR)/$(PROJECT)-$(VERSION)
+	echo '(define-package "$(PROJECT)" "$(VERSION)"' > \
+	  $(ELPADIR)/$(PROJECT)-$(VERSION)/$(PROJECT)-pkg.el
+	echo '  "$(ELPADESC)")' >> \
+	  $(ELPADIR)/$(PROJECT)-$(VERSION)/$(PROJECT)-pkg.el
+	cp texi/$(MANUAL).info $(ELPADIR)/$(PROJECT)-$(VERSION)
+	cp texi/dir-template $(ELPADIR)/$(PROJECT)-$(VERSION)/dir
+	install-info --section "Emacs" "Emacs" \
+	  --info-dir=$(ELPADIR)/$(PROJECT)-$(VERSION) \
+	  $(ELPADIR)/$(PROJECT)-$(VERSION)/$(MANUAL).info
+	rm -f $(ELPADIR)/$(PROJECT)-$(VERSION)/dir.old
+	(cd $(ELPADIR) && tar cf $(PROJECT)-$(VERSION).tar \
+	  $(PROJECT)-$(VERSION))

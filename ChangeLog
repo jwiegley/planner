@@ -9,6 +9,21 @@
 	* planner-timeclock.el (defadvice planner-replan-task): Make
 	project match optional (for tasks added manually).
 
+2007-10-28  Michael Olson  <mwolson@gnu.org>
+
+	* Makefile (DEFS): Use more-sophisticated Makefile.defs.default
+	setup.
+	(info-only): New rule to make just the info file.
+	(install): Use improved install_info method.
+	(dist, debprepare): Update rules for git.
+	(elpa): New rule that makes an ELPA package for Planner.
+
+	* Makefile.defs.default: Rename from Makefile.defs.
+	(install_info): New improved rule based on the old INSTALLINFO
+	variable.
+	(ELPADIR, ELPADESC): New variables used for making the Planner
+	ELPA package.
+
 2007-09-26  John Sullivan  <john@wjsullivan.net>
 
 	* planner.el (planner-search-notes-internal): Don't include the
