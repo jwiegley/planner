@@ -1,6 +1,6 @@
 2007-10-29  Adrian Aichner  <adrian@xemacs.org>
 
-	* timeclock.el: Typo fix.
+	* contrib/timeclock.el: Typo fix.
 
 	* planner-gnus.el (planner-gnus-get-message-id): Make gnuslog (see
 	http://www.emacswiki.org/cgi-bin/wiki/GnusLog) URLs useful in
