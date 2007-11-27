@@ -204,7 +204,7 @@ This may be text or a filename."
     (planner-end-task-body       . "</ul>")
     (planner-begin-note-section  . "<div id=\"notes\" class=\"section\">")
     (planner-end-note-section    . "</div>")
-    (planner-begin-task   . "<li class=\"task\"><span class=\"%s\"><span class=\"%s\">%s</span>")
+    (planner-begin-task   . "<li class=\"task\"><span class=\"%s\"><span class=\"%s\" id=\"%s\">%s</span>")
     (planner-end-task     . "</span></li>")
     (planner-begin-note   . "<div class=\"note\"><a name=\"%s\"></a><span class=\"anchor\">%s</span>")
     (planner-end-note     . "</div>")
@@ -579,6 +579,9 @@ of each section."
        (muse-markup-text 'planner-begin-task
                          status
                          priority
+			 (if planner-use-task-numbers
+			     (concat priority number)
+			   (concat priority (number-to-string (random 134217727))))
                          (concat priority number " "
                                  (planner-publish-task-status-collapse status)
                                  " "))))))
