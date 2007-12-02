@@ -399,6 +399,77 @@ the hook's global value rather than its local value."
    (planner-remove-links description)))
 
 
+;;; Advice
+
+;; for speedy enabling and disabling of advice:
+
+(defvar --planner-appt-advice '()
+  "Internal variable: List of advices added by `planner-appt-defadvice'.
+Each element is a list of args for `ad-enable-advice' and
+`ad-disable-advice'.")
+
+(eval-and-compile
+  (defvar planner-appt-advice-common-flags
+    '(preactivate disable)
+    "Advice flags common to all planner-appt advice."))
+
+(defmacro planner-appt-defadvice (function args doc &rest body)
+  "Advise FUNCTION with ARGS, DOC and BODY.
+Remembers the advice function and args in `--planner-appt-advice'."
+  `(prog1
+       (defadvice ,function
+	 (,@args ,@planner-appt-advice-common-flags) ,doc ,@body)
+     (let ((info '(,function ,(car args) ,(cadr args))))
+       (unless (member info --planner-appt-advice)
+	 (push info --planner-appt-advice)))))
+
+(put 'planner-appt-defadvice
+     'edebug-form-spec
+     '(&define name
+	       (name name &rest sexp)
+	       stringp
+	       [&optional
+		("interactive" interactive)]
+	       def-body))
+
+(put 'planner-appt-defadvice 'lisp-indent-function 'defun)
+
+;; See what happened with the preactivation.
+(planner-appt-debug
+ (progn
+   (require 'trace)
+   (trace-function-background
+    'ad-cache-id-verification-code
+    "*planner-appt advice trace*")))
+
+(defun planner-appt-disable-all-advice ()
+  "Disable all advice added with `planner-appt-defadvice'."
+  (mapcar #'(lambda (args)
+	      (apply #'ad-disable-advice args)
+	      (ad-activate (car args)))
+	  --planner-appt-advice))
+
+(defun planner-appt-enable-all-advice ()
+  "Enable all advice added with `planner-appt-defadvice'."
+  (mapcar #'(lambda (args)
+	      (apply #'ad-enable-advice args)
+	      (ad-activate (car args)))
+	  --planner-appt-advice))
+
+
+(defmacro with-planner-appt-task-advice-disabled (&rest body)
+  "Evaluate BODY forms with all advice matching \"planner-appt-task\" disabled."
+  `(unwind-protect
+       (progn
+	 (planner-appt-disable-all-advice)
+	 (planner-appt-debug-message "all advice disabled")
+	 ,@body)
+     (planner-appt-enable-all-advice)
+     (planner-appt-debug-message "all advice enabled")))
+
+(put 'with-planner-appt-task-advice-disabled 'lisp-indent-function 0)
+(put 'with-planner-appt-task-advice-disabled 'edebug-form-spec '(body))
+
 ;;; Showing Appointments In Various Ways
 
 (defvar planner-appt-methods '()
@@ -488,15 +559,16 @@ time it was called.")
       (planner-appt-schedule-sort))))
 
 (defun planner-appt-update-appt-section-maybe ()
-    (when (and
-	   ;; The appointment section is only relevant if the task
-	   ;; method is used
-	   (memq 'tasks planner-appt-methods)
-	   planner-appt-task-use-appointments-section-flag)
-      (with-planner-update-setup
-       (save-excursion
-	 (planner-goto-today)
-	 (planner-appt-update-appt-section)))))
+      (when (and
+	        ;; The appointment section is only relevant if the task
+	        ;; method is used
+	        (memq 'tasks planner-appt-methods)
+		planner-appt-task-use-appointments-section-flag)
+	(with-planner-update-setup
+	 (save-excursion
+	   (with-planner-appt-task-advice-disabled
+	     (planner-goto-today))
+	   (planner-appt-update-appt-section)))))
 
 (defmacro with-planner-appt-update-section-disabled (&rest body)
  `(let ((planner-appt-task-use-appointments-section-flag nil))
@@ -941,77 +1013,6 @@ Optional argument: use INFO instead of the current task info."
       (when (or --planner-appt-tasks-added-appts
 		--planner-appt-tasks-earlier-appts)
 	(planner-appt-update-appt-section-maybe)))))
-
-;;; Advice
-
-;; for speedy enabling and disabling of advice:
-
-(defvar --planner-appt-advice '()
-  "Internal variable: List of advices added by `planner-appt-defadvice'.
-Each element is a list of args for `ad-enable-advice' and
-`ad-disable-advice'.")
-
-(eval-and-compile
-  (defvar planner-appt-advice-common-flags
-    '(preactivate disable)
-    "Advice flags common to all planner-appt advice."))
-
-(defmacro planner-appt-defadvice (function args doc &rest body)
-  "Advise FUNCTION with ARGS, DOC and BODY.
-Remembers the advice function and args in `--planner-appt-advice'."
-  `(prog1
-       (defadvice ,function
-	 (,@args ,@planner-appt-advice-common-flags) ,doc ,@body)
-     (let ((info '(,function ,(car args) ,(cadr args))))
-       (unless (member info --planner-appt-advice)
-	 (push info --planner-appt-advice)))))
-
-(put 'planner-appt-defadvice
-     'edebug-form-spec
-     '(&define name
-	       (name name &rest sexp)
-	       stringp
-	       [&optional
-		("interactive" interactive)]
-	       def-body))
-
-(put 'planner-appt-defadvice 'lisp-indent-function 'defun)
-
-;; See what happened with the preactivation.
-(planner-appt-debug
- (progn
-   (require 'trace)
-   (trace-function-background
-    'ad-cache-id-verification-code
-    "*planner-appt advice trace*")))
-
-(defun planner-appt-disable-all-advice ()
-  "Disable all advice added with `planner-appt-defadvice'."
-  (mapcar #'(lambda (args)
-	      (apply #'ad-disable-advice args)
-	      (ad-activate (car args)))
-	  --planner-appt-advice))
-
-(defun planner-appt-enable-all-advice ()
-  "Enable all advice added with `planner-appt-defadvice'."
-  (mapcar #'(lambda (args)
-	      (apply #'ad-enable-advice args)
-	      (ad-activate (car args)))
-	  --planner-appt-advice))
-
-
-(defmacro with-planner-appt-task-advice-disabled (&rest body)
-  "Evaluate BODY forms with all advice matching \"planner-appt-task\" disabled."
-  `(unwind-protect
-       (progn
-	 (planner-appt-disable-all-advice)
-	 (planner-appt-debug-message "all advice disabled")
-	 ,@body)
-     (planner-appt-enable-all-advice)
-     (planner-appt-debug-message "all advice enabled")))
-
-(put 'with-planner-appt-task-advice-disabled 'lisp-indent-function 0)
-(put 'with-planner-appt-task-advice-disabled 'edebug-form-spec '(body))
 
 (planner-appt-defadvice planner-task-cancelled
   (before planner-appt-task)
