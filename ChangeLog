@@ -3,6 +3,12 @@
 	* planner-el.texi: Update to mention git instructions, rather than
 	Arch.
 
+2007-12-02  Jim Ottaway  <j.ottaway@lse.ac.uk>
+
+	* planner-appt.el: Move advice higher in file.
+	(planner-appt-update-appt-section-maybe): Fix bug with
+	planner-deadline and task-based appointments.
+
 2007-10-29  Adrian Aichner  <adrian@xemacs.org>
 
 	* contrib/timeclock.el: Typo fix.
