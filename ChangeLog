@@ -9,6 +9,14 @@
 	(planner-appt-update-appt-section-maybe): Fix bug with
 	planner-deadline and task-based appointments.
 
+2007-11-28  Markus Hoenicka  <markus.hoenicka@mhoenicka.de>
+
+	* planner-publish.el (planner-html-markup-strings): Add id to
+	planner-begin-task string.
+	(planner-publish-task-tag): Pass an appropriate id argument.  If
+	using task numbers, concatenate the priority and the task number.
+	Otherwise, concatenate the priority with a pseudo-random number.
+
 2007-10-29  Adrian Aichner  <adrian@xemacs.org>
 
 	* contrib/timeclock.el: Typo fix.

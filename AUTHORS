@@ -130,6 +130,9 @@ Yann Hodique: Contributor:
                - planner.el (15+ lines changed)
               (assigned past and future changes for Muse)
 
+Markus Hoenicka: Contributor:
+                  - planner-publish.el (4 lines changed)
+
 Xin Wei Hu: Contributor:
              - planner-export-diary.el
 
