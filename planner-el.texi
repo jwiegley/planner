@@ -78,7 +78,7 @@ Installation
 Getting the Files
 
 * Installing from a Source Archive::  
-* Installing from Arch::        
+* Installing from git::         
 * Installing from Debian::      
 
 Overview
@@ -330,15 +330,15 @@ prove unstable.
 @section Getting the Files
 
 Currently, there are three ways to obtain and install Planner. You can
-install it from a source archive, Arch repository, or Debian package.
+install it from a source archive, git, or Debian package.
 
 @menu
 * Installing from a Source Archive::  
-* Installing from Arch::        
+* Installing from git::         
 * Installing from Debian::      
 @end menu
 
-@node Installing from a Source Archive, Installing from Arch, Getting the Files, Getting the Files
+@node Installing from a Source Archive, Installing from git, Getting the Files, Getting the Files
 @comment node-name,  next,  previous,  up
 @subsection Installing from a Source Archive
 @cindex source code archive, installing from
@@ -387,44 +387,42 @@ forget to delete any byte-compiled files (@file{*.elc}) in the
 directories (which can be accomplished by running ``make clean'') so
 that the new code will be used.
 
-@node Installing from Arch, Installing from Debian, Installing from a Source Archive, Getting the Files
+@node Installing from git, Installing from Debian, Installing from a Source Archive, Getting the Files
 @comment node-name,  next,  previous,  up
-@subsection Installing from Arch
-@cindex Arch repositories
-@cindex Arch, installing from
+@subsection Installing from git
 
-Arch allows you to retrieve previous versions and select specific
-features and bugfixes. Debian users can install Arch with @kbd{apt-get
-install tla}. Users of other distributions should see
-@url{http://regexps.srparish.net/www/}.
+@cindex git version control system, using
+The git version control system allows you to keep up-to-date with the
+latest changes to the development version of Planner.  It also allows
+you to contribute changes (via commits, if you are have developer access
+to the repository, or via patches, otherwise).  If you would like to
+contribute to Muse development, it is highly recommended that you use
+git.
 
-To get started with Planner using Arch, you'll need to run some initial
-commands to register your local copy of the archive and retrieve the
-files.
+Debian users can install git with @kbd{apt-get install git-core}.
 
-Note that Muse is now developed with git, so you will need to install
-that as well.  For Debian, that involves doing @kbd{apt-get install
-git-core}.
+If you are new to git, you might find this tutorial helpful:
+@uref{http://www.kernel.org/pub/software/scm/git/docs/tutorial.html}.
+
+Downloading Planner with git and staying up-to-date involves the
+following steps.
 
 @example
-# Register the Planner archive
-tla register-archive -f http://arch.gna.org/planner-el/archive-2006
-
-# Register the Remember archive
-tla register-archive -f http://arch.gna.org/remember-el/archive
-
-# Download Muse
+# Retrieve Muse
 git clone git://repo.or.cz/muse-el.git muse
+
+# Retrieve Planner
+git clone git://repo.or.cz/planner-el.git planner
+
+# Retrieve Remember
+git clone git://repo.or.cz/remember-el.git remember
+
 # If that didn't work (due to a restrictive firewall), then try the
 # following instead:
+#
 # git clone http://repo.or.cz/r/muse-el.git muse
-
-# Download planner module into the planner/ subdirectory
-tla get mwolson@@gnu.org--2006-planner-el/planner-el--devel--0 planner
-
-# Get Remember
-tla get remember-el@@arch.gna.org/remember--main--0 remember
-
+# git clone http://repo.or.cz/r/planner-el.git planner
+# git clone http://repo.or.cz/r/remember-el.git remember
 @end example
 
 Then add the following lines to your @code{~/.emacs}:
@@ -439,37 +437,50 @@ Then add the following lines to your @code{~/.emacs}:
 (require 'planner)
 @end example
 
-You can also browse Planner's Arch repository on the web at
-@url{http://archzoom.mwolson.org/cgi-bin/archzoom.cgi/mwolson@@gnu.org--2006-planner-el}.
+You can also browse Planner's git repository on the web at
+@url{http://repo.or.cz/w/planner-el.git}.
 
 @subheading Updating Your Version
-@cindex Arch, updating from
+@cindex git, updating with
 
-To stay up-to-date using Arch, here are some commands that might be
+To stay up-to-date using git, here are some commands that might be
 useful.
 
 To list upstream changes not in local copy:
+
+Do this whenever you want to see whether new changes have been committed
+to Planer.  If you wish, you may skip this step and proceed directly to
+the ``update'' step.
 
 @example
 # Change to the source directory you are interested in. Example:
 cd muse/
 
-# Display the summary of changes
-tla missing --summary
+# Fetch new changes from the repository, but don't apply them yet
+git fetch origin
+
+# Display log messages for the new changes
+git log HEAD..origin
 @end example
+
+``origin'' is git's name for the location where you originally got Muse
+from.  You can change this location at any time by editing the
+@file{.git/config} file in the directory where the Planner source was
+placed.
 
 To update to the latest version:
 
 @example
 cd muse; git pull
-cd ../planner; tla update
-cd ../remember; tla update
+cd ../planner; git pull
+cd ../remember; git pull
 @end example
 
-Don't forget to delete any byte-compiled files (@file{*.elc}) in the
-directories so that the new code will be used.
+Don't forget to either rerun the @command{make} command or delete the
+byte-compiled files (@file{*.elc}) in the directories, so that the new
+code will be used.
 
-@node Installing from Debian, , Installing from Arch, Getting the Files
+@node Installing from Debian, , Installing from git, Getting the Files
 @comment node-name,  next,  previous,  up
 @subsection Installing from Debian
 @cindex Debian package
