@@ -1,3 +1,22 @@
+2007-12-27  Thierry Vilpiatto  <thierry.volpiatto@gmail.com>
+
+	* planner-ledger.el (planner-ledger): New customize group.
+	(planner-ledger-data-file): New option specifying ledger file to
+	use.
+	(planner-ledger-balance-regexp, planner-ledger-pending-regexp)
+	(planner-ledger-balance-args): Update to work with newer versions
+	of ledger.
+	(planner-ledger-insert-balance-maybe): New function.
+	(planner-ledger-insert-pending-maybe): New function.
+	(planner-ledger-insert-section-maybe): Add newlines.
+	(planner-ledger-clear-section-balance)
+	(planner-ledger-clear-section-pending)
+	(planner-ledger-clear-section, planner-ledger-goto-section-end):
+	New functions.
+	(planner-ledger-add-entry-from-task): Use
+	planner-ledger-data-file.  Use more precise entry format.
+	(planner-ledger-run-ledger): New function to run ledger.
+
 2007-12-04  Michael Olson  <mwolson@gnu.org>
 
 	* planner-el.texi: Update to mention git instructions, rather than

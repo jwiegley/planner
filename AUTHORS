@@ -259,6 +259,9 @@ Mark Triggs: Contributor
 Gary V. Vaughan: Author of planner-calendar.el
                  (assigned past and future changes for Emacs)
 
+Thierry Vilpiatto: Contributor:
+                    - planner-ledger.el (15+ lines changed)
+
 Sergey Vlasov: Contributor:
                 - planner-appt.el (1 line changed)
                 - planner-cyclic.el

@@ -1,7 +1,8 @@
 ;;; planner-ledger.el --- ledger support for planner
 
 ;; Copyright (C) 2004 Will Glozer (will AT glozer DOT net)
-;; Parts copyright (C) 2004, 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2007 Thierry Vilpiatto <thierry.volpiatto@gmail.com>
+;; Parts copyright (C) 2004, 2005, 2007 Free Software Foundation, Inc.
 
 ;; Author: Will Glozer (will AT glozer DOT net)
 
@@ -55,14 +56,26 @@
 (require 'planner)
 
 ;;; Code:
+
+(defgroup planner-ledger nil
+  "Planner-ledger provides integration between Planner and
+John Wiegley's ledger accounting program."
+  :group 'planner)
+
+(defcustom planner-ledger-data-file
+  nil
+  "Ledger file to use.  This is the full path to the data file."
+  :type  '(file :must-match t)
+  :group 'planner-ledger)
+
 (defcustom planner-ledger-balance-regexp
-  "^* Ledger\n\n$"
+  "^\* Ledger *$"
   "Section marker for insertion of ledger balance."
   :type 'regexp
   :group 'planner-ledger)
 
 (defcustom planner-ledger-pending-regexp
-  "^** Pending Transactions\n\n$"
+  "^\*\* Pending Transactions *$"
   "Section marker for insertion of pending ledger transactions."
   :type 'regexp
   :group 'planner-ledger)
@@ -74,10 +87,16 @@
   :group 'planner-ledger)
 
 (defcustom planner-ledger-balance-args
-  '("-s" "-e" "\"next month\"" "balance")
+  '("-s" "-e" "next month" "balance")
   "Command line arguments for ledger balance."
   :type '(repeat string)
   :group 'planner-ledger)
+
+(defcustom planner-ledger-register-args
+  '("-U" "register")
+  "Command line arguments for ledger register."
+   :type '(repeat string)
+   :group 'planner-ledger)
 
 (defcustom planner-ledger-payment-task-regexp
   (concat planner-task-regexp
@@ -93,23 +112,69 @@ Example task:
 
 ;;;###autoload
 (defun planner-ledger-insert-maybe ()
-  "Maybe insert ledger sections into a planner page."
+  "Maybe insert ledger sections into a Planner page."
   (interactive)
+  (planner-ledger-insert-balance-maybe)
+  (planner-ledger-insert-pending-maybe))
+
+(defun planner-ledger-insert-balance-maybe ()
+  "Maybe insert ledger account balances a Planner page.
+The accounts are specified in planner-ledger-balance-accounts."
+  (interactive)
+  (planner-ledger-clear-section-balance)
   (apply 'planner-ledger-insert-section-maybe
          planner-ledger-balance-regexp
          (append planner-ledger-balance-args
-                planner-ledger-balance-accounts))
-  (planner-ledger-insert-section-maybe planner-ledger-pending-regexp
-                                       "-U" "register" "."))
+                 planner-ledger-balance-accounts)))
+
+(defun planner-ledger-insert-pending-maybe ()
+  "Maybe insert ledger pending transaction into a Planner page."
+  (interactive)
+  (planner-ledger-clear-section-pending)
+  (apply 'planner-ledger-insert-section-maybe
+         planner-ledger-pending-regexp
+         (append planner-ledger-register-args)))
 
 (defun planner-ledger-insert-section-maybe (regexp &rest ledger-args)
-  "Maybe insert a ledger section into a planner page.
+  "Maybe insert a ledger section into a Planner page.
 Argument REGEXP is the section heading to find.  Optional argument
 LEDGER-ARGS contains the arguments to pass to
 `ledger-run-ledger'."
   (save-excursion
+    (goto-char (point-min))
     (when (re-search-forward regexp nil t)
-      (apply 'ledger-run-ledger ledger-args))))
+      (progn
+        (newline 2)
+        (apply 'planner-ledger-run-ledger ledger-args)))))
+
+(defun planner-ledger-clear-section-balance ()
+  "Clear the planner-ledger section for Ledger balance."
+  (interactive)
+  (save-excursion
+    (planner-ledger-clear-section planner-ledger-balance-regexp "^\\*")))
+
+(defun planner-ledger-clear-section-pending ()
+  "Clear the planner-ledger section for pending transactions."
+  (interactive)
+  (save-excursion
+    (planner-ledger-clear-section planner-ledger-pending-regexp "^\\*")))
+
+(defun planner-ledger-clear-section (regexp-start regexp-end)
+  "Clear a planner ledger section."
+  (goto-char (point-min))
+  (when (re-search-forward regexp-start nil t)
+    (progn
+      (forward-line)
+      (delete-region (point) (if (re-search-forward regexp-end nil t)
+                                 (line-beginning-position)
+                               (point-max))))))
+
+(defun planner-ledger-goto-section-end (regexp-start)
+  "Goto the end of the current section or end of buffer.
+Assumes that sections are marked with an asterisk."
+  (if (re-search-forward regexp-start nil t)
+      (line-beginning-position)
+    (point-max)))
 
 (defun planner-ledger-add-entry-from-task ()
   "Add a new ledger entry from the task at point."
@@ -122,16 +187,33 @@ LEDGER-ARGS contains the arguments to pass to
         (let* ((payee  (match-string 1))
                (amount (match-string 2))
                (date   (planner-filename-to-calendar-date (buffer-name)))
-               (buffer (find-buffer-visiting ledger-data-file)))
-          (unless buffer (setq buffer (find-file ledger-data-file)))
+               (buffer (find-buffer-visiting planner-ledger-data-file)))
+          (unless buffer (setq buffer (find-file planner-ledger-data-file)))
           (pop-to-buffer buffer)
-          (ledger-add-entry (format "%d/%d/%d %s %s"
+          (ledger-add-entry (format "%d/%02d/%02d %s %s"
                                     (extract-calendar-year date)
                                     (extract-calendar-month date)
                                     (extract-calendar-day date)
                                     payee
                                     amount)))
       (message "Not in a ledger payment task"))))
+
+(defun planner-ledger-run-ledger (&rest ledger-args)
+  "Run ledger for planner-ledger.
+
+Run the ledger binary with ledger-run-ledger using the value of
+`planner-ledger-data-file'.
+
+If the file is open in a buffer, use the buffer. Otherwise
+specify the file as an option to the ledger binary command and
+avoid loading it in Emacs."
+  (let ((buffer (get-file-buffer planner-ledger-data-file)))
+    (if buffer
+        (apply 'ledger-run-ledger buffer ledger-args)
+      (apply #'call-process
+             (append (list ledger-binary-path nil t nil
+                           "-f" planner-ledger-data-file)
+                     ledger-args)))))
 
 (provide 'planner-ledger)
 
