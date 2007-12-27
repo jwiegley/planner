@@ -1,4 +1,4 @@
-2007-12-27  Thierry Vilpiatto  <thierry.volpiatto@gmail.com>
+2007-12-27  Deus Max  <deusmax@gmail.com>
 
 	* planner-ledger.el (planner-ledger): New customize group.
 	(planner-ledger-data-file): New option specifying ledger file to

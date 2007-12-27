@@ -185,6 +185,9 @@ Dryice Dong Liu: Author of:
                   - planner-el.texi (15+ lines changed)
                   - planner.el (15+ lines changed)
 
+Deus Max: Contributor:
+           - planner-ledger.el (15+ lines changed)
+
 Chris McMahan: Contributor:
                 - planner-publish.el (15+ lines changed)
 
@@ -260,7 +263,7 @@ Gary V. Vaughan: Author of planner-calendar.el
                  (assigned past and future changes for Emacs)
 
 Thierry Vilpiatto: Contributor:
-                    - planner-ledger.el (15+ lines changed)
+                    - planner-ledger.el (5 lines changed)
 
 Sergey Vlasov: Contributor:
                 - planner-appt.el (1 line changed)
