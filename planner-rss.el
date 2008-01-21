@@ -128,7 +128,6 @@ It will have TITLE, LINK, DESCRIPTION, PUBDATE and CATEGORIES.
         (progn
           (erase-buffer)
           (insert planner-rss-initial-contents)
-          (muse-publish-markup-region (point-min) (point-max) "*rss" "planner-rss")
           (goto-char (point-max))
           (re-search-backward "</channel>")))
       (goto-char (match-beginning 0))
@@ -215,27 +214,28 @@ Call with the interactive prefix in order to be prompted for FEED."
          (point-max)))
     (let ((info (planner-current-note-info t)))
       (delete-region (point-min) (point-max))
-      (insert "<item>\n")
-      (insert "<title><verbatim>"
-              (muse-publish-escape-specials-in-string (planner-note-title info))
-              "</verbatim></title>\n")
-      (insert "<link><verbatim>"
-              (concat planner-rss-base-url (muse-page-name) ".html#"
-                      (planner-note-anchor info))
-              "</verbatim></link>\n")
-      (insert "<guid><verbatim>"
-              (concat planner-rss-base-url (muse-page-name) ".html#"
-                      (planner-note-anchor info))
-              "</verbatim></guid>\n")
+      (muse-insert-markup
+       "<item>\n"
+       "<title>"
+       (muse-publish-escape-specials-in-string (planner-note-title info))
+       "</title>\n"
+       "<link>"
+       (concat planner-rss-base-url (muse-page-name) ".html#"
+	       (planner-note-anchor info))
+       "</link>\n"
+       "<guid>"
+       (concat planner-rss-base-url (muse-page-name) ".html#"
+	       (planner-note-anchor info))
+       "</guid>\n")
       (when (planner-note-body info)
-        (insert "<description><![CDATA["
+        (muse-insert-markup "<description><![CDATA["
                 (with-temp-buffer
                   (insert (planner-note-body info))
                   (muse-publish-markup-buffer "*title*" "planner-rss-info")
                   (buffer-string))
                 "]]></description>\n"))
       (when (planner-note-date info)
-        (insert "<pubDate>"
+        (muse-insert-markup "<pubDate>"
                 (let ((system-time-locale "C")
                       (timestamp (planner-note-timestamp info))
                       (date (planner-filename-to-calendar-date
@@ -252,7 +252,7 @@ Call with the interactive prefix in order to be prompted for FEED."
                            (year (nth 2 date)))
                        (encode-time 0 minutes hour day month year)))))
                  "</pubDate>\n"))
-      (insert "</item>\n"))))
+      (muse-insert-markup "</item>\n"))))
 
 (defcustom planner-publish-markup-rss-functions
   '((note . planner-publish-markup-note-rss))
