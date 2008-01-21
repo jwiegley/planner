@@ -1,3 +1,10 @@
+2008-01-20  Sacha Chua  <sacha@sachachua.com>
+
+	* planner-rss.el (planner-rss-add-item): Remove call to
+	muse-publish-markup-region.
+	(planner-publish-markup-note-rss): Use muse-insert-markup so that
+	markup doesn't get escaped.
+
 2007-12-27  Deus Max  <deusmax@gmail.com>
 
 	* planner-ledger.el (planner-ledger): New customize group.
