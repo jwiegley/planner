@@ -168,7 +168,7 @@ BEGIN and END are in the format YYYY.MM.DD."
                         (string-match planner-date-regexp (caar pages)))
               (with-temp-buffer
                 (with-planner
-                  (insert-file-contents-literally (cdar pages))
+                  (insert-file-contents (cdar pages))
                   (setq tasks
                         (planner-report-find-tasks (caar pages) begin end))
                   (setq notes
