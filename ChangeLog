@@ -1,5 +1,12 @@
 2008-04-16  Michael Olson  <mwolson@gnu.org>
 
+	* Makefile (distclean): Don't bother removing debian files.
+	(debclean, debprepare, debbuild, debinstall, deb): Remove obsolete
+	targets.
+
+	* Makefile.defs.default (DEBNAME, LASTUPLOAD, BUILDOPTS)
+	(DISTRIBUTOR): Remove obsolete variables.
+
 	* planner.el (planner-annotation-from-wiki): Use "::" instead of
 	"#" as the project/page delimiter.
 
