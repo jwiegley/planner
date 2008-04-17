@@ -1,3 +1,8 @@
+2008-04-16  Michael Olson  <mwolson@gnu.org>
+
+	* planner.el (planner-annotation-from-wiki): Use "::" instead of
+	"#" as the project/page delimiter.
+
 2008-02-24  Michael Olson  <mwolson@gnu.org>
 
 	* planner-report.el (planner-report-generate): Use
