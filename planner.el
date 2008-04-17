@@ -1702,7 +1702,7 @@ Date pages are not linked."
   (when (and (planner-derived-mode-p 'muse-mode)
              muse-current-project
              (muse-page-name))
-    (concat "[[" (car muse-current-project) "#" (muse-page-name) "]]")))
+    (concat "[[" (car muse-current-project) "::" (muse-page-name) "]]")))
 (custom-add-option 'planner-annotation-functions
                    'planner-annotation-from-wiki)
 
