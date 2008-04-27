@@ -1,3 +1,9 @@
+2008-04-26  Michael Olson  <mwolson@gnu.org>
+
+	* planner.el (planner-copy-or-move-region): Make sure that the
+	very first task in a region is acted on exactly once.  The old
+	behavior was that the first task would be skipped.
+
 2008-04-16  Michael Olson  <mwolson@gnu.org>
 
 	* Makefile (distclean): Don't bother removing debian files.
