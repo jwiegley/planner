@@ -2082,7 +2082,8 @@ be reported."
                         (buffer-list))))
     ;; Invoke planner-copy-or-move-task on each line in reverse
     (let ((planner-tasks-file-behavior nil)
-          (task-info))
+          (task-info)
+          prev-point)
       (save-excursion
         (save-restriction
           (narrow-to-region
@@ -2093,8 +2094,11 @@ be reported."
           (when planner-add-task-at-end-flag
             (reverse-region (point-min) (point-max)))
           (goto-char (point-max))
-          (while (not (bobp))
-            (goto-char (planner-line-beginning-position))
+          (setq prev-point (point))
+          (while (not (and (bobp)
+                           (= (point) prev-point)))
+            (forward-line 0)
+            (setq prev-point (point))
             (setq task-info (planner-current-task-info))
             ;; Don't move completed or cancelled tasks
             (if (and task-info 
