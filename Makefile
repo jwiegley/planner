@@ -76,7 +76,7 @@ release: dist
 upload: release
 	(cd .. && \
 	  scp $(PROJECT)-$(VERSION).zip* $(PROJECT)-$(VERSION).tar.gz* \
-	    mwolson@download.gna.org:/upload/planner-el)
+	    johnsu01@download.gna.org:/upload/planner-el)
 
 elpa: realclean info-only
 	rm -fR $(ELPADIR)/$(PROJECT)-$(VERSION)
