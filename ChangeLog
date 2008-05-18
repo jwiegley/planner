@@ -1,6 +1,24 @@
-2008-04-01  John Sullivan  <john@wjsullivan.net>
+2008-05-18  John Sullivan  <john@wjsullivan.net>
 
 	* Release Planner 3.42.
+
+2008-04-26  Michael Olson  <mwolson@gnu.org>
+
+	* planner.el (planner-copy-or-move-region): Make sure that the
+	very first task in a region is acted on exactly once.  The old
+	behavior was that the first task would be skipped.
+
+2008-04-16  Michael Olson  <mwolson@gnu.org>
+
+	* Makefile (distclean): Don't bother removing debian files.
+	(debclean, debprepare, debbuild, debinstall, deb): Remove obsolete
+	targets.
+
+	* Makefile.defs.default (DEBNAME, LASTUPLOAD, BUILDOPTS)
+	(DISTRIBUTOR): Remove obsolete variables.
+
+	* planner.el (planner-annotation-from-wiki): Use "::" instead of
+	"#" as the project/page delimiter.
 
 2008-02-24  Michael Olson  <mwolson@gnu.org>
 

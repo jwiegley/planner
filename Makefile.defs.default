@@ -38,9 +38,6 @@ PROJECT    = planner
 DEBNAME    = planner-el
 VERSION    = 3.42
 MANUAL     = planner-el
-LASTUPLOAD = 3.40.arch.50
-BUILDOPTS  =
-DISTRIBUTOR = debian
 
 # Location of Emacs Lisp Package Archive entries
 ELPADIR  = ../../elpa
