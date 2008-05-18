@@ -1,6 +1,6 @@
 ;;; planner-gnats.el --- GNATS integration for the Emacs Planner
 
-;; Copyright (C) 2005 Jeremy Cowgar (jeremy AT cowgar DOT com)
+;; Copyright (C) 2005, 2008 Jeremy Cowgar (jeremy AT cowgar DOT com)
 
 ;; Author: Jeremy Cowgar (jeremy AT cowgar DOT com)
 ;; Keywords: planner, gnats

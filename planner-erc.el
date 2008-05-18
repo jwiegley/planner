@@ -1,6 +1,6 @@
 ;;; planner-erc.el --- ERC support for Planner, an organizer for Emacs
 
-;; Copyright (C) 2004, 2006 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2006, 2008 Free Software Foundation, Inc.
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-erc.el

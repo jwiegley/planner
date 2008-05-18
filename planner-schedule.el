@@ -1,6 +1,6 @@
 ;;; planner-schedule.el --- Schedule integration for the Emacs Planner
 
-;; Copyright (C) 2001, 2004 Free Software Foundation, Inc.
+;; Copyright (C) 2001, 2004, 2008 Free Software Foundation, Inc.
 
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Keywords: planner, timeclock

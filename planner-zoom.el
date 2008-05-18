@@ -1,7 +1,7 @@
 ;;; planner-zoom.el --- navigate Planner pages
 
-;; Copyright (C) 2006 Gregory Novak
-;; Parts copyright (C) 2006 Free Software Foundation, Inc.
+;; Copyright (C) 2006, 2008 Gregory Novak
+;; Parts copyright (C) 2006, 2008 Free Software Foundation, Inc.
 
 ;; Author: Gregory Novak <novak@ucolick.org>
 ;; Date: 10-Mar-2006

@@ -1,7 +1,7 @@
 ;;; planner-cyclic.el --- Cyclic task support for the Emacs Planner
 
-;; Copyright (C) 2004, 2005 Free Software Foundation, Inc.
-;; Parts copyright (C) 2005 Sergey Vlasov (vsu AT altlinux.ru)
+;; Copyright (C) 2004, 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2005, 2008 Sergey Vlasov (vsu AT altlinux.ru)
 
 ;; Filename: planner-cyclic.el
 ;; Author: Sacha Chua <sacha@free.net.ph>

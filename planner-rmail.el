@@ -1,7 +1,7 @@
 ;;; planner-rmail.el --- RMAIL support for Planner, an organizer for Emacs
 
-;; Copyright (C) 2004, 2006 Free Software Foundation, Inc.
-;; Parts copyright (C) 2004 Frederik Fouvry
+;; Copyright (C) 2004, 2006, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2004, 2008 Frederik Fouvry
 
 ;;; Commentary:
 ;;

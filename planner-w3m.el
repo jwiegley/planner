@@ -1,6 +1,6 @@
 ;;; planner-w3m.el --- W3M integration for the Emacs Planner
 
-;; Copyright (C) 2001 Free Software Foundation, Inc.
+;; Copyright (C) 2001, 2008 Free Software Foundation, Inc.
 
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Keywords: planner, w3m

@@ -1,7 +1,7 @@
 ;;; planner-report.el --- create a timely status report based on planner pages
 
-;; Copyright (C) 2004, 2006 Andrew J. Korty <ajk@iu.edu>
-;; Parts copyright (C) 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2006, 2008 Andrew J. Korty <ajk@iu.edu>
+;; Parts copyright (C) 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-report.el

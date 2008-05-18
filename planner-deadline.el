@@ -1,7 +1,7 @@
 ;;; planner-deadline.el --- Deadlines for planner.el
 
-;; Copyright (C) 2004, 2005 Free Software Foundation, Inc.
-;; Parts copyright (C) 2004, 2005 Dryice Dong Liu <dryice AT liu.com.cn>
+;; Copyright (C) 2004, 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2004, 2005, 2008 Dryice Dong Liu <dryice AT liu.com.cn>
 
 ;; Author: Sandra Jean Chua (Sacha) <sacha AT free.net.ph>
 ;; URL: http://www.wjsullivan.net/PlannerMode.html

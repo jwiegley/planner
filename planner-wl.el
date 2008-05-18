@@ -1,7 +1,8 @@
 ;;; planner-wl.el --- Wanderlust integration for the Emacs Planner
 
-;; Copyright (C) 2004 Yvonne Thomson (yvonne AT netbrains DOT com DOT au)
-;; Parts copyright (C) 2004 Angus Lees (gus AT inodes DOT org)
+;; Copyright (C) 2004, 2008 Yvonne Thomson (yvonne AT netbrains DOT com DOT au)
+;; Parts copyright (C) 2004, 2008 Angus Lees (gus AT inodes DOT org)
+;; Parts copyright (C) 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 
 ;; Author: Yvonne Thomson (yvonne AT thewatch DOT net)
 ;; Keywords: planner, wanderlust, wl

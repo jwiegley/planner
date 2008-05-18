@@ -7,21 +7,21 @@
 ;;;_ + Package description
 
 ;; Copyright (C) 2001, 2003, 2004, 2005,
-;;   2006, 2007 Free Software Foundation, Inc.
-;; Parts copyright (C) 2004 David D. Smith (davidsmith AT acm DOT org)
-;; Parts copyright (C) 2004 Yvonne Thomson (yvonne AT netbrains DOT com DOT au)
-;; Parts copyright (C) 2004 Maciej Kalisak (mac AT cs DOT toronto DOT edu)
-;; Parts copyright (C) 2004 Chris Parsons (chris.p AT rsons.org)
-;; Parts copyright (C) 2004 Dirk Bernhardt (nospam AT krid.de)
-;; Parts copyright (C) 2005 Dryice Dong Liu
-;; Parts copyright (C) 2005 Angus Lees (gus AT debian.org)
-;; Parts copyright (C) 2005 Sergey Vlasov (vsu AT altlinux.ru)
-;; Parts copyright (C) 2005 Yann Hodique (hodique AT lifl DOT fr)
-;; Parts copyright (C) 2005 Peter K. Lee
+;;   2006, 2007, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2004, 2008 David D. Smith (davidsmith AT acm DOT org)
+;; Parts copyright (C) 2004, 2008 Yvonne Thomson (yvonne AT netbrains DOT com DOT au)
+;; Parts copyright (C) 2004, 2008 Maciej Kalisak (mac AT cs DOT toronto DOT edu)
+;; Parts copyright (C) 2004, 2008 Chris Parsons (chris.p AT rsons.org)
+;; Parts copyright (C) 2004, 2008 Dirk Bernhardt (nospam AT krid.de)
+;; Parts copyright (C) 2005, 2008 Dryice Dong Liu
+;; Parts copyright (C) 2005, 2008 Angus Lees (gus AT debian.org)
+;; Parts copyright (C) 2005, 2008 Sergey Vlasov (vsu AT altlinux.ru)
+;; Parts copyright (C) 2005, 2008 Yann Hodique (hodique AT lifl DOT fr)
+;; Parts copyright (C) 2005, 2008 Peter K. Lee
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner.el
-;; Version: 3.41
+;; Version: 3.42
 ;; Keywords: hypermedia
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Maintainer: John Sullivan <john@wjsullivan.net>
@@ -404,7 +404,7 @@
   (error nil))
 
 (defvar planner-loaded nil)
-(defvar planner-version "3.41"
+(defvar planner-version "3.42"
   "The version of Planner currently loaded.")
 
 ;; Compatibility hacks -- these will be removed in the future

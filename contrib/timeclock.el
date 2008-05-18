@@ -1,7 +1,7 @@
 ;;; timeclock.el --- mode for keeping track of how much you work
 
-;; Copyright (C) 1999, 2000, 2001, 2003, 2004 Free Software Foundation, Inc.
-;; Parts copyright (C) 2006 Adrian Aichner
+;; Copyright (C) 1999, 2000, 2001, 2003, 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2006, 2008 Adrian Aichner
 
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Created: 25 Mar 1999

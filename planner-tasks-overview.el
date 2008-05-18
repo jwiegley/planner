@@ -1,6 +1,6 @@
 ;;; planner-tasks-overview.el --- Task summary for planner.el
 ;;
-;; Copyright (C) 2004, 2005, 2007 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2005, 2007, 2008 Free Software Foundation, Inc.
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-tasks-overview.el

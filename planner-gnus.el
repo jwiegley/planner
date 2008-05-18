@@ -1,8 +1,8 @@
 ;;; planner-gnus.el --- Gnus integration for the Emacs Planner
 
 ;; Copyright (C) 2001, 2003, 2004, 2005,
-;;   2006 Free Software Foundation, Inc.
-;; Parts copyright (C) 2004 Mario Domgörgen (kanaldrache AT gmx.de)
+;;   2006, 2007, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2004, 2008 Mario Domgörgen (kanaldrache AT gmx.de)
 
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Keywords: planner, gnus

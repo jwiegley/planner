@@ -1,8 +1,8 @@
 ;;; planner-bookmark.el --- bookmark URL support for the Emacs planner
 ;;
 
-;; Copyright (C) 2004, 2005 Dryice Dong Liu.  All rights reserved.
-;; Parts copyright (C) 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2005, 2008 Dryice Dong Liu.  All rights reserved.
+;; Parts copyright (C) 2005, 2008 Free Software Foundation, Inc.
 
 ;; Keywords: emacs planner bookmark remember note
 ;; Author: Dryice Liu <dryice AT liu DOT com DOT cn>

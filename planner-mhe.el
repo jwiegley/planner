@@ -1,7 +1,7 @@
 ;;; planner-mhe.el --- MH-E integration for the Emacs Planner
 
-;; Copyright (C) 2004, 2005, 2006 Christophe Garion
-;; Parts copyright (C) 2004, 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2005, 2006, 2008 Christophe Garion
+;; Parts copyright (C) 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
 
 ;; Author: Christophe Garion <garion@supaero.fr>
 ;; Author: Sandra Jean Chua <sacha@free.net.ph>

@@ -1,6 +1,6 @@
 ;;; planner-ical.el --- Import/Export planner tasks in the icalendar standard (RFC 2445)
 
-;; Copyright (C) 2005 Chris Parsons
+;; Copyright (C) 2005, 2008 Chris Parsons
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-ical.el

@@ -1,6 +1,6 @@
 ;;; planner-id.el --- planner.el extension for global task IDs
 
-;; Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2003, 2004, 2005, 2008 Free Software Foundation, Inc.
 
 ;; Author: Sacha Chua <sacha@free.net.ph>
 ;; URL: http://www.wjsullivan.net/PlannerMode.html

@@ -12,9 +12,9 @@
 @syncodeindex fn cp
 
 @copying
-This manual is for Planner version 3.41.
+This manual is for Planner version 3.42.
 
-Copyright @copyright{} 2001, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.@*
+Copyright @copyright{} 2001, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.@*
 Parts copyright @copyright{} 2005 Jim Ottaway@*
 Parts copyright @copyright{} 2005 Dryice Dong Liu
 

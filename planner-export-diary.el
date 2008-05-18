@@ -1,7 +1,7 @@
 ;;; planner-export-diary.el --- Diary export for the Emacs Planner
 
-;; Copyright (C) 2001, 2004 Free Software Foundation, Inc.
-;; Parts copyright (C) 2004 Xin Wei Hu (huxw AT knight DOT 6test DOT edu DOT cn)
+;; Copyright (C) 2001, 2004, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2004, 2008 Xin Wei Hu (huxw AT knight DOT 6test DOT edu DOT cn)
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-export-diary.el

@@ -1,6 +1,6 @@
 ;;; planner-psvn.el --- psvn.el integration for the Emacs Planner
 
-;; Copyright (C) 2005, 2006 Free Software Foundation, Inc.
+;; Copyright (C) 2005, 2006, 2008 Free Software Foundation, Inc.
 
 ;; Author: Stefan Reichör <stefan@xsteve.at>
 ;; Keywords: planner, psvn

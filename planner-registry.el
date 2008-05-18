@@ -1,6 +1,6 @@
 ;;; planner-registry.el --- registry for Planner
 
-;; Copyright (C) 2005, 2006, 2007 Free Software Foundation, Inc.
+;; Copyright (C) 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 ;; Time-stamp: <2006-01-23 18:21:18 guerry>
 ;;
 ;; Author: Bastien Guerry <bzg@altern.org>

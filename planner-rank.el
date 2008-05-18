@@ -1,8 +1,8 @@
 ;;; planner-rank.el --- Importance vs Urgency for the Emacs planner
 ;;
 
-;; Copyright (C) 2005 Dryice Dong Liu . All rights reserved.
-;; Parts copyright (C) 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2005, 2008 Dryice Dong Liu . All rights reserved.
+;; Parts copyright (C) 2005, 2008 Free Software Foundation, Inc.
 
 ;; Keywords: emacs planner important emergent rank deadline
 ;; Author: Dryice Liu <dryice AT liu DOT com DOT cn>

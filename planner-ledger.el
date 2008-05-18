@@ -1,8 +1,7 @@
 ;;; planner-ledger.el --- ledger support for planner
 
-;; Copyright (C) 2004 Will Glozer (will AT glozer DOT net)
-;; Copyright (C) 2007 Deus Max <deusmax@gmail.com>
-;; Parts copyright (C) 2004, 2005, 2007 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2008 Will Glozer (will AT glozer DOT net)
+;; Parts copyright (C) 2004, 2005, 2007, 2008 Free Software Foundation, Inc.
 
 ;; Author: Will Glozer (will AT glozer DOT net)
 

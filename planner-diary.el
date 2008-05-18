@@ -1,8 +1,8 @@
 ;;; planner-diary.el --- Diary integration for the Emacs Planner (planner.el)
 
-;; Copyright (C) 2003, 2004 Thomas Gehrlein <Thomas.Gehrlein AT t-online.de>
-;; Parts copyright (C) 2004, 2005 Free Software Foundation, Inc.
-;; Parts copyright (C) 2005 Jody Klymak
+;; Copyright (C) 2003, 2004, 2008 Thomas Gehrlein <Thomas.Gehrlein AT t-online.de>
+;; Parts copyright (C) 2004, 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2005, 2008 Jody Klymak
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-diary.el

@@ -1,7 +1,7 @@
 ;;; planner-xtla.el --- Xtla integration for the Emacs Planner
 
-;; Copyright (C) 2005 Free Software Foundation, Inc.
-;; Parts copyright (C) 2005 Yann Hodique (hodique AT lifl DOT fr)
+;; Copyright (C) 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2005, 2008 Yann Hodique (hodique AT lifl DOT fr)
 
 ;; Author: Stefan Reichör <stefan@xsteve.at>
 ;; Keywords: planner, xtla

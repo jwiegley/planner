@@ -1,9 +1,9 @@
 ;;; planner-publish.el --- planner-specific publishing
 
-;; Copyright (C) 2005, 2006 Peter K. Lee
-;; Parts copyright (C) 2005 Chris McMahan
-;; Parts copyright (C) 2005, 2006 Free Software Foundation, Inc.
-;; Parts copyright (C) 2005 Dale P. Smith
+;; Copyright (C) 2005, 2006, 2008 Peter K. Lee
+;; Parts copyright (C) 2005, 2008 Chris McMahan
+;; Parts copyright (C) 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2005, 2008 Dale P. Smith
 
 ;; Author: Peter K. Lee <saint@ c o r e n o v a .com>
 ;; Keywords: planner publish

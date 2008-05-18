@@ -1,8 +1,8 @@
 ;;; planner-timeclock-summary-proj.el --- timeclock project for the Emacs planner
 
-;; Copyright (C) 2004 Pascal Quesseveur
-;; Parts copyright (C) 2005 Free Software Foundation, Inc.
-;; Parts copyright (C) 2005 Trent Buck
+;; Copyright (C) 2004, 2008 Pascal Quesseveur
+;; Parts copyright (C) 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2005, 2008 Trent Buck
 
 ;; Author: Pascal Quesseveur <quesseveur@abaksystemes.fr>
 ;; Time-stamp: <2004-12-17 18:39>

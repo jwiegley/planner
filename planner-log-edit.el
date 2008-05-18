@@ -1,9 +1,9 @@
 ;;; planner-log-edit.el --- Record VC commits as a note in todays planner file
 
-;; Copyright (C) 2004 Simon Winwood (sjw AT cse.unsw.edu.au)
-;; Parts copyright (C) 2004 Free Software Foundation, Inc.
-;; Parts copyright (C) 2004 Dryice Dong Liu (dryice AT liu.com.cn)
-;; Parts copyright (C) 2005 Yann Hodique (yann.hodique AT gmail.com)
+;; Copyright (C) 2004, 2008 Simon Winwood (sjw AT cse.unsw.edu.au)
+;; Parts copyright (C) 2004, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2004, 2008 Dryice Dong Liu (dryice AT liu.com.cn)
+;; Parts copyright (C) 2005, 2008 Yann Hodique (yann.hodique AT gmail.com)
 
 ;; Author: Simon Winwood <sjw@cse.unsw.edu.au>
 ;; Version: 0.1

@@ -1,6 +1,6 @@
 ;;; planner-experimental.el --- Experimental functions for Emacs planner mode
 
-;; Copyright (C) 2004 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2008 Free Software Foundation, Inc.
 
 ;; Author: Sacha Chua
 

@@ -1,6 +1,6 @@
 ;;; schedule.el --- calculate schedule completion time
 
-;; Copyright (C) 1999, 2000 John Wiegley.
+;; Copyright (C) 1999, 2000, 2008 John Wiegley.
 
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Created: 20 Jan 1999

@@ -1,6 +1,6 @@
 ;;; planner-lisp.el --- Interactive Emacs Lisp integration for Planner mode
 
-;; Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2005, 2008 Free Software Foundation, Inc.
 
 ;; Author: Sacha Chua <sacha@free.net.ph>
 ;; Keywords: planner, gnus

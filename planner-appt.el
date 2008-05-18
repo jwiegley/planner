@@ -1,10 +1,10 @@
 ;;; planner-appt.el --- appointment alerts from planner
 ;;
 ;;
-;; Copyright (C) 2005  Jim Ottaway      <j.ottaway@lse.ac.uk>
-;; Copyright (C) 2005  Henrik S. Hansen <hsh@freecode.dk>
-;; Parts copyright (C) 2005, 2006 Free Software Foundation, Inc.
-;; Parts copyright (C) 2005 Seth Falcon <sethfalcon AT gmail.com>
+;; Copyright (C) 2005, 2006, 2007, 2008  Jim Ottaway <j.ottaway@lse.ac.uk>
+;; Copyright (C) 2005, 2008  Henrik S. Hansen <hsh@freecode.dk>
+;; Parts copyright (C) 2005, 2006, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2005, 2008 Seth Falcon <sethfalcon AT gmail.com>
 ;;
 ;; Author: Jim Ottaway
 ;; Keywords: hypermedia

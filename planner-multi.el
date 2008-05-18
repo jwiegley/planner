@@ -1,6 +1,6 @@
 ;;; planner-multi.el --- Multiple page support for planner.el
 
-;; Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2005, 2008 Free Software Foundation, Inc.
 
 ;; Author: Sandra Jean Chua (Sacha) <sacha AT free.net.ph>
 

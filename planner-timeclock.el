@@ -1,7 +1,7 @@
 ;;; planner-timeclock.el --- Timeclock integration for the Emacs Planner
 
-;; Copyright (C) 2001, 2004, 2005, 2006 Free Software Foundation, Inc.
-;; Parts copyright (C) 2005 Peter K. Lee
+;; Copyright (C) 2001, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2005, 2008 Peter K. Lee
 
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Keywords: planner, timeclock

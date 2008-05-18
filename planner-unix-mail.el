@@ -1,6 +1,6 @@
 ;;; planner-unix-mail.el --- Unix mailbox support for Planner
 
-;; Copyright (C) 2004  Frederik Fouvry <fouvry@coli.uni-saarland.de>
+;; Copyright (C) 2004, 2008  Frederik Fouvry <fouvry@coli.uni-saarland.de>
 
 ;; Author: Frederik Fouvry <fouvry@coli.uni-saarland.de>
 ;; Keywords:

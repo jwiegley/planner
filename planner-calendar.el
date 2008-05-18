@@ -1,7 +1,7 @@
 ;;; planner-calendar.el --- Create a clickable calendar in published html
 
-;; Copyright (C) 2003, 2004 Gary V. Vaughan (gary AT gnu DOT org)
-;; Parts copyright (C) 2005, 2006 Free Software Foundation, Inc.
+;; Copyright (C) 2003, 2004, 2008 Gary V. Vaughan (gary AT gnu DOT org)
+;; Parts copyright (C) 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-calendar.el

@@ -1,8 +1,8 @@
 ;; planner-bibtex.el -- BibTeX support for Planner
 
-;; Copyright (c) 2004 James Clarke <james@jamesclarke.info>
-;; Parts copyright (c) 2004 Jody Klymak <jklymak@ucsd.edu>
-;; Parts copyright (C) 2005 Free Software Foundation, Inc.
+;; Copyright (c) 2004, 2008 James Clarke <james@jamesclarke.info>
+;; Parts copyright (c) 2004, 2008 Jody Klymak <jklymak@ucsd.edu>
+;; Parts copyright (C) 2005, 2008 Free Software Foundation, Inc.
 
 ;; Author: James Clarke <james@jamesclarke.info>
 

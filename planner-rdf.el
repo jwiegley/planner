@@ -1,7 +1,7 @@
 ;;; planner-rdf.el --- RDF export for Emacs PlannerMode
 
-;; Copyright (C) 2004 Rainer Volz
-;; Parts copyright (C) 2005 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2008 Rainer Volz
+;; Parts copyright (C) 2005, 2008 Free Software Foundation, Inc.
 
 ;; Author: Rainer Volz, http://www.rainervolz.de
 ;; Version: 0.1

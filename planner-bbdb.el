@@ -1,7 +1,7 @@
 ;;; planner-bbdb.el --- BBDB integration for the Emacs Planner
 
-;; Copyright (C) 2001, 2003, 2004, 2005 Free Software Foundation, Inc.
-;; Parts copyright (C) 2004 Andrew J. Korty
+;; Copyright (C) 2001, 2003, 2004, 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2004, 2008 Andrew J. Korty
 
 ;; Author: John Wiegley <johnw@gnu.org>
 ;; Keywords: planner, gnus

@@ -1,7 +1,7 @@
 ;;; planner-rss.el --- RSS export for the Emacs Planner (planner.el)
 
-;; Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
-;; Parts copyright (C) 2005 David D. Smith
+;; Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2005, 2008 David D. Smith
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner-rss.el

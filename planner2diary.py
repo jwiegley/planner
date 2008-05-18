@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (C) 2001 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2008 Free Software Foundation, Inc.
 
 # Author: John Wiegley
 

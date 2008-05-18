@@ -1,6 +1,6 @@
 ;;; planner-notes-index.el --- Note indexing support for the Emacs planner
 
-;; Copyright (C) 2004, 2005, 2006 Free Software Foundation, Inc.
+;; Copyright (C) 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
 
 ;;; Commentary:
 

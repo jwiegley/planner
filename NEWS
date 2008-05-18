@@ -1,5 +1,54 @@
 Planner NEWS --- History of user-visible changes    -*- outline -*-
 
+* Changes in Planner 3.42
+
+With this version, Planner is now available under GPLv3 (or any later version
+published by the Free Software Foundation).
+
+Planner now requires Muse 3.03 or later.
+
+** Bugfixes
+
+*** planner: Note searching was returning bits of neighboring notes in search
+results. When moving blocks of tasks, don't include the task at the beginning
+of the region if point is at the end of the line, but do include it otherwise.
+*** planner-appt: Fix interaction with planner-deadline and task-based
+appointments. Fix match-string bug.
+*** planner-authz: Adapt for nested tag support. Fix markup for diary sections.
+*** planner-calendar: Adapt for nested tag support. Handle situation where the
+calendar for the next month is empty.
+*** planner-el.texi: Many updates and corrections.
+*** planner-gnus: Fix problem where unread messages were marked as read. Make
+documented keybindings actually work.
+*** planner-mhe: Remove unnecessary dependency.
+*** planner-notes-index: Muse compatibility fixes.
+*** planner-publish: Publish task IDs. Fix calendar publishing. Adapt for
+nested tag support. Fix escaping issues.
+*** planner-report: Handle non-ASCII characters.
+*** planner-rss: Markup was incorrectly being escaped.
+*** planner-tasks-overview: Make returned links work, and improve display. 
+*** planner-timeclock: Don't require project match. Muse compatibility fixes.
+*** planner-wl: Change keybinding to C-c from C-t, to avoid collision.
+*** planner-zoom: Use planner-page-name instead of buffer-name.
+*** README: Grammar fixes and other updates.
+*** timeclock: Better support for encrypted timeclock files. 
+
+** Compatibility fixes
+
+*** planner: Update to work with Emacs 22. Fix to work with ntemacs 23.0.0.1.
+*** planner-gnus: Fix to work with No Gnus and Gnus 5.11.
+*** planner-ledger: Update to work with newer versions of ledger.
+*** planner-publish: Fix XEmacs bugs.
+*** planner-timeclock: Remove unnecessary dependency.
+
+** New features
+
+*** Makefile: Make ELPA package. New rule to make just the info file. Update for git.
+*** planner: Add hook to task deletion. Pick up annotation from man and woman pages.
+*** planner-gnus: Support gnuslog URLs.
+*** planner-ledger: Add customize interface. The user can now specify a ledger file.
+Add a number of new functions for cleanly inserting ledger info into Planner pages. 
+
 * Changes in Planner 3.41
 
 ** Bugfixes
@@ -12,9 +61,9 @@ Planner NEWS --- History of user-visible changes    -*- outline -*-
 *** planner-appt: Fix highlighting in plan pages.
 *** planner-authz: Work with latest changes in planner-publish.
 *** planner-calendar: Fix many bugs and improve implementation.
-Be sure to read the "Publishing Calendars" section of the manual for
-details, as the common setup for Planner 3.40 will not work.
-This feature should now be much easier to get working.
+Be sure to read the "Publishing Calendars" section of the manual for details,
+as the common setup for Planner 3.40 will not work. This feature should now be
+much easier to get working.
 *** planner-calendar: If the current page is not a daypage,
 default to publishing a calendar for today.
 *** planner-gnus: Fix buggy browsing behavior.

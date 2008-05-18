@@ -1,10 +1,10 @@
 ;;; planner-timeclock-summary.el --- timeclock summary for the Emacs planner
 ;;
 
-;; Copyright (C) 2004, 2005 Dryice Dong Liu . All rights reserved.
-;; Parts copyright (C) 2004, 2005 Chris Parsons (chris.p AT rsons.org)
-;; Parts copyright (C) 2004, 2005 Free Software Foundation, Inc.
-;; Parts copyright (C) 2005 Peter K. Lee
+;; Copyright (C) 2004, 2005, 2008 Dryice Dong Liu . All rights reserved.
+;; Parts copyright (C) 2004, 2005, 2008 Chris Parsons (chris.p AT rsons.org)
+;; Parts copyright (C) 2004, 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2005, 2008 Peter K. Lee
 
 ;; Keywords: emacs planner timeclock report summary
 ;; Author: Dryice Liu <dryice AT liu DOT com DOT cn>
