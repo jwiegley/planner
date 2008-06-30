@@ -1,3 +1,8 @@
+2008-06-29  John Sullivan  <john@wjsullivan.net>
+
+	* planner-el.texi (Keeping Track of Time): Recover paragraph that
+	had been lost sometime in 2005.
+
 2008-05-18  John Sullivan  <john@wjsullivan.net>
 
 	* Release Planner 3.42.

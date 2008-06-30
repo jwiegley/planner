@@ -5922,8 +5922,14 @@ just how much time you spend working each day. If you add estimates to
 your task descriptions, you'll also be able to use this information to
 improve your time estimation skills.
 
-Here's how you can keep track of the time you
-
+For example, I had converted the TODO my teammate sent me into entries
+in my JapanProject plan page, and before starting my work I came up
+with rough estimates of the time it would take me to do the tasks. I
+also marked which tasks I felt were best suited for my coworker so
+that he could get started without worrying about conflicts. I like
+working on little tasks first, so I estimated the time it would take
+me to complete each task and sorted by my estimates using the
+@code{sort} command and some cutting and pasting.
 
 Then the fun began. I wanted to see if I could match my estimates.
 Before I started working on a task, I used @kbd{C-c TAB} to mark it
