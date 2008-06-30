@@ -1243,7 +1243,8 @@ If EXCLUDE-TEMP is non-nil, ignore unsaved buffers."
         files)
     (mapcar (lambda (item)
               (when (string-match planner-date-regexp (car item))
-                (add-to-list 'files (cons item files))))
+                (unless (rassoc (cdr item) files)
+                  (setq files (cons item files)))))
             (planner-file-alist))
     (unless exclude-temp
       (while buffers
