@@ -1,3 +1,9 @@
+2008-06-30  John Sullivan  <john@wjsullivan.net>
+
+	* planner.el (planner-list-daily-files): Clarify docstring.
+	(planner-get-day-pages): planner-list-daily-files only returns
+	date pages, no need to test for this.
+
 2008-06-30  Michael Olson  <mwolson@gnu.org>
 
 	* planner.el (planner-list-daily-files): Fix Bug #11932, where

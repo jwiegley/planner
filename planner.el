@@ -1235,7 +1235,7 @@ This makes the bad link face in the linking buffer go away."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun planner-list-daily-files (&optional exclude-temp)
-  "Return an unsorted list of daily files.
+  "Return an unsorted, unique list of daily files.
 If EXCLUDE-TEMP is non-nil, ignore unsaved buffers."
   ;; get a list of all files
   ;; (save-some-buffers t (lambda () (equal 'planner-mode major-mode)))
@@ -1266,7 +1266,6 @@ If EXCLUDE-TEMP is non-nil, ignore unsaved pages."
                (lambda (item)
                  (and
                   (car item)
-                  (string-match planner-date-regexp (car item))
                   (or (not from)
                       (string-lessp from (car item))
                       (equal from (car item)))
