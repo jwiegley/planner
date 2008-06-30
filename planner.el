@@ -2505,8 +2505,8 @@ the end.  Position point after the anchor."
     (when (planner-narrow-to-section 'notes)
       (let ((total 0))
         (goto-char (point-min))
-        (while (re-search-forward "^\\.#[0-9]+\\s-+" nil t)
-          (setq total (1+ total)))
+        (while (re-search-forward "^\.#\\([0-9]+\\)\\s-+" nil t)
+          (setq total (max total (string-to-number (match-string 1)))))
         (if planner-reverse-chronological-notes
             (progn (goto-char (point-min))
                    (forward-line 1)

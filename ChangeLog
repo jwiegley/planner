@@ -1,5 +1,8 @@
 2008-06-29  John Sullivan  <john@wjsullivan.net>
 
+	* planner.el (planner-create-note): Fix for #10196, make sure that
+	newly created notes get the right number.
+
 	* planner-el.texi (Keeping Track of Time): Recover paragraph that
 	had been lost sometime in 2005.
 
