@@ -1,3 +1,8 @@
+2008-06-30  Michael Olson  <mwolson@gnu.org>
+
+	* planner.el (planner-list-daily-files): Fix Bug #11932, where
+	duplicate items could be returned in planner-get-day-pages.
+
 2008-06-29  John Sullivan  <john@wjsullivan.net>
 
 	* planner.el (planner-create-note): Fix for #10196, make sure that
