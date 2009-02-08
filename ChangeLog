@@ -1,3 +1,8 @@
+2009-02-08  John Sullivan  <john@wjsullivan.net>
+
+	* planner-el.texi (Publishing Planner pages): Fix typo, closes
+	#12843.
+
 2008-06-30  John Sullivan  <john@wjsullivan.net>
 
 	* planner.el (planner-list-daily-files): Clarify docstring.

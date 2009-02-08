@@ -3646,7 +3646,7 @@ code to your @file{~/.emacs} (or @file{_emacs}):
 
 @example
 (eval-after-load "muse-mode"
-  (add-hook 'after-save-hook
+  '(add-hook 'after-save-hook
             #'(lambda ()
                 (when (planner-derived-mode-p 'muse-mode)
                   (muse-project-publish nil)))
