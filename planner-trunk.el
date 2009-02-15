@@ -4,6 +4,7 @@
 ;; Copyright (C) 2005, 2008 Dryice Dong Liu . All rights reserved.
 ;; Parts copyright (C) 2005, 2008 Keith Amidon
 ;; Parts copyright (C) 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2006, 2007 Software Freedom Law Center
 
 ;; Keywords: emacs planner trunk group tasks
 ;; Authors: Dryice Liu <dryice AT liu DOT com DOT cn>
@@ -113,7 +114,7 @@ use, it will become obvious why this is desirable."
   :type '(repeat (list
                   :tag "Trunk rule"
                   (choice :tag "Page regexp"
-                          (const "\\`[0-9][0-9][0-9][0-9]\\.[0-9][0-9]\\.[0-9][0-9]\\'"
+                          (const "\\`[0-9][0-9][0-9][0-9][\\.\\-][0-9][0-9][\\.\\-][0-9][0-9]\\'"
                                  :tag "Day pages")
                           (const "." :tag "All pages")
                           (regexp :tag "Regexp"))

@@ -1,6 +1,7 @@
 ;;; planner-notes-index.el --- Note indexing support for the Emacs planner
 
 ;; Copyright (C) 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2006, 2007 Software Freedom Law Center
 
 ;;; Commentary:
 
@@ -210,10 +211,11 @@ Examples:
       (insert
        "<td><div class=\"month_day\">"
        (if (and (>= day 1) (<= day last))
-           (format "[[%s.%02d]]" month day)
+           (format (concat "[[%s" planner-date-separator "%02d]]") month day)
          "")
        "</div><div class=\"month_details\">\n")
-      (let ((data (assoc (format "%s.%02d" month day)
+      (let ((data (assoc (format (concat "%s" planner-date-separator "%02d")
+                                 month day)
                          headlines))
             extra)
         (planner-notes-index-insert-as-list

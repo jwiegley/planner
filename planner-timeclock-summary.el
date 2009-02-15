@@ -5,6 +5,7 @@
 ;; Parts copyright (C) 2004, 2005, 2008 Chris Parsons (chris.p AT rsons.org)
 ;; Parts copyright (C) 2004, 2005, 2008 Free Software Foundation, Inc.
 ;; Parts copyright (C) 2005, 2008 Peter K. Lee
+;; Parts copyright (C) 2006, 2007 Software Freedom Law Center
 
 ;; Keywords: emacs planner timeclock report summary
 ;; Author: Dryice Liu <dryice AT liu DOT com DOT cn>
@@ -463,7 +464,7 @@ The section is updated only if it exists."
           (insert "* " planner-timeclock-summary-section "\n\n")
           (insert (if (and thepage (string-match planner-date-regexp thepage))
                       (planner-timeclock-summary-make-text-table-day
-                       (planner-replace-regexp-in-string "\\." "/"
+                       (planner-replace-in-string thepage "[\\.\\-]" "/" t
                                                          thepage t t))
                     (planner-timeclock-summary-make-text-table-day
                      nil nil
@@ -533,8 +534,8 @@ Dates are strings in the form YYYY.MM.DD and can be nil."
               (concat start-date " - " end-date))
             "\n\n"
             (planner-timeclock-summary-make-text-table-day
-             (planner-replace-regexp-in-string "\\." "/" start-date t t)
-             (planner-replace-regexp-in-string "\\." "/" end-date t t)
+             (planner-replace-regexp-in-string "[\\.\\-]" "/" start-date t t)
+             (planner-replace-regexp-in-string "[\\.\\-]" "/" end-date t t)
              filter))
     (planner-mode))
   (goto-char (point-min)))
@@ -604,7 +605,7 @@ given."
     (insert "Timeclock summary report for " date "\n\n")
     (planner-mode)
     (planner-timeclock-summary-make-table-day
-     (planner-replace-regexp-in-string "\\." "/" date t t) (point)))
+     (planner-replace-regexp-in-string "[\\.\\-]" "/" date t t) (point)))
   (goto-char (point-min)))
 
 (defun planner-timeclock-summary-table-span-cell-left ()

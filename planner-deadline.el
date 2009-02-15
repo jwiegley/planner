@@ -2,6 +2,7 @@
 
 ;; Copyright (C) 2004, 2005, 2008 Free Software Foundation, Inc.
 ;; Parts copyright (C) 2004, 2005, 2008 Dryice Dong Liu <dryice AT liu.com.cn>
+;; Parts copyright (C) 2006, 2007 Software Freedom Law Center
 
 ;; Author: Sandra Jean Chua (Sacha) <sacha AT free.net.ph>
 ;; URL: http://www.wjsullivan.net/PlannerMode.html
@@ -51,7 +52,7 @@ Point will be on the same line as the task."
   :options '(planner-deadline-update)
   :group 'planner-deadline)
 
-(defcustom planner-deadline-regexp "\\({{Deadline:\\s-+\\([0-9]+\\.[0-9]+\\.[0-9]+\\)[^}\n]*}}\\)"
+(defcustom planner-deadline-regexp "\\({{Deadline:\\s-+\\([0-9]+[\\.\\-][0-9]+[\\.\\-][0-9]+\\)[^}]*}}\\)"
   "Regular expression for deadline data.
 The special deadline string should be regexp group 1. The
 date (YYYY.MM.DD) should be regexp group 2."

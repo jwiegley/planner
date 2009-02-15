@@ -18,6 +18,7 @@
 ;; Parts copyright (C) 2005, 2008 Sergey Vlasov (vsu AT altlinux.ru)
 ;; Parts copyright (C) 2005, 2008 Yann Hodique (hodique AT lifl DOT fr)
 ;; Parts copyright (C) 2005, 2008 Peter K. Lee
+;; Parts copyright (C) 2006, 2007 Software Freedom Law Center
 
 ;; Emacs Lisp Archive Entry
 ;; Filename: planner.el
@@ -598,6 +599,21 @@ By default, dates are based on the current page."
   :prefix "planner-"
   :group 'planner)
 
+; Note that if you add another choice other than '.' or '-' here, you'll need
+;  to grep through the code for [\\.\\-] and replace it with a regex that matches
+;   all possible date-separators.  I thought about making a variable that builds
+;   all the regexes used elsewhere, but it made the code messy, it seemed, and
+;   I didn't imagine too many other separators people would want.  Myabe '/', but
+;   that would cause it's own world of hurt.  -- bkuhn, 2007-01-09
+
+(defcustom planner-date-separator "."
+  "This character will be used to separate year, month and day numbers
+   when formatting dates"
+  :type '(choice
+          (const :tag "Dates should be in the form YYYY.MM.DD" ".")
+          (const :tag "Dates should be in the form YYYY-MM-DD" "-"))
+  :group 'planner)
+
 (defcustom planner-carry-tasks-forward 3
   "If non-nil, carry unfinished tasks forward automatically.
 If a positive integer, scan that number of days in the past.
@@ -1071,7 +1087,7 @@ does to the diary buffer."
 ;;       (muse-colors-buffer))))
 
 (defvar planner-date-regexp
-  "\\<\\([1-9][0-9][0-9][0-9]\\)\\.\\([0-9]+\\)\\.\\([0-9]+\\)\\>")
+  "\\<\\([1-9][0-9][0-9][0-9]\\)[\\.\\-]\\([0-9]+\\)[\\.\\-]\\([0-9]+\\)\\>")
 
 (defun planner-setup-highlighting ()
   "Set up fontification for planner."
@@ -1144,6 +1160,7 @@ instead of a string."
         (when (file-exists-p filename)
           (funcall planner-delete-file-function filename)))
     (kill-buffer (current-buffer))))
+
 
 (defun planner-prepare-file ()
   "Insert some standard sections into an empty planner file."
@@ -1306,7 +1323,9 @@ using day pages."
                              (format "%s %s"
                                      (or prompt "When")
                                      (format-time-string
-                                      "(%Y.%m.%d, %m.%d, %d): ")))))
+                                      (concat "(%Y" planner-date-separator "%m"
+                                              planner-date-separator "%d, %m"
+                                       planner-date-separator "%d, %d): "))))))
                   (or planner-calendar-selected-date
                       (with-current-buffer old-buffer
                         (planner-expand-name text)))))
@@ -1334,14 +1353,17 @@ Should be a string of the form YYYY.MM.DD. If nil, do not timewarp.")
 (defun planner-date-to-filename (date)
   "Return the planner filename corresponding to DATE.
 DATE is a list (month day year) or an internal date representation."
-  (if (= (length date) 3)
-      (format "%04d.%02d.%02d" (elt date 2) (elt date 0) (elt date 1))
+  (let ( (date-form-string (concat "%04d" planner-date-separator "%02d" 
+                                   planner-date-separator "%02d") ) )
+    (progn
+    (if (= (length date) 3)
+      (format  date-form-string (elt date 2) (elt date 0) (elt date 1))
     (if (= (length date) 2)
         (setq date (decode-time date)))
-    (format "%04d.%02d.%02d"
+    (format date-form-string
             (elt date 5) ; year
             (elt date 4) ; month
-            (elt date 3)))) ; day
+            (elt date 3)))))) ; day
 
 (defun planner-calculate-date-from-day-offset (origin offset)
   "From ORIGIN, calculate the date OFFSET days into the past or future.
@@ -1457,8 +1479,8 @@ defaults."
      ((string= "." name) (if (not planner-use-day-pages)
                              (planner-date-to-filename now)
                            (planner-today)))
-     ((string-match (concat "^\\([1-9][0-9][0-9][0-9]\\.\\)?"
-                            "\\(\\([0-9]+\\)\\.\\)?"
+     ((string-match (concat "^\\([1-9][0-9][0-9][0-9][\\.\\-]\\)?"
+                            "\\(\\([0-9]+\\)[\\.\\-]\\)?"
                             "\\([0-9]+\\)\\(#.*\\)?$") name)
       (setq name-year
             (if (match-string 1 name)
@@ -1500,8 +1522,7 @@ defaults."
         (string-match (concat
                        "^\\([-+]\\)\\s-*\\([0-9]*\\)\\s-*\\("
                        (mapconcat 'car planner-expand-name-days-alist "\\|")
-                       "\\)\\s-*\\(\\.\\|\\(\\(\\([0-9]+\\.\\)?[0-9]+\\.\\)?"
-                       "[0-9]+\\)\\)?$")
+                       "\\)\\s-*\\([\\.\\-]\\|\\(\\(\\([0-9]+[\\.\\-]\\)?[0-9]+[\\-\\.]\\)?[0-9]+\\)\\)?$")
                       name))
       (let* ((day (cdr (assoc (match-string 3 name)
                               planner-expand-name-days-alist)))

@@ -2,6 +2,7 @@
 
 ;; Copyright (C) 2004, 2008 Rainer Volz
 ;; Parts copyright (C) 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2006, 2007 Software Freedom Law Center
 
 ;; Author: Rainer Volz, http://www.rainervolz.de
 ;; Version: 0.1
@@ -585,7 +586,7 @@ of the standard output to provide customised content."
 (defun planner-rdf-insert-page-info (name tasks notes)
   "Create a page object."
   (insert "<planner:Page rdf:about=\"" planner-rdf-page-prefix name "\">\n")
-  (let ((type (if (string-match "^[0-9]\\{4\\}\\.[0-9]\\{2\\}\\.[0-9]\\{2\\}" name)
+  (let ((type (if (string-match "^[0-9]\\{4\\}[\\.\\-][0-9]\\{2\\}[\\.\\-][0-9]\\{2\\}" name)
 				  planner-rdf-pagetype-day
 				planner-rdf-pagetype-project)))
 	 (insert "\t<page-type rdf:resource=\"" type "\"/>\n")
@@ -619,7 +620,7 @@ of the standard output to provide customised content."
 	 (insert "\t<dc:Title>" (file-name-nondirectory file) "</dc:Title>\n")
 	 (insert "\t<dc:Identifier>" planner-rdf-base "page-" name "</dc:Identifier>\n")
 	 (insert "\t<dc:Format>text</dc:Format>\n")
-	 (if (string-match "^[0-9]\\{4\\}\\.[0-9]\\{2\\}\\.[0-9]\\{2\\}" name)
+	 (if (string-match "^[0-9]\\{4\\}[\\.\\-][0-9]\\{2\\}[\\.\\-][0-9]\\{2\\}" name)
 		  (progn
 			 (insert "\t<dc:Type>" planner-rdf-pagetype-day "</dc:Type>\n")
 			 (insert 

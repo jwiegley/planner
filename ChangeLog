@@ -1,3 +1,14 @@
+2009-02-14  John Sullivan  <john@wjsullivan.net>
+
+	* planner.el, planner-deadline.el, planner-notes-index.el,
+	planner-rank.el, planner-rdf.el, planner-timeclock-summary.el,
+	planner-trunk.el: Finally merge patch from Bradley Kuhn at the
+	Software Freedom Law Center to allow "-" to be used as the date
+	separator. A customizable variable, planner-date-separator, allows
+	the user to choose which separator they prefer. The regexes that
+	match dates throughout the planner codebase have been changed to
+	match both. Closes #8205.
+
 2009-02-08  John Sullivan  <john@wjsullivan.net>
 
 	* planner-el.texi (Publishing Planner pages): Fix typo, closes

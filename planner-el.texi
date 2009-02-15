@@ -14,7 +14,7 @@
 @copying
 This manual is for Planner version 3.42.
 
-Copyright @copyright{} 2001, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.@*
+Copyright @copyright{} 2001, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.@*
 Parts copyright @copyright{} 2005 Jim Ottaway@*
 Parts copyright @copyright{} 2005 Dryice Dong Liu
 
@@ -1513,8 +1513,10 @@ wonderful ideas about planning in Emacs!
 @comment  node-name,  next,  previous,  up
 @section Starting with Day Pages
 
-@command{planner-goto-today} opens today's page.  Day pages are named
-@samp{YYYY.MM.DD} and contain your notes for the day.
+@command{planner-goto-today} opens today's page. Day pages are named
+@samp{YYYY.MM.DD} and contain your notes for the day. They can also be
+named @samp{YYYY-MM-DD} if you prefer -- just customize the value of
+@var{planner-date-separator}.
 
 You should see a file that looks like this:
 

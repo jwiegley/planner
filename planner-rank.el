@@ -3,6 +3,7 @@
 
 ;; Copyright (C) 2005, 2008 Dryice Dong Liu . All rights reserved.
 ;; Parts copyright (C) 2005, 2008 Free Software Foundation, Inc.
+;; Parts copyright (C) 2006, 2007 Software Freedom Law Center
 
 ;; Keywords: emacs planner important emergent rank deadline
 ;; Author: Dryice Liu <dryice AT liu DOT com DOT cn>
@@ -154,7 +155,7 @@ urgency value, and return the calculated rank value."
 (add-hook 'planner-deadline-change-hook 'planner-rank-update-current-task)
 
 (defconst planner-rank-regexp
-"\\(\\s-*{{Rank:\\s-+\\([0-9]\\.[0-9]+\\)\\s-+-\\s-+I=\\([0-9]\\)\\s-+U=\\([0-9]\\)}}\\)"
+"\\(\\s-*{{Rank:\\s-+\\([0-9][\\.\\-][0-9]+\\)\\s-+-\\s-+I=\\([0-9]\\)\\s-+U=\\([0-9]\\)}}\\)"
   "Regular expression for rank data.
 Regexp group 1 is the whole rank string.
 Regexp group 2 is the rank value.
