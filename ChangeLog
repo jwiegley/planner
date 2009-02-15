@@ -1,3 +1,9 @@
+2009-02-15  John Sullivan  <john@wjsullivan.net>
+
+	* planner-multi.el (planner-multi-read-name): Using SPC as the
+	planner-multi-separator no longer breaks SPC completion for other
+	Emacs functions. Closes #11953.
+
 2009-02-14  John Sullivan  <john@wjsullivan.net>
 
 	* planner.el, planner-deadline.el, planner-notes-index.el,

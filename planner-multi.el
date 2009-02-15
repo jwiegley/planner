@@ -774,31 +774,31 @@ If PROMPT is specified, use that instead of \"Page:\"."
 	  (plist-put
 	   (copy-sequence minibuffer-prompt-properties)
 	   'read-only nil))
-	 (map (copy-keymap minibuffer-local-completion-map))
          (completion-ignore-case t)
          (crm-separator (regexp-quote planner-multi-separator))
+	 (map (make-sparse-keymap))
+         (minibuffer-local-completion-map
+	  (progn
+	    (set-keymap-parent map minibuffer-local-completion-map)
+	    (define-key map planner-multi-separator 'self-insert-command)
+	    map))
          (prompt (format "%s(default: %s) "
 			 (or prompt "Page: ") planner-default-page))
          str)
-    (unwind-protect
-        (progn
-          (define-key minibuffer-local-completion-map
-	    planner-multi-separator 'self-insert-command)
-          (setq str
-                (if (fboundp 'completing-read-multiple)
-                    (completing-read-multiple
-                     prompt file-alist nil nil initial
-                     'planner-history-list
-                     planner-default-page)
-                  (planner-multi-split
-                   (read-string prompt initial 'planner-history-list
-				planner-default-page))))
-          (cond
-           ((or (null str)
-                (string= (car str) "")) planner-default-page)
-           ((string= (car str) "nil") nil)
-           (t (mapconcat 'identity str planner-multi-separator))))
-      (setq minibuffer-local-completion-map map))))
+    (setq str
+          (if (fboundp 'completing-read-multiple)
+              (completing-read-multiple
+               prompt file-alist nil nil initial
+               'planner-history-list
+               planner-default-page)
+	    (planner-multi-split
+	     (read-string prompt initial 'planner-history-list
+			  planner-default-page))))
+    (cond
+     ((or (null str)
+          (string= (car str) "")) planner-default-page)
+     ((string= (car str) "nil") nil)
+     (t (mapconcat 'identity str planner-multi-separator)))))
 
 (defun planner-multi-read-name-multiple-prompts (file-alist prompt initial)
   "Read multiple pages, completing based on FILE-ALIST.
