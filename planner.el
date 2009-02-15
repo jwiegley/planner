@@ -1732,12 +1732,6 @@ Date pages are not linked."
   (when (eq major-mode 'dired-mode)
     (planner-make-link default-directory)))
 
-(defun planner-annotation-from-file-relative ()
-  "Return the filename of the current buffer relative to `planner-directory'."
-  (when buffer-file-name
-    (planner-make-link (file-relative-name buffer-file-name
-                                           (planner-directory))
-                       nil t)))
 (custom-add-option 'planner-annotation-functions
                    'planner-annotation-from-dired)
 

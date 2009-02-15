@@ -1112,7 +1112,7 @@ following lines:
 
 This will bring up the most recent day page with unfinished tasks or
 create a new day page if necessary. By default, planner pages are
-stored in @samp{~/Plans} (@code{planner-directory}).
+stored in @samp{~/Plans}.
 
 @menu
 * Tasks::                       
@@ -1530,8 +1530,7 @@ You should see a file that looks like this:
 @end example
 
 You can type anything you want into this file.  You can add or delete
-sections.  When you save, Emacs stores your information in
-@code{planner-directory}.
+sections.  
 
 Use the following commands to navigate through day pages:
 
@@ -5700,13 +5699,8 @@ contents of the day page.
 @cindex variables, customization of
 @cindex configuration, advanced, variables
 
-If you want to change @code{planner-directory} and some other
-variables, either use Customize (@kbd{M-x customize-group RET planner
-RET}) or use @code{setq}.  An example of the latter follows.
-
-@example
-(setq planner-directory "~/Plans")
-@end example
+You can use Customize (@kbd{M-x customize-group RET planner RET}) to
+set user variables.
 
 Other user options are:
 
