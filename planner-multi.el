@@ -775,25 +775,31 @@ If PROMPT is specified, use that instead of \"Page:\"."
 	   (copy-sequence minibuffer-prompt-properties)
 	   'read-only nil))
          (completion-ignore-case t)
-         (crm-separator (regexp-quote planner-multi-separator))
-	 (map (make-sparse-keymap))
-         (minibuffer-local-completion-map
-	  (progn
-	    (set-keymap-parent map minibuffer-local-completion-map)
-	    (define-key map planner-multi-separator 'self-insert-command)
-	    map))
          (prompt (format "%s(default: %s) "
 			 (or prompt "Page: ") planner-default-page))
+         (crm-separator planner-multi-separator)
+         (map (make-sparse-keymap))
+         (planner-multi-local-completion-map
+          (progn
+            (if (featurep 'crm)
+                (set-keymap-parent map crm-local-completion-map)
+              (set-keymap-parent map minibuffer-local-completion-map))
+            (define-key map planner-multi-separator 'self-insert-command)
+            map))
          str)
     (setq str
           (if (fboundp 'completing-read-multiple)
-              (completing-read-multiple
-               prompt file-alist nil nil initial
-               'planner-history-list
-               planner-default-page)
-	    (planner-multi-split
-	     (read-string prompt initial 'planner-history-list
-			  planner-default-page))))
+              (let ((crm-local-completion-map 
+                     planner-multi-local-completion-map))
+                (completing-read-multiple
+                 prompt file-alist nil nil initial
+                 'planner-history-list
+                 planner-default-page))
+            (let ((minibuffer-local-completion-map 
+                   planner-multi-local-completion-map))
+              (planner-multi-split
+               (read-string prompt initial 'planner-history-list
+                            planner-default-page)))))
     (cond
      ((or (null str)
           (string= (car str) "")) planner-default-page)

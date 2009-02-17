@@ -1,3 +1,14 @@
+2009-02-17  John Sullivan  <john@wjsullivan.net>
+
+	* planner-multi.el (planner-multi-read-name): I don't think the
+	value for `crm-separator' sohuld be regexp quoted. If we're using
+	crm, then we need to modify its completion map in the same way we
+	do if we're not. I'm setting up the map inside the function
+	instead of defvar because I'm concerned about what happens when
+	people modify `planner-multi-separator' after loading
+	planner-multi. Better ways of doing this welcome, but it seems to
+	work.
+
 2009-02-15  John Sullivan  <john@wjsullivan.net>
 
 	* planner.el (planner-annotation-from-file-relative): Delete this
