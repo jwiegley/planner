@@ -3274,8 +3274,10 @@ instead, except t means scan only yesterday."
               ;; Attempt to copy all the tasks
               (when (not (equal today (planner-page-name)))
                 (let ((planner-tasks-file-behavior nil))
-                  (planner-copy-or-move-region (point-min) (point-max)
-                                               (planner-today) t))
+                  (save-restriction
+                    (planner-narrow-to-section 'tasks)
+                    (planner-copy-or-move-region (point-min) (point-max)
+                                                 (planner-today) t)))
                 (unless (buffer-modified-p)
                   (kill-buffer (current-buffer))))
               (setq names (cdr names))))

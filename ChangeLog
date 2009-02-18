@@ -1,3 +1,10 @@
+2009-02-18  John Sullivan  <john@wjsullivan.net>
+
+	* planner.el (plan): When carrying tasks forward, narrow to the
+	tasks section first instead of looking at the whole page. Closes
+	#11948. This should also improve performance a good deal for
+	everyone using `planner-carry-tasks-forward'.
+
 2009-02-17  John Sullivan  <john@wjsullivan.net>
 
 	* planner-multi.el (planner-multi-read-name): I don't think the
