@@ -771,7 +771,7 @@ foundation.  If you follow your plan doggedly, applying some time to
 it each day or week, it @emph{will} happen.  Remember the story of the
 tortoise and the hare.  I've even written a short essay on the
 necessity of gradual accomplishment, which can be found at
-@url{http://emacswiki.org/johnw/essays/node2.html}.
+@url{http://www.johnwiegley.com/2004/03/advancing-the-process.html}.
 
 How can this software help?  Computers are ideal for manipulating
 information, since they allow you to change things without erasing
