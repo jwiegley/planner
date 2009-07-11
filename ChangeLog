@@ -1,3 +1,8 @@
+2009-07-11  John Sullivan  <john@wjsullivan.net>
+
+	* planner-el.texi (Planning based on the Franklin-Covey Approach):
+	Fix broken link reported by Andrew Boocock.
+
 2009-02-18  John Sullivan  <john@wjsullivan.net>
 
 	* planner.el (plan): When carrying tasks forward, narrow to the
